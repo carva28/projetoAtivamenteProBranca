@@ -90,6 +90,74 @@ p {
   color: #5EB398;
 }
 
+#label_p{
+  margin-left: 20px;
+  text-align: left;
+  margin-top: 20px;
+  font-weight: 700;
+}
+
+.inputs_form_login{
+  margin-top: 7%;
+}
+
+.form-control, .form-control:hover,.form-control:focus{
+  background-color: #5eb39855;
+  width: 90%;
+  margin-left: 20px;
+  margin-top: 10px;
+  color: rgba(34, 58, 95, 1);
+  font-weight: 500;
+  height: 50px;
+  border: none;
+}
+
+label{
+  display: inherit;
+}
+
+.conjun_btns_login{
+  margin-top: 20px;
+  width: 90%;
+  display: block;
+  text-align: right;
+}
+
+.conjun_btns_login button{
+  margin-top: 20px;
+  background-color: rgba(34, 58, 95, 1);
+  color: white;
+  font-weight: 800;
+  border: none;
+  padding: 10px 20px;
+}
+
+#info_help{
+  color: rgba(34, 58, 95, 1);
+  margin-top: 15%;
+  
+}
+#info_help h1{
+  font-size: 2rem;
+  text-align: left;
+  margin-left: 20px;
+}
+
+#info_help p{
+  text-align: left;
+  margin-left: 20px;
+}
+
+.login_help, .login_help:hover{
+
+  font-weight: 400;
+  background-color: white;
+  border: 1px solid rgba(255, 94, 78, 1);
+  color: rgba(255, 94, 78, 1);
+  padding: 10px 20px;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
