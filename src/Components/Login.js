@@ -15,7 +15,7 @@ import {
   signInWithGoogle,
   logout,
 } from "./firebase";
-import image_main from "../images/characters/login_character.png";
+import imLogin from "../images/characters/login.svg";
 
 class Login extends React.Component {
   constructor() {
@@ -49,13 +49,15 @@ class Login extends React.Component {
     return (
       <Row>
         <Col xs={{ order: 1 }} id="bgMain">
-          <img src={image_main} />
+          <img src={imLogin} />
 
-          <h1 className="mainComponents white">Bem-vindo!</h1>
-          <p className="mainComponents white">
-            Ligue aos seus amigos e familiares, veja vídeos que gosta e esteja a
-            par do que os seus amigos andam a fazer!
-          </p>
+          <Row>
+            <h1 className="mainComponents white">Bem-vindo!</h1>
+            <p className="mainComponents white">
+              Ligue aos seus amigos e familiares, veja vídeos que gosta e esteja
+              a par do que os seus amigos andam a fazer!
+            </p>
+          </Row>
         </Col>
 
         <Col xs={{ order: 1 }} id="noBgMain">
@@ -89,6 +91,8 @@ class Login extends React.Component {
               placeholder="Clique aqui para escrever a sua palavra-passe"
               className="blue"
             />
+
+            <p class="warning">O email deve incluir um @.</p>
 
             <Row className="alignBtns">
               <Button className="btnFill" onClick={this.login}>

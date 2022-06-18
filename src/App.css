@@ -58,19 +58,31 @@ p {
   background-color: transparent;
   font-weight: 600;
   flex-basis: max-content;
+  transition: all 0.5s ease-in-out;
 }
 
-.btnFill {
+.btn.btnFill {
   background-color: #223a5f;
   color: #fff;
+  border: 2px solid #223a5f;
 }
 
-.btnBorderRed {
+.btnFill:hover {
+  background-color: #fff;
+  color: #223a5f;
+}
+
+.btn.btnBorderRed {
   border: 2px solid #ff5e4e;
   color: #ff5e4e;
 }
 
-.btnInfo {
+.btn.btnBorderRed:hover {
+  background-color: #ff5e4e;
+  color: #fff;
+}
+
+.btn.btnInfo {
   background-color: #ebeff0;
 }
 
@@ -97,6 +109,15 @@ p {
   margin: 0;
 }
 
+.warning {
+  display: none;
+  color: #ff5e4e;
+  font-weight: 500;
+  margin: 30px 0 -15px !important;
+  font-size: 1.05rem;
+  text-align: right;
+}
+
 /* LOGIN / REGISTO */
 #bgMain,
 #noBgMain {
@@ -106,23 +127,30 @@ p {
 }
 
 #bgMain {
-  padding: 80px 0;
+  padding: 100px 0;
   background-color: #5eb398;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
 }
 
 #noBgMain {
-  padding: 40px;
+  padding: 60px 40px 80px;
   background-color: #fff;
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-between;
 }
 
 .mainComponents {
   max-width: 85%;
   text-align: center;
-  margin: auto;
+  margin: 0 auto;
 }
 
 h1.mainComponents {
   margin-top: 40px;
+  margin-bottom: 0;
 }
 
 p.mainComponents {
@@ -131,7 +159,7 @@ p.mainComponents {
 
 #bgMain img {
   height: 50vh;
-  margin: auto;
+  margin: 0 auto;
   display: block;
 }
 
@@ -155,7 +183,7 @@ p.mainComponents {
 
 .row#infoHelp {
   width: 100%;
-  margin: 80px 0;
+  margin: 80px 0 0;
   clear: both;
   justify-content: space-between;
 }

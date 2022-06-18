@@ -12,13 +12,14 @@ import {
   createUserWithEmailAndPassword,
   signInWithGoogle,
 } from "./firebase";
-import image_main from "../images/characters/login_character.png";
+import imgRegisto from "../images/characters/registo.svg";
 
 class Registo extends React.Component {
   constructor() {
     super();
     this.state = {
       count: 0,
+      name: "",
       email: "",
       password: "",
     };
@@ -43,13 +44,9 @@ class Registo extends React.Component {
     return (
       <Row>
         <Col xs={{ order: 1 }} id="bgMain">
-          <img src={image_main} />
+          <img src={imgRegisto} />
 
-          <h1 className="mainComponents white">Registo</h1>
-          <p className="mainComponents white">
-            Ligue aos seus amigos e familiares, veja vídeos que gosta e esteja a
-            par do que os seus amigos andam a fazer!
-          </p>
+          <h1 className="mainComponents white">Regista-te</h1>
         </Col>
 
         <Col xs={{ order: 1 }} id="noBgMain">
@@ -66,7 +63,7 @@ class Registo extends React.Component {
 
             <Form.Control
               type="text"
-              value={this.state.email}
+              value={this.state.name}
               onChange={(e) => this.setState({ name: e.target.value })}
               placeholder="Clique aqui para escrever o seu nome"
               className="blue"
