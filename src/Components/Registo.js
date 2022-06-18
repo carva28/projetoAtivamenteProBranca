@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Row, Button, Container, Col, Form, FormControl } from 'react-bootstrap';
 import image_main from "./../images/login_character.png";
-import { auth, registerWithEmailAndPassword, signInWithGoogle } from "./firebase";
+import { auth, createUserWithEmailAndPassword, signInWithGoogle } from "./firebase";
 
 
-class NavBar extends React.Component {
+class Registo extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -16,6 +16,20 @@ class NavBar extends React.Component {
     }
 
 
+    register = async () => {
+        try{
+            const user = await createUserWithEmailAndPassword(auth,this.state.email,this.state.password);
+            console.log(user)
+        }catch (error){
+            console.log("Register \n" + error);
+        }
+       
+    }
+
+    login =  async () => {
+        
+    }
+
 
     render() {
         return (
@@ -23,7 +37,7 @@ class NavBar extends React.Component {
             <Row>
                 <Col xs={{ order: 1 }} id="backgroundMain" >
                     <img src={image_main} />
-                    <h1 class="main_h1">Bem-vindo!</h1>
+                    <h1 class="main_h1">Página registo!</h1>
                     <p class="main_p">Ligue aos seus amigos e familiares, veja vídeos que gosta e esteja a par do que os seus amigos andam a fazer!</p>
                 </Col>
                 <Col xs={{ order: 1 }} class="" >
@@ -57,7 +71,7 @@ class NavBar extends React.Component {
                         <Col xs={{ order: 1 }} class="_btns_boot" >
                             <Button
                                 className="login__btn"
-                                onClick={() => registerWithEmailAndPassword(this.state.email, this.state.password)}
+                                onClick={this.register}
                             >
                                 Login
                             </Button>
@@ -95,4 +109,4 @@ class NavBar extends React.Component {
     }
 }
 
-export default NavBar;
+export default Registo;
