@@ -1,4 +1,5 @@
-/* cyrillic-ext */
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@200;300;400;500;600;700;800&display=swap");
+
 @font-face {
   font-family: "Inter";
   font-style: normal;
@@ -14,7 +15,7 @@
 
 h1 {
   font-weight: 800;
-  font-size: 3rem;
+  font-size: 2.8rem;
 }
 
 h2 {
@@ -84,6 +85,12 @@ p {
 
 .btn.btnInfo {
   background-color: #ebeff0;
+  font-family: "Lora", Times, serif;
+  padding: 6px 22px;
+  border: 2px solid #ebeff0;
+  font-size: 1.4rem;
+  font-weight: 900;
+  margin-left: 20px;
 }
 
 .form-label {
@@ -116,6 +123,60 @@ p {
   margin: 30px 0 -15px !important;
   font-size: 1.05rem;
   text-align: right;
+}
+
+.frame {
+  width: 88%;
+  max-width: 100%;
+  padding: 60px;
+}
+
+/* NAVBAR */
+#navBar {
+  background-color: #5eb398;
+  width: 12%;
+  height: 100vh;
+  padding: 60px 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column wrap;
+}
+
+#navBar .row,
+#navBar .col {
+  margin: 0;
+  padding: 0;
+}
+
+#navBar .logotipo {
+  width: 75%;
+  display: block;
+  margin: 0 auto;
+}
+
+.row#topicsMenu {
+  height: 80%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+}
+
+.linksMenu img {
+  width: 45px;
+  display: block;
+  margin: 10px auto;
+}
+
+.linksMenu p {
+  width: 85%;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: auto;
 }
 
 /* LOGIN / REGISTO */
@@ -207,4 +268,18 @@ p.mainComponents {
 #infoHelp .col:last-of-type .btn {
   width: 100%;
   flex: 0 0 100%;
+}
+
+/* HOME */
+#emergency img {
+  height: 20px;
+  fill: #ff5e4e;
+  margin-right: 12px;
+}
+
+@media only screen and (orientation: portrait) {
+  body {
+    height: 100vw;
+    transform: rotate(90deg);
+  }
 }

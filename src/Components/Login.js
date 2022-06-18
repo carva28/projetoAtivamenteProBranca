@@ -92,7 +92,7 @@ class Login extends React.Component {
               className="blue"
             />
 
-            <p class="warning">O email deve incluir um @.</p>
+            <p className="warning">O email deve incluir um @.</p>
 
             <Row className="alignBtns">
               <Button className="btnFill" onClick={this.login}>
