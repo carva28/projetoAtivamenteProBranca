@@ -1,169 +1,181 @@
 /* cyrillic-ext */
 @font-face {
-  font-family: 'Inter';
+  font-family: "Inter";
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
   /* src: url(https://fonts.gstatic.com/s/inter/v11/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa2JL7W0Q5n-wU.woff2) format('woff2'); */
   src: url("./tipo/Inter/Inter-VariableFont_slnt\,wght.ttf");
-  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+    U+FE2E-FE2F;
 }
 
-
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-
-#backgroundMain {
-  background-color: #5EB398;
-  height: 100vh;
-  width: 100%;
-}
-
-#backgroundMain img {
-  height: 60%;
-  margin-top: 70px;
-
-}
+/* GERAL */
 
 h1 {
-  font-weight: 900;
+  font-weight: 800;
   font-size: 3rem;
-
 }
 
-.main_h1 {
-  margin-top: 20px;
-  color: white;
+h2 {
+  font-weight: 800;
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-weight: 600;
+  font-size: 1.2rem;
 }
 
 p {
-  font-weight: 300;
-  font-size: 1.5rem;
-}
-
-.main_p {
-  color: white;
-  padding: 20px 150px;
-}
-
-.main_p_right{
-  text-align: left;
-  margin:20px;
-}
-
-.main_h1_right{
-  margin-top: 20px;
-  margin-left: 20px;
-  color: white;
-  text-align: left;
-}
-
-.green_color_text{
-  color: #5EB398;
-}
-
-#label_p{
-  margin-left: 20px;
-  text-align: left;
-  margin-top: 20px;
-  font-weight: 700;
-}
-
-.inputs_form_login{
-  margin-top: 7%;
-}
-
-.form-control, .form-control:hover,.form-control:focus{
-  background-color: #5eb39855;
-  width: 90%;
-  margin-left: 20px;
-  margin-top: 10px;
-  color: rgba(34, 58, 95, 1);
-  font-weight: 500;
-  height: 50px;
-  border: none;
-}
-
-label{
-  display: inherit;
-}
-
-.conjun_btns_login{
-  margin-top: 20px;
-  width: 90%;
-  display: block;
-  text-align: right;
-}
-
-.conjun_btns_login button{
-  margin-top: 20px;
-  background-color: rgba(34, 58, 95, 1);
-  color: white;
-  font-weight: 800;
-  border: none;
-  padding: 10px 20px;
-}
-
-#info_help{
-  color: rgba(34, 58, 95, 1);
-  margin-top: 15%;
-  
-}
-#info_help h1{
-  font-size: 2rem;
-  text-align: left;
-  margin-left: 20px;
-}
-
-#info_help p{
-  text-align: left;
-  margin-left: 20px;
-}
-
-.login_help, .login_help:hover{
-
   font-weight: 400;
-  background-color: white;
-  border: 1px solid rgba(255, 94, 78, 1);
-  color: rgba(255, 94, 78, 1);
-  padding: 10px 20px;
+  font-size: 1.2rem;
+  margin-bottom: 0;
 }
 
+.white {
+  color: #fff;
+}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+.blue {
+  color: #223a5f;
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+.green {
+  color: #5eb398;
+}
+
+.red {
+  color: #ff5e4e;
+}
+
+.row {
+  max-width: 100%;
+}
+
+.btn {
+  padding: 10px 25px;
+  background-color: transparent;
+  font-weight: 600;
+  flex-basis: 0;
+}
+
+.btnFill {
+  background-color: #223a5f;
+  color: #fff;
+}
+
+.btnBorderRed {
+  border: 2px solid #ff5e4e;
+  color: #ff5e4e;
+}
+
+.btnInfo {
+  background-color: #ebeff0;
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 10px;
+  margin-top: 30px;
+  padding: 0;
+}
+
+.form-control,
+.form-control:focus {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: rgba(94, 179, 152, 0.4);
+  font-weight: 500;
+  height: auto;
+  border: none;
+}
+
+.alignBtns {
+  justify-content: flex-end;
+  padding: 0;
+  margin: 0;
+}
+
+/* LOGIN / REGISTO */
+#bgMain,
+#noBgMain {
+  max-width: 50%;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+#bgMain {
+  padding: 80px 0;
+  background-color: #5eb398;
+}
+
+#noBgMain {
+  padding: 40px;
+  background-color: #fff;
+}
+
+.mainComponents {
+  max-width: 85%;
+  text-align: center;
+  margin: auto;
+}
+
+h1.mainComponents {
+  margin-top: 40px;
+}
+
+p.mainComponents {
+  margin-top: 20px;
+}
+
+#bgMain img {
+  height: 50vh;
+  margin: auto;
+  display: block;
+}
+
+#noBgMain .row {
+  margin: 0;
+}
+
+#noBgMain h1 {
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+#noBgMain p {
+  margin: 0;
+  padding: 0;
+}
+
+#noBgMain .btnFill {
+  margin: 30px 0;
+}
+
+.row#infoHelp {
+  width: 100%;
+  margin: 80px 0;
+  clear: both;
+  justify-content: space-between;
+}
+
+#infoHelp .col {
+  margin: 0;
+  padding: 0;
+}
+
+#infoHelp .col:first-of-type {
+  flex: 0 0 62%;
+}
+
+#infoHelp .col:last-of-type {
+  flex: 0 0 30%;
+  display: flex;
+  align-items: flex-start;
+}
+
+#infoHelp .col:last-of-type .btn {
+  width: 100%;
+  flex: 0 0 100%;
 }

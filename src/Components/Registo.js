@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Row, Button, Container, Col, Form, FormControl } from 'react-bootstrap';
-import image_main from "./../images/login_character.png";
 import { auth, createUserWithEmailAndPassword, signInWithGoogle } from "./firebase";
+import image_main from "../images/characters/login_character.png";
 
 
 class Registo extends React.Component {
