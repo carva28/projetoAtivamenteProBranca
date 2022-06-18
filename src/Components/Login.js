@@ -51,7 +51,7 @@ class Login extends React.Component {
         <Col xs={{ order: 1 }} id="bgMain">
           <img src={image_main} />
 
-          <h1 className="mainComponents white">Bem-vindo! </h1>
+          <h1 className="mainComponents white">Bem-vindo!</h1>
           <p className="mainComponents white">
             Ligue aos seus amigos e familiares, veja vídeos que gosta e esteja a
             par do que os seus amigos andam a fazer!
