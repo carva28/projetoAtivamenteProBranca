@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Row } from "react-bootstrap";
 import logotipo from "../images/probranca-branco.png";
-import calendario from "../images/icons/calendario-branco.png";
 import videos from "../images/icons/videos-branco.png";
 import conferencia from "../images/icons/conferencia-branco.png";
 import pesquisa from "../images/icons/pesquisa-branco.png";
@@ -12,6 +11,8 @@ import chamadasBranco from "../images/icons/chamadas-branco.png";
 import chamadasVerde from "../images/icons/chamadas-verde.png";
 import jogosBranco from "../images/icons/jogos-branco.png";
 import jogosVerde from "../images/icons/jogos-verde.png";
+import calendarioBranco from "../images/icons/calendario-branco.png";
+import calendarioVerde from "../images/icons/jogos-verde.png";
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -76,10 +77,29 @@ export default class Navbar extends Component {
             </div>
           </Link>
           {/* FIM Link para chamadas */}
-          <div className="linksMenu">
-            <img src={calendario} alt="Menu para calendário" />
-            <p className="white">Calendário</p>
-          </div>
+          {/* Link para calendario */}
+          <Link to="/calendario">
+            <div
+              className={`linksMenu ${
+                this.state.active == "calendario" ? "active" : ""
+              }`}
+            >
+              {this.state.active == "calendario" ? (
+                <img src={calendarioVerde} alt="Menu para calendario" />
+              ) : (
+                <img src={calendarioBranco} alt="Menu para calendario" />
+              )}
+
+              <p
+                className={
+                  this.state.active == "calendario" ? "green" : "white"
+                }
+              >
+                Calendário
+              </p>
+            </div>
+          </Link>
+          {/* FIM Link para calendario */}
           <div className="linksMenu">
             <img src={videos} alt="Menu para vídeos" />
             <p className="white">Vídeos</p>
@@ -104,9 +124,7 @@ export default class Navbar extends Component {
                 <img src={jogosBranco} alt="Menu para jogos" />
               )}
 
-              <p
-                className={this.state.active == "jogos" ? "green" : "white"}
-              >
+              <p className={this.state.active == "jogos" ? "green" : "white"}>
                 Jogos
               </p>
             </div>

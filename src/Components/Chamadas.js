@@ -3,7 +3,7 @@ import { Row, Col, Card, Button } from "react-bootstrap";
 import Navbar from "../Containers/Navbar";
 import emergency from "../images/icons/emergencia.png";
 
-export default class Calendario extends Component {
+export default class Chamadas extends Component {
   constructor(props) {
     super(props);
 
@@ -13,12 +13,12 @@ export default class Calendario extends Component {
   render() {
     return (
       <div>
-        <div className="frame" id="calendario">
+        <div className="frame" id="chamadas">
           <Row>
             <Col xs={8}>
-              <h1 className="green">Calendário</h1>
+              <h1 className="green">Chamadas</h1>
 
-              <p className="blue paragraphInfo">Calendário aqui</p>
+              <p className="blue paragraphInfo">Chamadas aqui</p>
             </Col>
 
             <Col xs={4} className="btnsAjuda">
@@ -31,7 +31,7 @@ export default class Calendario extends Component {
             </Col>
           </Row>
 
-          <Navbar ativo={"calendario"} />
+          <Navbar ativo={"chamadas"} />
         </div>
       </div>
     );

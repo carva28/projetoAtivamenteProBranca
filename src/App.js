@@ -2,11 +2,6 @@ import React, { useState } from "react";
 import logo from "./logo.svg";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import Login from "./Components/Login";
-import Registo from "./Components/Registo";
-import Home from "./Components/Home";
-import Solitario from "./Components/Solitario";
-
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {
   auth,
@@ -15,6 +10,12 @@ import {
   signInWithGoogle,
   logout,
 } from "./Components/firebase";
+import Login from "./Components/Login";
+import Registo from "./Components/Registo";
+import Home from "./Components/Home";
+import Chamadas from "./Components/Chamadas";
+import Calendario from "./Components/Calendario";
+import Solitario from "./Components/Solitario";
 import JogoGalo from "./Components/JogoGalo";
 import Jogos from "./Components/Jogos";
 
@@ -35,6 +36,8 @@ function App() {
         <Routes>
           <Route path="*" element={<Home />} />
           <Route path="/" element={<Home />} />
+          <Route path="/chamadas" element={<Chamadas />} />
+          <Route path="/calendario" element={<Calendario />} />
           <Route path="/jogos" element={<Jogos />} />
           <Route path="/solitario" element={<Solitario />} />
           <Route path="/jogogalo" element={<JogoGalo />} />
