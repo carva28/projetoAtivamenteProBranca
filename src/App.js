@@ -18,7 +18,7 @@ import Calendario from "./Components/Calendario";
 import Solitario from "./Components/Solitario";
 import JogoGalo from "./Components/JogoGalo";
 import Jogos from "./Components/Jogos";
-
+import AdicionarContactos from "./Components/AdicionarContactos";
 function App() {
   var [user_normal, setuser_normal] = useState("");
   var [isSignedIn, setisSignedIn] = useState(false);
@@ -41,6 +41,7 @@ function App() {
           <Route path="/jogos" element={<Jogos />} />
           <Route path="/solitario" element={<Solitario />} />
           <Route path="/jogogalo" element={<JogoGalo />} />
+          <Route path="/adicionarinformacoes" element={<AdicionarContactos />} />
         </Routes>
       </BrowserRouter>
     );

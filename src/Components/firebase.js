@@ -25,6 +25,7 @@ const firebaseConfig = {
   messagingSenderId: "147788951852",
   appId: "1:147788951852:web:d019da8a750c193d4afc89",
   measurementId: "G-T350E5L1GS",
+  databaseURL:"https://ativamenteprobranca-default-rtdb.europe-west1.firebasedatabase.app/"
 };
 
 const app = initializeApp(firebaseConfig);

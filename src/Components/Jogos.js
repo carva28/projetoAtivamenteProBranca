@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Row, Col, Card, Button } from "react-bootstrap";
 import Navbar from "../Containers/Navbar";
-import consultas from "../images/characters/consultas.svg";
-import medicamentos from "../images/characters/medicamentos.svg";
-
+import tic_image from "../images/characters/tic_toe.svg";
+import solitaire_img from "../images/characters/carta_solitaire.svg";
+import { Link } from "react-router-dom";
 export class Jogos extends Component {
   constructor(props) {
     super(props);
@@ -29,12 +29,14 @@ export class Jogos extends Component {
 
               <Row>
                 <Col xs={6}>
-                  <p className="bold">29/06 às 14h30</p>
-                  <p>Hospital de Aveiro</p>
+                  <p className="bold">Jogo Solitário</p>
+                  <p >Jogo de cartas para um jogador. Utiliza o baralho completo, 52 cartas, com o objetivo de fazer um monte dos quatro naipes. </p>
                 </Col>
 
                 <Col xs={6}>
-                  <img src={consultas} />
+                  <img src={solitaire_img} />
+                  
+
                 </Col>
               </Row>
 
@@ -43,7 +45,7 @@ export class Jogos extends Component {
                   className="btnFill alignCenter"
                   style={{ margin: "40px auto 50px" }}
                 >
-                  Solitário
+                  <Link to="/solitario">Jogar Solitário</Link>
                 </Button>
               </Row>
             </Card>
@@ -53,15 +55,21 @@ export class Jogos extends Component {
 
               <Row>
                 <Col xs={6}>
-                  <p className="bold">Pequeno-almoço</p>
+                  <p className="bold">Jogo do Galo</p>
                   <p>
-                    1 cápsula de <span className="medium">Ferrum</span>
+                    O jogo do galo consiste em alinhar os três símbolos escolhidos (cruz ou bola) na vertical, na horizontal ou na diagonal. Ganha o jogador que primeiro conseguir alinhar esses três símbolos.
                   </p>
                 </Col>
 
                 <Col xs={6} className="alignEnd">
-                  <img src={medicamentos} />
+                  <img src={tic_image} />
                 </Col>
+                <Button
+                  className="btnFill alignCenter"
+                  style={{ margin: "40px auto 50px" }}
+                >
+                  <Link to="/jogogalo">Jogo do Galo</Link>
+                </Button>
               </Row>
             </Card>
           </Row>
