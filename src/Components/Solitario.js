@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom';
 import { createStore, combineReducers } from 'redux'
 import { Provider, connect } from 'react-redux';
+import Navbar from '../Containers/Navbar';
 // const { createStore, combineReducers } = 'redux';
 
 
@@ -26,7 +27,7 @@ var consts = {
 **********/
 const Game = (() => {
     const UnconnectedGame = ({ congratulation }) => (
-        <div id='container'>
+        <div id='container' style={{marginTop:"80px"}}>
             <div className='header'>
                 <Stock />
                 <Foundation />
@@ -755,9 +756,14 @@ const store = (() => {
 
 export default function Solitario() {
     return (
-        <div>
-            
-            <Provider store={store}>
+        <div className='frame'>
+
+            <h1> Bem-vindo ao Jogo do Solitário</h1>
+            <Navbar />
+
+            <p >Para jogar pressione a carta e arraste-a para cima das restantes cartas</p>
+
+            <Provider store={store} >
                 <Game />
             </Provider>,
             <div id='app_game'></div>
