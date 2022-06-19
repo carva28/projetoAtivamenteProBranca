@@ -15,22 +15,28 @@
 
 h1 {
   font-weight: 800;
-  font-size: 2.8rem;
+  font-size: 2.9rem;
 }
 
 h2 {
   font-weight: 800;
-  font-size: 2.2rem;
+  font-size: 2.4rem;
 }
 
 h3 {
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  color: inherit;
 }
 
 p {
   font-weight: 400;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-bottom: 0;
 }
 
@@ -50,6 +56,10 @@ p {
   color: #ff5e4e;
 }
 
+.bold {
+  font-weight: 600;
+}
+
 .row {
   max-width: 100%;
 }
@@ -57,6 +67,7 @@ p {
 .btn {
   padding: 10px 35px;
   background-color: transparent;
+  font-size: 1.2rem;
   font-weight: 600;
   flex-basis: max-content;
   transition: all 0.5s ease-in-out;
@@ -90,7 +101,6 @@ p {
   border: 2px solid #ebeff0;
   font-size: 1.4rem;
   font-weight: 900;
-  margin-left: 20px;
 }
 
 .form-label {
@@ -131,6 +141,64 @@ p {
   padding: 60px;
 }
 
+.btnsAjuda {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  flex-flow: column wrap;
+  gap: 20px;
+}
+
+.boxShadow {
+  -webkit-box-shadow: 0px 4px 10px -0 rgb(0 0 0 / 25%);
+  box-shadow: 0px 4px 10px -0 rgb(0 0 0 / 25%);
+}
+
+.cards {
+  gap: 30px;
+  margin: 10px auto 40px;
+}
+
+.card {
+  width: calc(50% - 15px);
+  padding: 3% 3% 0;
+  border-radius: 25px;
+  background-color: #ebeff0;
+  border: 0;
+}
+
+.alignEnd {
+  align-self: flex-end;
+}
+
+.paragraphInfo {
+  margin-bottom: 40px;
+}
+
+.outsideSource {
+  margin-top: 40px;
+}
+
+.outsideSource iframe,
+.outsideSource .imgSource {
+  width: 100%;
+  min-height: 300px;
+  margin: auto;
+  border-radius: 8px;
+}
+
+.imgSource#facebook {
+  background-image: url("./images/icons/facebook.png");
+  background-size: 85%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.outsideSource .btn {
+  display: block;
+  margin: 30px auto 0;
+}
+
 /* NAVBAR */
 #navBar {
   background-color: #5eb398;
@@ -153,7 +221,7 @@ p {
 }
 
 #navBar .logotipo {
-  width: 75%;
+  width: 70%;
   display: block;
   margin: 0 auto;
 }
@@ -163,6 +231,11 @@ p {
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
+}
+
+.linksMenu {
+  width: 80%;
+  margin: 0 auto;
 }
 
 .linksMenu img {
@@ -175,7 +248,7 @@ p {
   width: 85%;
   text-align: center;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.4rem;
   margin: auto;
 }
 
@@ -277,7 +350,25 @@ p.mainComponents {
   margin-right: 12px;
 }
 
-/***** SOlitário *****/
+#home .cards .row > *,
+#home .cards .row {
+  padding: 0;
+  margin: 0;
+}
+
+#home .cards h3 {
+  margin-bottom: 30px;
+}
+
+#home .cards img {
+  width: 100%;
+}
+
+#home .cards p:nth-child(even) {
+  margin-bottom: 30px;
+}
+
+/***** SOLITÁRIO *****/
 .heart,
 .tile {
   fill: red;
@@ -380,7 +471,7 @@ p.mainComponents {
 
 .cardFace,
 .dropTarget,
-.foundation>.pile {
+.foundation > .pile {
   width: 90px;
   height: 126px;
   border-radius: 10px;
@@ -453,19 +544,19 @@ p.mainComponents {
   vertical-align: middle;
 }
 
-
 /**** Jogo Galo ****/
-main{
+main {
   width: 800px;
   margin: 50px auto 0;
 }
-div.board{
+
+div.board {
   display: grid;
   border: 6px solid #5eb398;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
 }
-div.square{
+div.square {
   width: 266.67px;
   height: 266.67px;
   border: 6px solid #5eb398;
@@ -474,26 +565,23 @@ div.square{
   text-align: center;
   color: #223a5f;
 }
-div.result{
+div.result {
   font-size: 2rem;
   padding: 10px;
 }
-div.result.green{
+div.result.green {
   background-color: #5eb398;
   height: 100px;
-
 }
-div.result.red{
+div.result.red {
   background-color: #ff5e4e;
   height: 100px;
-
 }
 
-div.result.red p,div.result.green p {
+div.result.red p,
+div.result.green p {
   font-size: 3.5rem;
 }
-
-
 
 @media only screen and (orientation: portrait) {
   body {
