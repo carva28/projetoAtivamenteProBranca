@@ -60,6 +60,10 @@ p {
   font-weight: 600;
 }
 
+.medium {
+  font-weight: 500;
+}
+
 .row {
   max-width: 100%;
 }
@@ -221,13 +225,14 @@ p {
 }
 
 #navBar .logotipo {
-  width: 70%;
+  width: auto;
+  height: 7vh;
   display: block;
   margin: 0 auto;
 }
 
 .row#topicsMenu {
-  height: 80%;
+  height: 75vh;
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
@@ -236,6 +241,13 @@ p {
 .linksMenu {
   width: 80%;
   margin: 0 auto;
+  padding: 20px 10px;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.linksMenu.active {
+  background-color: white;
 }
 
 .linksMenu img {

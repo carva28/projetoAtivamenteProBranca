@@ -27,16 +27,12 @@ export default class Navbar extends Component {
           </div>
 
           <div className="linksMenu">
-            <img
-              src={calendario}
-              alt="Menu para calendário"
-              className="linksMenu"
-            />
+            <img src={calendario} alt="Menu para calendário" />
             <p className="white">Calendário</p>
           </div>
 
           <div className="linksMenu">
-            <img src={videos} alt="Menu para vídeos" className="linksMenu" />
+            <img src={videos} alt="Menu para vídeos" />
             <p className="white">Vídeos</p>
           </div>
 
@@ -44,22 +40,17 @@ export default class Navbar extends Component {
             <img
               src={conferencia}
               alt="Menu para conferência Zoom com ProBranca"
-              className="linksMenu"
             />
             <p className="white">ProBranca</p>
           </div>
 
           <div className="linksMenu">
-            <img src={jogos} alt="Menu para jogos" className="linksMenu" />
+            <img src={jogos} alt="Menu para jogos" />
             <p className="white">Jogos</p>
           </div>
 
           <div className="linksMenu">
-            <img
-              src={pesquisa}
-              alt="Menu para pesquisa no Google"
-              className="linksMenu"
-            />
+            <img src={pesquisa} alt="Menu para pesquisa no Google" />
             <p className="white">Pesquisar</p>
           </div>
         </Row>

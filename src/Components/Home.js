@@ -66,11 +66,15 @@ export default class Home extends Component {
 
               <Row>
                 <Col xs={6}>
-                  <p className="bold">29/06 às 14h30</p>
-                  <p>Hospital de Aveiro</p>
+                  <p className="bold">Pequeno-almoço</p>
+                  <p>
+                    1 cápsula de <span className="medium">Ferrum</span>
+                  </p>
 
-                  <p className="bold">03/07 às 10h40</p>
-                  <p>Hospital de Aveiro</p>
+                  <p className="bold">Almoço</p>
+                  <p>
+                    1 saqueta de <span className="medium">Fosfoglutina</span>
+                  </p>
                 </Col>
 
                 <Col xs={6} className="alignEnd">
