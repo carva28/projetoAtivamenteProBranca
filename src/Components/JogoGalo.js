@@ -113,7 +113,7 @@ export default function JogoGalo() {
           )}
           {!!winner && winner === "o" && (
             <div className="result red">
-              <p className="white">Perdeu</p>
+              <p className="white">Perdeu...</p>
             </div>
           )}
         </main>

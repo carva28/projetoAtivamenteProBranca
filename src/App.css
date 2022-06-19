@@ -83,7 +83,7 @@ p {
   border: 2px solid #223a5f;
 }
 
-.btnFill:hover {
+.btn.btnFill:hover {
   background-color: #fff;
   color: #223a5f;
 }
@@ -93,18 +93,30 @@ p {
   color: #ff5e4e;
 }
 
+.btn.btnBorderBlue:hover {
+  background-color: #223a5f;
+  color: #fff;
+}
+
+.btn.btnBorderBlue {
+  border: 2px solid #223a5f;
+  color: #223a5f;
+}
+
 .btn.btnBorderRed:hover {
   background-color: #ff5e4e;
   color: #fff;
 }
 
-.btn.btnInfo {
+.btn.btnInfo,
+.btn.btnInfo:active {
   background-color: #ebeff0;
   font-family: "Lora", Times, serif;
   padding: 6px 22px;
   border: 2px solid #ebeff0;
   font-size: 1.4rem;
   font-weight: 900;
+  color: inherit;
 }
 
 .form-label {
@@ -220,6 +232,28 @@ p {
 .outsideSource .btn {
   display: block;
   margin: 30px auto 0;
+}
+
+/* MODAIS */
+.modal-dialog {
+  transform: none;
+  width: 80%;
+  max-width: 1500px;
+  margin-top: 100px;
+}
+.modal-dialog img {
+  width: 20%;
+  margin: 40px;
+}
+
+.modal-header .btn-close {
+  font-size: 1.8rem;
+  padding: 20px;
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  margin: 10px 40px;
 }
 
 /* NAVBAR */

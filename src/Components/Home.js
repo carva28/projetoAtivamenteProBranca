@@ -1,17 +1,23 @@
 import React, { Component } from "react";
-import { Row, Col, Card, Button } from "react-bootstrap";
+import { Row, Col, Card, Button, Modal } from "react-bootstrap";
 import Navbar from "../Containers/Navbar";
 import { auth } from "./firebase";
 import emergency from "../images/icons/emergencia.png";
 import consultas from "../images/characters/consultas.svg";
 import medicamentos from "../images/characters/medicamentos.svg";
+import logotipo from "../images/probranca-cor.png";
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      show: false,
+    };
   }
+
+  openSponsors = () => this.setState({ show: true });
+  handleClose = () => this.setState({ show: false });
 
   render() {
     //console.log(this.constructor.name);
@@ -34,7 +40,9 @@ export default class Home extends Component {
             </Col>
 
             <Col xs={4} className="btnsAjuda">
-              <Button className="btnInfo blue">i</Button>
+              <Button className="btnInfo blue" onClick={this.openSponsors}>
+                i
+              </Button>
 
               <Button className="btnBorderRed blue" id="emergency">
                 <img src={emergency} alt="ícone de telefone" />
@@ -139,6 +147,22 @@ export default class Home extends Component {
         </div>
 
         <Navbar ativo={"home"} />
+
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title className="blue">Este projeto foi desenvolvido por:</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <img src={logotipo} />
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button className="btnFill" onClick={this.handleClose}>
+              Fechar janela
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }
