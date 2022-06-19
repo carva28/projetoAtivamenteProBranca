@@ -16,6 +16,7 @@ import {
   signInWithGoogle,
   logout,
 } from "./Components/firebase";
+import JogoGalo from "./Components/JogoGalo";
 
 function App() {
   var [user_normal, setuser_normal] = useState("");
@@ -36,6 +37,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/noticias" element={<Noticias />} />
           <Route path="/solitario" element={<Solitario />} />
+          <Route path="/jogogalo" element={<JogoGalo />} />
         </Routes>
       </BrowserRouter>
     );

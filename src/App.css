@@ -323,12 +323,14 @@ p.mainComponents {
 .rest {
   margin-right: 95px;
 }
+
 .rest .cardContainer {
   position: relative;
   width: 3px;
   perspective: 500px;
   display: inline-block;
 }
+
 .rest .cardContainer card {
   display: inline-block;
 }
@@ -339,6 +341,7 @@ p.mainComponents {
   perspective: 500px;
   display: inline-block;
 }
+
 .flop .cardContainer card {
   display: inline-block;
 }
@@ -347,11 +350,13 @@ p.mainComponents {
   position: absolute;
   right: 10px;
 }
+
 .foundation .pile {
   box-sizing: border-box;
   display: inline-block;
   margin-left: 20px;
 }
+
 .foundation .pile .cardContainer {
   position: absolute;
 }
@@ -359,12 +364,14 @@ p.mainComponents {
 .tableau {
   white-space: nowrap;
 }
+
 .tableau .pile {
   display: inline-block;
   margin: 10px;
   vertical-align: top;
   width: 90px;
 }
+
 .tableau .pile .cardContainer {
   position: relative;
   height: 40px;
@@ -373,7 +380,7 @@ p.mainComponents {
 
 .cardFace,
 .dropTarget,
-.foundation > .pile {
+.foundation>.pile {
   width: 90px;
   height: 126px;
   border-radius: 10px;
@@ -387,18 +394,22 @@ p.mainComponents {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
+
 .cardFace.frontFace[draggable="true"] {
   cursor: -webkit-grab;
   cursor: grab;
 }
+
 .cardFace.backFace {
   background-color: lightgray;
   position: absolute;
   top: 0;
 }
+
 .cardFace.pointer {
   cursor: pointer;
 }
+
 .cardFace h1 {
   font-size: 25px;
   display: inline-block;
@@ -409,14 +420,17 @@ p.mainComponents {
   margin: 0;
   margin-right: 5px;
 }
+
 .cardFace h1.HEART,
 .cardFace h1.TILE {
   color: red;
 }
+
 .cardFace h1.CLOVER,
 .cardFace h1.PIKE {
   color: black;
 }
+
 .cardFace .suitIcon {
   padding-left: 5px;
 }
@@ -425,6 +439,7 @@ p.mainComponents {
   position: absolute;
   background-color: rgba(255, 255, 255, 0.3);
 }
+
 .dropTarget h1 {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -437,6 +452,48 @@ p.mainComponents {
   line-height: 126px;
   vertical-align: middle;
 }
+
+
+/**** Jogo Galo ****/
+main{
+  width: 800px;
+  margin: 50px auto 0;
+}
+div.board{
+  display: grid;
+  border: 6px solid #5eb398;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+div.square{
+  width: 266.67px;
+  height: 266.67px;
+  border: 6px solid #5eb398;
+  box-sizing: border-box;
+  font-size: 10rem;
+  text-align: center;
+  color: #223a5f;
+}
+div.result{
+  font-size: 2rem;
+  padding: 10px;
+}
+div.result.green{
+  background-color: #5eb398;
+  height: 100px;
+
+}
+div.result.red{
+  background-color: #ff5e4e;
+  height: 100px;
+
+}
+
+div.result.red p,div.result.green p {
+  font-size: 3.5rem;
+}
+
+
 
 @media only screen and (orientation: portrait) {
   body {
