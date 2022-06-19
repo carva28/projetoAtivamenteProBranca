@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { Row, Col, Card, Button } from "react-bootstrap";
+import Navbar from "../Containers/Navbar";
+import emergency from "../images/icons/emergencia.png";
 
 export default class Video extends Component {
   constructor(props) {
@@ -29,7 +32,41 @@ export default class Video extends Component {
               </Button>
             </Col>
           </Row>
+
+          <Row className="otherSources">
+            <Col className="outsideSource">
+              <iframe
+                src="https://www.youtube.com/embed/_cVNCuvz8qI?controls=0"
+                title="Canal de Fátima"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="boxShadow"
+              ></iframe>
+
+              <Button className="btnFill">
+                <a href="https://youtu.be/_cVNCuvz8qI" target="_blank">
+                  Ver “Fátima” em direto
+                </a>
+              </Button>
+            </Col>
+
+            <Col className="outsideSource">
+              <iframe
+                src="https://www.youtube.com/embed/_cVNCuvz8qI?controls=0"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="boxShadow"
+              ></iframe>
+
+              <Button className="btnFill">Ver vídeos da ProBranca</Button>
+            </Col>
+          </Row>
         </div>
+
+        <Navbar />
       </div>
     );
   }

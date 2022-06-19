@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Row } from "react-bootstrap";
 import logotipo from "../images/probranca-branco.png";
-import videos from "../images/icons/videos-branco.png";
 import conferencia from "../images/icons/conferencia-branco.png";
 import pesquisa from "../images/icons/pesquisa-branco.png";
 import homeBranco from "../images/icons/home-branco.png";
@@ -12,7 +11,9 @@ import chamadasVerde from "../images/icons/chamadas-verde.png";
 import jogosBranco from "../images/icons/jogos-branco.png";
 import jogosVerde from "../images/icons/jogos-verde.png";
 import calendarioBranco from "../images/icons/calendario-branco.png";
-import calendarioVerde from "../images/icons/jogos-verde.png";
+import calendarioVerde from "../images/icons/calendario-verde.png";
+import videosBranco from "../images/icons/videos-branco.png";
+import videosVerde from "../images/icons/videos-verde.png";
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -100,10 +101,25 @@ export default class Navbar extends Component {
             </div>
           </Link>
           {/* FIM Link para calendario */}
-          <div className="linksMenu">
-            <img src={videos} alt="Menu para vídeos" />
-            <p className="white">Vídeos</p>
-          </div>
+          {/* Link para videos */}
+          <Link to="/videos">
+            <div
+              className={`linksMenu ${
+                this.state.active == "videos" ? "active" : ""
+              }`}
+            >
+              {this.state.active == "chamadas" ? (
+                <img src={videosVerde} alt="Menu para videos" />
+              ) : (
+                <img src={videosBranco} alt="Menu para videos" />
+              )}
+
+              <p className={this.state.active == "videos" ? "green" : "white"}>
+                Vídeos
+              </p>
+            </div>
+          </Link>
+          {/* FIM Link para videos */}
           <div className="linksMenu">
             <img
               src={conferencia}
