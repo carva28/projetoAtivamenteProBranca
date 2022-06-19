@@ -184,6 +184,12 @@ p {
   margin-bottom: 40px;
 }
 
+.otherSources.row {
+  width: 80%;
+  max-width: 80%;
+  margin: 50px auto 20px;
+}
+
 .outsideSource {
   margin-top: 40px;
 }
@@ -196,11 +202,19 @@ p {
   border-radius: 8px;
 }
 
-.imgSource#facebook {
-  background-image: url("./images/icons/facebook.png");
-  background-size: 85%;
+.imgSource {
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.imgSource#facebook {
+  background-size: 80%;
+  background-image: url("./images/icons/facebook.png");
+}
+
+.imgSource#google {
+  background-size: 60%;
+  background-image: url("./images/icons/google.png");
 }
 
 .outsideSource .btn {

@@ -85,7 +85,7 @@ export default class Home extends Component {
             </Card>
           </Row>
 
-          <Row>
+          <Row className="otherSources">
             <Col className="outsideSource">
               <iframe
                 src="https://www.youtube.com/embed/_cVNCuvz8qI?controls=0"
@@ -115,12 +115,24 @@ export default class Home extends Component {
 
               <Button className="btnFill">Ver vídeos da ProBranca</Button>
             </Col>
+          </Row>
 
+          <Row className="otherSources">
             <Col className="outsideSource">
               <div className="imgSource boxShadow" id="facebook"></div>
 
               <Button className="btnFill">
                 <a href="fb://facewebmodal/">Consultar Facebook</a>
+              </Button>
+            </Col>
+
+            <Col className="outsideSource">
+              <div className="imgSource boxShadow" id="google"></div>
+
+              <Button className="btnFill">
+                <a href="https://www.google.pt/" target="_blank">
+                  Pesquisar
+                </a>
               </Button>
             </Col>
           </Row>
