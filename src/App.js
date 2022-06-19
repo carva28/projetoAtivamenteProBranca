@@ -6,6 +6,7 @@ import Login from "./Components/Login";
 import Registo from "./Components/Registo";
 import Home from "./Components/Home";
 import Noticias from "./Components/Noticias";
+import Solitario from "./Components/Solitario";
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import {
@@ -34,6 +35,7 @@ function App() {
           <Route path="*" element={<Home />} />
           <Route path="/" element={<Home />} />
           <Route path="/noticias" element={<Noticias />} />
+          <Route path="/solitario" element={<Solitario />} />
         </Routes>
       </BrowserRouter>
     );
