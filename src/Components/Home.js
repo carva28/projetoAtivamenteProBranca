@@ -5,7 +5,6 @@ import { auth } from "./firebase";
 import emergency from "../images/icons/emergencia.png";
 import consultas from "../images/characters/consultas.svg";
 import medicamentos from "../images/characters/medicamentos.svg";
-import facebook from "../images/icons/facebook.png";
 
 export default class Home extends Component {
   constructor(props) {
@@ -15,6 +14,8 @@ export default class Home extends Component {
   }
 
   render() {
+    //console.log(this.constructor.name);
+
     return (
       <div>
         <div className="frame" id="home">
@@ -24,7 +25,7 @@ export default class Home extends Component {
                 Bem-vindo <span className="blue">{auth.currentUser.email}</span>
               </h1>
 
-              <p className="paragraphInfo">
+              <p className="blue paragraphInfo">
                 No painel abaixo veja as suas próximas consultas e os seus
                 contactos mais recentes.
                 <br />
@@ -91,7 +92,7 @@ export default class Home extends Component {
                 title="Canal de Fátima"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
+                allowFullScreen
                 className="boxShadow"
               ></iframe>
 
@@ -108,7 +109,7 @@ export default class Home extends Component {
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
+                allowFullScreen
                 className="boxShadow"
               ></iframe>
 
@@ -125,7 +126,7 @@ export default class Home extends Component {
           </Row>
         </div>
 
-        <Navbar />
+        <Navbar ativo={"home"} />
       </div>
     );
   }

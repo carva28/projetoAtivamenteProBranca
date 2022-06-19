@@ -130,6 +130,11 @@ p {
   margin: 0;
 }
 
+.alignCenter {
+  display: block;
+  margin: auto;
+}
+
 .warning {
   display: none;
   color: #ff5e4e;
@@ -240,6 +245,7 @@ p {
 
 .linksMenu {
   width: 80%;
+  min-width: 185px;
   margin: 0 auto;
   padding: 20px 10px;
   border-radius: 25px;

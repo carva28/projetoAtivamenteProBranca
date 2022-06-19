@@ -5,7 +5,6 @@ import "./App.css";
 import Login from "./Components/Login";
 import Registo from "./Components/Registo";
 import Home from "./Components/Home";
-import Noticias from "./Components/Noticias";
 import Solitario from "./Components/Solitario";
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -17,6 +16,7 @@ import {
   logout,
 } from "./Components/firebase";
 import JogoGalo from "./Components/JogoGalo";
+import Jogos from "./Components/Jogos";
 
 function App() {
   var [user_normal, setuser_normal] = useState("");
@@ -35,7 +35,7 @@ function App() {
         <Routes>
           <Route path="*" element={<Home />} />
           <Route path="/" element={<Home />} />
-          <Route path="/noticias" element={<Noticias />} />
+          <Route path="/jogos" element={<Jogos />} />
           <Route path="/solitario" element={<Solitario />} />
           <Route path="/jogogalo" element={<JogoGalo />} />
         </Routes>
