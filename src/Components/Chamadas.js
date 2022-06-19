@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, Card, Button } from "react-bootstrap";
+import { Row, Col, Form, Button } from "react-bootstrap";
 import Navbar from "../Containers/Navbar";
 import emergency from "../images/icons/emergencia.png";
 
@@ -18,7 +18,10 @@ export default class Chamadas extends Component {
             <Col xs={8}>
               <h1 className="green">Chamadas</h1>
 
-              <p className="blue paragraphInfo">Chamadas aqui</p>
+              <p className="blue paragraphInfo">
+                Pode ligar para qualquer um dos contactos abaixo, basta clicar
+                no nome da pessoa que pretende contactar.
+              </p>
             </Col>
 
             <Col xs={4} className="btnsAjuda">
@@ -29,6 +32,44 @@ export default class Chamadas extends Component {
                 Emergência
               </Button>
             </Col>
+          </Row>
+
+          <Row>
+            <Form.Control
+              type="text"
+              placeholder="Pesquise pelo nome da pessoa a quem pretende ligar"
+              id="searchContact"
+            />
+
+            <Row className="contacts">
+              <Col className="contact">
+                <h3>Pessoa 1</h3>
+                <p className="white">Filho</p>
+              </Col>
+              <Col className="contact">
+                <h3>Pessoa 2</h3>
+                <p className="white">Filho</p>
+              </Col>
+              <Col className="contact">
+                <h3>Pessoa 3</h3>
+                <p className="white">Filho</p>
+              </Col>
+            </Row>
+
+            <Row className="contacts">
+              <Col className="contact">
+                <h3>Pessoa 4</h3>
+                <p className="white">Filho</p>
+              </Col>
+              <Col className="contact">
+                <h3>Pessoa 5</h3>
+                <p className="white">Filho</p>
+              </Col>
+              <Col className="contact">
+                <h3>Pessoa 6</h3>
+                <p className="white">Filho</p>
+              </Col>
+            </Row>
           </Row>
 
           <Navbar ativo={"chamadas"} />

@@ -188,6 +188,30 @@ p {
   border: 0;
 }
 
+.cards .row > *,
+.cards .row {
+  padding: 0;
+  margin: 0;
+}
+
+.cards h3 {
+  margin-bottom: 30px;
+}
+
+.cards p:nth-child(even) {
+  margin-bottom: 30px;
+}
+
+.cards img {
+  width: 100%;
+}
+
+#emergency img {
+  height: 20px;
+  fill: #ff5e4e;
+  margin-right: 12px;
+}
+
 .alignEnd {
   align-self: flex-end;
 }
@@ -410,28 +434,41 @@ p.mainComponents {
 }
 
 /* HOME */
-#emergency img {
-  height: 20px;
-  fill: #ff5e4e;
-  margin-right: 12px;
+
+/* CHAMADAS */
+#searchContact {
+  margin-bottom: 30px;
 }
 
-#home .cards .row > *,
-#home .cards .row {
+.contacts {
   padding: 0;
-  margin: 0;
+  margin: 20px 0 0;
+  gap: 50px;
 }
 
-#home .cards h3 {
-  margin-bottom: 30px;
+.contact {
+  padding: 30px 40px;
+  border-radius: 10px;
+  background-color: #223a5f;
+  color: #fff;
+  margin-bottom: 20px;
 }
 
-#home .cards img {
+/* CALENDÁRIO */
+.card#consultasAnt {
   width: 100%;
+  position: relative;
 }
 
-#home .cards p:nth-child(even) {
-  margin-bottom: 30px;
+.card#consultasAnt .row img {
+  width: 65px;
+  height: auto;
+  position: absolute;
+  top: 30px;
+  right: 20px;
+}
+.card#consultasAnt p:nth-child(even):last-of-type {
+  margin-bottom: 100px;
 }
 
 /***** SOLITÁRIO *****/
