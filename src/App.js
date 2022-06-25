@@ -57,6 +57,7 @@ function App() {
         <Routes>
           <Route path="*" element={<Login />} />
           <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/registar" element={<Registo />} />
         </Routes>
       </BrowserRouter>

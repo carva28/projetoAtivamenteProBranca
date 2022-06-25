@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Row, Col, Card, Button, Modal } from "react-bootstrap";
 import Navbar from "../Containers/Navbar";
-import { auth } from "./firebase";
+import { auth, logout } from "./firebase";
 import emergency from "../images/icons/emergencia.png";
 import consultas from "../images/characters/consultas.svg";
 import medicamentos from "../images/characters/medicamentos.svg";
 import logotipo from "../images/probranca-cor.png";
+import { Navigate } from 'react-router-dom';
 
 export default class Home extends Component {
   constructor(props) {
@@ -18,6 +19,12 @@ export default class Home extends Component {
 
   openSponsors = () => this.setState({ show: true });
   handleClose = () => this.setState({ show: false });
+
+  logout = async () => {
+    console.log("logout");
+    await logout(auth);
+    return (<Navigate to="/login" replace={true} />); /* THIS IS NOT WORKING */
+  };
 
   render() {
     //console.log(this.constructor.name);
@@ -98,7 +105,7 @@ export default class Home extends Component {
               <iframe
                 src="https://www.youtube.com/embed/_cVNCuvz8qI?controls=0"
                 title="Canal de Fátima"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="boxShadow"
@@ -115,7 +122,7 @@ export default class Home extends Component {
               <iframe
                 src="https://www.youtube.com/embed/_cVNCuvz8qI?controls=0"
                 title="YouTube video player"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="boxShadow"
@@ -150,7 +157,9 @@ export default class Home extends Component {
 
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title className="blue">Este projeto foi desenvolvido por:</Modal.Title>
+            <Modal.Title className="blue">
+              Este projeto foi desenvolvido por:
+            </Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
@@ -158,6 +167,10 @@ export default class Home extends Component {
           </Modal.Body>
 
           <Modal.Footer>
+            <Button className="btnFill" onClick={this.logout}>
+              Sair da conta
+            </Button>
+
             <Button className="btnFill" onClick={this.handleClose}>
               Fechar janela
             </Button>
