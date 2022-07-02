@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-
+import {
+    Row,
+    Button,
+    Container,
+    Col,
+    Form,
+    FormControl,
+} from "react-bootstrap";
 import { initializeApp } from "firebase/app";
 import {
     GoogleAuthProvider,
@@ -18,7 +25,9 @@ import {
     where,
     addDoc,
 } from "firebase/firestore";
+import Navbar from "../Containers/Navbar_platform_admin";
 import { getDatabase, ref, set, onValue } from "firebase/database";
+import Navbar_platform_admin from '../Containers/Navbar_platform_admin';
 
 const firebase = require('./firebase');
 
@@ -112,13 +121,58 @@ export default class componentName extends Component {
 
         return (
             <div>
-                <p id="timer_Feedback" style={{ display: this.state.display_feedback }}>Dados guardados com sucesso</p>
-                <input type="text" onChange={this.inputName} />
-                <input type="number" onChange={this.inputDataNumber} />
-                <button type="button" onClick={this.submitData}>Submit</button>
 
-                <button onClick={this.getUserData}>Mostrar dados </button>
-                <h1>ola {this.state.uuid}</h1>
+                {/* <input type="text" onChange={this.inputName} />
+                <input type="number" onChange={this.inputDataNumber} />
+                <button type="button" onClick={this.submitData}>Submit</button> */}
+
+     
+
+               
+
+                    <Col xs={{ order: 1 }} id="noBgMain" className='new_bg_contactos'>
+
+                        <h1 className="green">Plataforma Ativ@mente</h1>
+                        <p className="blue">
+                            Nas caixas abaixo, insira um contacto da conta do utilizador {this.state.uuid}
+                        </p>
+
+                        <Form.Label id="label_p" className="green">
+                            Nome do contacto telefónico
+                        </Form.Label>
+
+                        <Form.Control
+                            type="text"
+
+                            placeholder="Introduza o nome do contacto a guardar"
+                            className="blue"
+                            onChange={this.inputName}
+                        />
+
+                        <Form.Label id="label_p" className="green">
+                            Número do contacto telefónico
+                        </Form.Label>
+
+                        <Form.Control
+                            type="number"
+
+                            onChange={this.inputDataNumber}
+                            placeholder="Escreva o contacto telefónico"
+                            className="blue"
+                        />
+
+                        <Row className="alignBtns">
+                            <Button className="btnFill" id="register_btn" onClick={this.submitData}>
+                                Registar Contacto
+                            </Button>
+                        </Row>
+                        <p id="timer_Feedback" style={{ display: this.state.display_feedback }}>Dados guardados com sucesso</p>
+                    </Col>
+                  
+
+                    {/* <button onClick={this.getUserData} >Mostrar dados </button> */}
+
+                    <Navbar_platform_admin ativo={"chamadas"} />
             </div>
         )
     }

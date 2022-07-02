@@ -652,7 +652,8 @@ p.mainComponents {
 
 /**** Jogo Galo ****/
 main {
-  width: 800px;
+  /* width: 800px; */
+  width: 500px;
   margin: 50px auto 0;
 }
 
@@ -663,11 +664,14 @@ div.board {
   grid-template-rows: 1fr 1fr 1fr;
 }
 div.square {
-  width: 266.67px;
-  height: 266.67px;
+  /* width: 266.67px;
+  height: 266.67px; */
+  width: 162.58px;
+  height: 162.58px;
   border: 6px solid #5eb398;
   box-sizing: border-box;
-  font-size: 10rem;
+  /* font-size: 10rem; */
+  font-size: 5rem;
   text-align: center;
   color: #223a5f;
 }
@@ -687,6 +691,16 @@ div.result.red {
 div.result.red p,
 div.result.green p {
   font-size: 3.5rem;
+}
+
+/***** Adicionar contactos ******/
+
+.new_bg_contactos{
+  padding: 20px 40px 80px !important;
+}
+
+#register_btn{
+  margin-top: 50px;
 }
 
 @media only screen and (orientation: portrait) {

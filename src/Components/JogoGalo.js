@@ -116,6 +116,7 @@ export default function JogoGalo() {
               <p className="white">Perdeu...</p>
             </div>
           )}
+
         </main>
       </div>
 

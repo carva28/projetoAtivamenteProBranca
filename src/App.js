@@ -20,6 +20,8 @@ import JogoGalo from "./Components/JogoGalo";
 import Jogos from "./Components/Jogos";
 import AdicionarContactos from "./Components/AdicionarContactos";
 import Video from "./Components/Video";
+import MostrarContactos from "./Components/MostrarContactos";
+import UserSpeciCont from "./Components/UserSpeciCont";
 
 function App() {
   var [user_normal, setuser_normal] = useState("");
@@ -44,6 +46,9 @@ function App() {
           <Route path="/jogos" element={<Jogos />} />
           <Route path="/solitario" element={<Solitario />} />
           <Route path="/jogogalo" element={<JogoGalo />} />
+          <Route path="/mostrarcontactos" element={<MostrarContactos />} />
+          <Route path="/userespec" element={<UserSpeciCont />}/>
+          
           <Route
             path="/adicionarinformacoes"
             element={<AdicionarContactos />}
