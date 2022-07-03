@@ -47,7 +47,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const db_v2 = getDatabase(app);
-export default class AdicionarContactos extends Component {
+export default class AdicionarMedicamentos extends Component {
 
     //consultas e contactos
 
@@ -57,9 +57,9 @@ export default class AdicionarContactos extends Component {
         this.state = {
             uuid: auth.currentUser.reloadUserInfo.localId,
             email: auth.currentUser.reloadUserInfo.email,
-            contacto_telPesso: "",
-            contacto_Nome: "",
-            variavel_contactos: 0,
+            medicamento: "",
+            momento_tomar: "",
+            variavel_Med: 0,
             dados: [],
             display_feedback: "none"
         }
@@ -72,11 +72,11 @@ export default class AdicionarContactos extends Component {
     getVariavelContactos = () => {
 
         const db = getDatabase();
-        const starCountRef = ref(db, `Newdata_${this.state.uuid}/variaveis_contact`);
+        const starCountRef = ref(db, `Newdata_${this.state.uuid}/variavel_Med`);
         onValue(starCountRef, (snapshot) => {
             const data = snapshot.val();
             this.setState({
-                variavel_contactos: data.var_contact
+                variavel_Med: data.variavel_medicame
             })
             console.log(data);
 
@@ -92,12 +92,12 @@ export default class AdicionarContactos extends Component {
 
     submitData = (event) => {
 
-        if (this.state.contacto_telPesso != "" && this.state.contacto_Nome != "") {
+        if (this.state.medicamento != "" && this.state.momento_tomar != "") {
 
             const db = getDatabase();
-            set(ref(db, `Newdata_${this.state.uuid}/contactos/contacto_Contacto_${this.state.variavel_contactos + 1}`), {
-                contacto_telPesso: this.state.contacto_telPesso,
-                contacto_Nome: this.state.contacto_Nome,
+            set(ref(db, `Newdata_${this.state.uuid}/medicamentos/medicamento_${this.state.variavel_Med + 1}`), {
+                medicamento: this.state.medicamento,
+                momento_tomar: this.state.momento_tomar,
             })
                 .catch(error => console.log(error));
             console.log('DATA SAVED');
@@ -112,8 +112,8 @@ export default class AdicionarContactos extends Component {
 
                 //Atualizar variável do USER
                 const db = getDatabase();
-                set(ref(db, `Newdata_${this.state.uuid}/variaveis_contact`), {
-                    var_contact: this.state.variavel_contactos + 1,
+                set(ref(db, `Newdata_${this.state.uuid}/variavel_Med`), {
+                    variavel_medicame: this.state.variavel_Med + 1,
                 })
                     .catch(error => console.log(error));
                 console.log('DATA SAVED__2');
@@ -126,13 +126,13 @@ export default class AdicionarContactos extends Component {
 
     inputName = (event) => {
 
-        this.setState({ contacto_Nome: event.target.value });
+        this.setState({ medicamento: event.target.value });
 
     }
 
     inputDataNumber = (event) => {
 
-        this.setState({ contacto_telPesso: event.target.value });
+        this.setState({  momento_tomar: event.target.value });
     }
 
     render() {
@@ -156,42 +156,41 @@ export default class AdicionarContactos extends Component {
                     </p>
 
                     <Form.Label id="label_p" className="green">
-                        Nome do contacto telefónico
+                        Nome do medicamento e dose
                     </Form.Label>
 
                     <Form.Control
                         type="text"
 
-                        placeholder="Introduza o nome do contacto a guardar"
+                        placeholder="Introduza o nome do medicamento e dose"
                         className="blue"
                         onChange={this.inputName}
                     />
 
                     <Form.Label id="label_p" className="green">
-                        Número do contacto telefónico
+                        Refeições 
                     </Form.Label>
 
                     <Form.Control
-                        type="number"
+                        type="text"
 
                         onChange={this.inputDataNumber}
-                        placeholder="Escreva o contacto telefónico"
+                        placeholder="Escreva o momento da toma do medicamento"
                         className="blue"
                     />
 
                     <Row className="alignBtns">
                         <Button className="btnFill" id="register_btn" onClick={this.submitData}>
-                            Registar Contacto
+                            Registar Medicamento
                         </Button>
                     </Row>
                     <p id="timer_Feedback" style={{ display: this.state.display_feedback }}>Dados guardados com sucesso</p>
-
-
-                    <Link to="/mostrarcontactos">
+                    <Link to="/mostrarmedicamentos">
                         <Button className="btnFill" id="register_btn" >
-                            Consultar contactos
+                            Consultar medicamentos
                         </Button>
                     </Link>
+                
                 </Col>
 
 

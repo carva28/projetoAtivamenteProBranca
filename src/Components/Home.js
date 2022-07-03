@@ -51,6 +51,7 @@ export default class Home extends Component {
       show: false,
       uuid: auth.currentUser.reloadUserInfo.localId,
       variavel_contactos: 0,
+      variavel_consulta: 0,
     };
   }
 
@@ -68,32 +69,8 @@ export default class Home extends Component {
     const starCountRef = ref(db, `Newdata_${this.state.uuid}/variaveis_contact`);
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
-      this.setState({
-        variavel_contactos: data.var_contact
-      })
-      if (data.var_contact == null && data.var_contact == null) {
-        const db = getDatabase();
-        // const starCountRef = ref(db, `Newdata_${this.state.uuid}/variaveis_contact`);
-        set(ref(db, `Newdata_${this.state.uuid}/variaveis`), {
-          var_consulta: 0,
-        })
-          .catch(error => console.log(error));
-        console.log('DATA SAVED_var_consult');
-        //criação variáveis contactos
-        set(ref(db, `Newdata_${this.state.uuid}/variaveis_contact`), {
-          var_contact: 0,
-        })
-          .catch(error => console.log(error));
 
-        console.log('DATA SAVED_var_contacts');
-      } else if (data.var_contact == null) {
-        const db = getDatabase();
-        set(ref(db, `Newdata_${this.state.uuid}/variaveis`), {
-          var_consulta: 0,
-        })
-          .catch(error => console.log(error));
-        console.log('DATA SAVED_var_consult');
-      } else if (data.var_contact == null) {
+      if (data == null) {
         const db = getDatabase();
 
         set(ref(db, `Newdata_${this.state.uuid}/variaveis_contact`), {
@@ -103,6 +80,64 @@ export default class Home extends Component {
 
         console.log('DATA SAVED_var_contacts');
       } else {
+        this.setState({
+          variavel_contactos: data.var_contact
+        })
+        console.log("Já tem dados")
+      }
+    });
+
+
+  };
+
+  getVariavelConsulta = () => {
+    const db = getDatabase();
+    const starCountRef = ref(db, `Newdata_${this.state.uuid}/variaveis`);
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+
+      console.log(data.var_consulta)
+      if (data == null) {
+        const db = getDatabase();
+
+        set(ref(db, `Newdata_${this.state.uuid}/variaveis`), {
+          var_consulta: 0,
+        })
+          .catch(error => console.log(error));
+
+        console.log('DATA SAVED_var_consulta');
+      } else {
+        this.setState({
+          variavel_consulta: data.var_consulta
+        })
+        console.log("Já tem dados")
+      }
+    });
+
+
+  };
+
+  getVariavelMedicamentos = () => {
+    const db = getDatabase();
+    const starCountRef = ref(db, `Newdata_${this.state.uuid}/variavel_Med`);
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+
+      console.log(data)
+
+      if (data == null) {
+        const db = getDatabase();
+
+        set(ref(db, `Newdata_${this.state.uuid}/variavel_Med`), {
+          variavel_medicame: 0,
+        })
+          .catch(error => console.log(error));
+
+        console.log('DATA SAVED_var_med');
+      } else {
+        this.setState({
+          variavel_medicame: data.variavel_medicame
+        })
         console.log("Já tem dados")
       }
     });
@@ -112,6 +147,8 @@ export default class Home extends Component {
 
   componentDidMount() {
     this.getVariavelContactos();
+    this.getVariavelConsulta();
+    this.getVariavelMedicamentos();
   }
 
   render() {

@@ -25,6 +25,9 @@ import UserSpeciCont from "./Components/UserSpeciCont";
 import AdicionarConsultas from "./Components/AdicionarConsultas";
 import MostrarConsultas from "./Components/MostrarConsultas";
 import UserSpeciConsulta from "./Components/UserSpeciConsulta";
+import AdicionarMedicamentos from "./Components/AdicionarMedicamentos";
+import MostrarMedicamentos from "./Components/MostrarMedicamentos";
+import UserSpeciMedicamento from "./Components/UserSpeciMedicamento";
 
 function App() {
   var [user_normal, setuser_normal] = useState("");
@@ -54,6 +57,9 @@ function App() {
           <Route path="/adicionarconsulta" element={<AdicionarConsultas />}/>
           <Route path="/mostrarconsultas" element={<MostrarConsultas />}/>
           <Route path="/userconsultaespec" element={<UserSpeciConsulta />}/>
+          <Route path="/adicionarmedicamentos" element={<AdicionarMedicamentos />}/>
+          <Route path="/mostrarmedicamentos" element={<MostrarMedicamentos />}/>
+          <Route path="/usermedicarespec" element={<UserSpeciMedicamento />}/>
           
           <Route
             path="/adicionarinformacoes"
