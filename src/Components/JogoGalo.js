@@ -20,17 +20,22 @@ export default function JogoGalo() {
   const [winner, setWinner] = useState(null);
 
   useEffect(() => {
+
     const isComputerTurn =
       squares.filter((square) => square !== null).length % 2 === 1;
     const linesThatAre = (a, b, c) => {
+
       return lines.filter((squareIndexes) => {
+
         const squareValues = squareIndexes.map((index) => squares[index]);
         return (
           JSON.stringify([a, b, c].sort()) ===
           JSON.stringify(squareValues.sort())
         );
       });
+
     };
+
     const emptyIndexes = squares
       .map((square, index) => (square === null ? index : null))
       .filter((val) => val !== null);
@@ -47,37 +52,40 @@ export default function JogoGalo() {
       newSquares[index] = "o";
       setSquares([...newSquares]);
     };
-    if (isComputerTurn) {
-      const winingLines = linesThatAre("o", "o", null);
-      if (winingLines.length > 0) {
-        const winIndex = winingLines[0].filter(
-          (index) => squares[index] === null
-        )[0];
-        putComputerAt(winIndex);
-        return;
-      }
+    setTimeout(() => {
+      if (isComputerTurn) {
+        const winingLines = linesThatAre("o", "o", null);
+        if (winingLines.length > 0) {
+          const winIndex = winingLines[0].filter(
+            (index) => squares[index] === null
+          )[0];
 
-      const linesToBlock = linesThatAre("x", "x", null);
-      if (linesToBlock.length > 0) {
-        const blockIndex = linesToBlock[0].filter(
-          (index) => squares[index] === null
-        )[0];
-        putComputerAt(blockIndex);
-        return;
-      }
+          putComputerAt(winIndex);
+          return;
+        }
 
-      const linesToContinue = linesThatAre("o", null, null);
-      if (linesToContinue.length > 0) {
-        putComputerAt(
-          linesToContinue[0].filter((index) => squares[index] === null)[0]
-        );
-        return;
-      }
+        const linesToBlock = linesThatAre("x", "x", null);
+        if (linesToBlock.length > 0) {
+          const blockIndex = linesToBlock[0].filter(
+            (index) => squares[index] === null
+          )[0];
+          putComputerAt(blockIndex);
+          return;
+        }
 
-      const randomIndex =
-        emptyIndexes[Math.ceil(Math.random() * emptyIndexes.length)];
-      putComputerAt(randomIndex);
-    }
+        const linesToContinue = linesThatAre("o", null, null);
+        if (linesToContinue.length > 0) {
+          putComputerAt(
+            linesToContinue[0].filter((index) => squares[index] === null)[0]
+          );
+          return;
+        }
+
+        const randomIndex =
+          emptyIndexes[Math.ceil(Math.random() * emptyIndexes.length)];
+        putComputerAt(randomIndex);
+      }
+    }, 1500);
   }, [squares]);
 
   function handleSquareClick(index) {
@@ -94,7 +102,7 @@ export default function JogoGalo() {
     <div>
       <div className="frame">
         <h1 className="green">Jogo do Galo</h1>
-        <p className="blue">Clique num quadrado para começar a jogar</p>
+        <p className="blue">Clique num quadrado para começar a jogar. Não se esqueça que vai jogar com as cruzes X</p>
 
         <main>
           <Board>
