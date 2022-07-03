@@ -52,6 +52,11 @@ p {
   color: #5eb398;
 }
 
+.darkgreen {
+  color: #387c66;
+  font-weight: bold;
+}
+
 .red {
   color: #ff5e4e;
 }

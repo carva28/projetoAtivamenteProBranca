@@ -50,37 +50,46 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const db_v2 = getDatabase(app);
-export default function UserSpeciCont() {
+export default function UserSpeciConsulta() {
 
     const location = useLocation();
 
     const [uuid, setuuid] = useState(auth.currentUser.reloadUserInfo.localId,);
     const [email, setemail] = useState(auth.currentUser.reloadUserInfo.email);
-    const [nomeUser, setnomeUser] = useState(location.state.nome);
-    const [telfUser, settelfUser] = useState(location.state.numeroTel);
+    const [nomeConsulta, setnomeConsulta] = useState(location.state.nome);
+    const [dataConsulta, setdataConsulta] = useState(location.state.dataConsulta);
+    const [time_consulta, settime_consulta] = useState(location.state.horaConsulta);
+    const [variavel, setvariavel] = useState(location.state.id_consulta);
+    
     var [estado, setEstado] = useState(true)
     var [displaySate, setdisplaySate] = useState("none")
-    const [variavel, setvariavel] = useState(location.state.id_consulta);
 
 
     function inputName(event) {
 
-        setnomeUser(event.target.value);
+        setnomeConsulta(event.target.value);
 
     }
 
     function inputDataNumber(event) {
 
-        settelfUser(event.target.value);
+        setdataConsulta(event.target.value);
     }
 
+    function inputTimeNumber(event){
+
+        settime_consulta(event.target.value)
+    }
+
+
     function updateData_Fire() {
-        if (nomeUser != "" && telfUser != "") {
+        if (nomeConsulta != "" && dataConsulta != "" && time_consulta != "") {
 
             const db = getDatabase();
-            set(ref(db, `Newdata_${uuid}/contactos/contacto_Contacto_${variavel}`), {
-                contacto_Nome: nomeUser,
-                contacto_telPesso: telfUser,
+            set(ref(db, `Newdata_${uuid}/consultas/consulta_ID_${variavel}`), {
+                data_consulta: dataConsulta,
+                contacto_Nome: nomeConsulta,
+                time_consulta: time_consulta,
             })
                 .catch(error => console.log(error));
             console.log('DATA SAVED');
@@ -97,7 +106,7 @@ export default function UserSpeciCont() {
     const navigate = useNavigate();
 
     const toContactos = () => {
-        navigate('/mostrarcontactos');
+        navigate('/mostrarconsultas');
     }
 
     return (
@@ -109,36 +118,48 @@ export default function UserSpeciCont() {
 
                     <h1 className="green">Plataforma Ativ@mente</h1>
                     <p className="blue">
-                        Nas caixas abaixo, insira um contacto da conta do utilizador {email}
+                        Nas caixas abaixo, atualize as informações da consulta do utilizador {email}
                     </p>
 
                     <Form.Label id="label_p" className="green">
-                        Nome do contacto telefónico
+                    Atualize o nome da consulta
                     </Form.Label>
 
                     <Form.Control
                         type="text"
-                        value={nomeUser}
+                        value={nomeConsulta}
                         placeholder="Introduza o nome do contacto a guardar"
                         className="blue"
                         onChange={inputName}
                     />
 
                     <Form.Label id="label_p" className="green" value="tessx">
-                        Número do contacto telefónico
+                        Atualize a data da consulta
                     </Form.Label>
 
                     <Form.Control
-                        type="number"
-                        value={telfUser}
+                        type="date"
+                        value={dataConsulta}
                         onChange={inputDataNumber}
+                        placeholder="Escreva o contacto telefónico"
+                        className="blue"
+                    />
+
+                    <Form.Label id="label_p" className="green" value="tessx">
+                        Atualize a hora da consulta
+                    </Form.Label>
+
+                    <Form.Control
+                        type="time"
+                        value={time_consulta}
+                        onChange={inputTimeNumber}
                         placeholder="Escreva o contacto telefónico"
                         className="blue"
                     />
 
                     <Row className="alignBtns">
                         <Button className="btnFill" id="register_btn" onClick={updateData_Fire}>
-                            Registar Contacto
+                            Atualizar consulta
                         </Button>
                     </Row>
                     <p id="timer_Feedback" style={{ display: displaySate }}>Dados guardados com sucesso</p>

@@ -73,7 +73,7 @@ export default class Navbar_platform_admin extends Component {
               <p
                 className={this.state.active == "chamadas" ? "green" : "white"}
               >
-                Contactos
+                Registar contactos
               </p>
             </div>
           </Link>
@@ -102,13 +102,27 @@ export default class Navbar_platform_admin extends Component {
           </Link>
           {/* FIM Link para calendario */}
          
-          <div className="linksMenu">
-            <img
-              src={conferencia}
-              alt="Menu para conferência Zoom com ProBranca"
-            />
-            <p className="white">ProBranca</p>
-          </div>
+          <Link to="/adicionarconsulta">
+            <div
+              className={`linksMenu ${
+                this.state.active == "consulta" ? "active" : ""
+              }`}
+            >
+              {this.state.active == "consulta" ? (
+                <img src={calendarioVerde} alt="Menu para calendario" />
+              ) : (
+                <img src={calendarioBranco} alt="Menu para calendario" />
+              )}
+
+              <p
+                className={
+                  this.state.active == "consulta" ? "green" : "white"
+                }
+              >
+                Adicionar consultas
+              </p>
+            </div>
+          </Link>
           
         </Row>
       </div>

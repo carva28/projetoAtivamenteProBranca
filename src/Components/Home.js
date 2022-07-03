@@ -6,7 +6,42 @@ import emergency from "../images/icons/emergencia.png";
 import consultas from "../images/characters/consultas.svg";
 import medicamentos from "../images/characters/medicamentos.svg";
 import logotipo from "../images/probranca-cor.png";
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import { initializeApp } from "firebase/app";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signOut,
+} from "firebase/auth";
+import {
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
+  addDoc,
+} from "firebase/firestore";
+import { getDatabase, ref, set, onValue } from "firebase/database";
+import Navbar_platform_admin from '../Containers/Navbar_platform_admin';
+
+const firebase = require('./firebase');
+const firebaseConfig = {
+  apiKey: "AIzaSyDPwM0HTu_Xa52irgMjUbWbfczplh_JO48",
+  authDomain: "ativamenteprobranca.firebaseapp.com",
+  projectId: "ativamenteprobranca",
+  storageBucket: "ativamenteprobranca.appspot.com",
+  messagingSenderId: "147788951852",
+  appId: "1:147788951852:web:d019da8a750c193d4afc89",
+  measurementId: "G-T350E5L1GS",
+  databaseURL: "https://ativamenteprobranca-default-rtdb.europe-west1.firebasedatabase.app/"
+};
+
+const app = initializeApp(firebaseConfig);
+// const auth = getAuth(app);
 
 export default class Home extends Component {
   constructor(props) {
@@ -14,6 +49,8 @@ export default class Home extends Component {
 
     this.state = {
       show: false,
+      uuid: auth.currentUser.reloadUserInfo.localId,
+      variavel_contactos: 0,
     };
   }
 
@@ -25,6 +62,57 @@ export default class Home extends Component {
     await logout(auth);
     return (<Navigate to="/login" replace={true} />); /* THIS IS NOT WORKING */
   };
+
+  getVariavelContactos = () => {
+    const db = getDatabase();
+    const starCountRef = ref(db, `Newdata_${this.state.uuid}/variaveis_contact`);
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+      this.setState({
+        variavel_contactos: data.var_contact
+      })
+      if (data.var_contact == null && data.var_contact == null) {
+        const db = getDatabase();
+        // const starCountRef = ref(db, `Newdata_${this.state.uuid}/variaveis_contact`);
+        set(ref(db, `Newdata_${this.state.uuid}/variaveis`), {
+          var_consulta: 0,
+        })
+          .catch(error => console.log(error));
+        console.log('DATA SAVED_var_consult');
+        //criação variáveis contactos
+        set(ref(db, `Newdata_${this.state.uuid}/variaveis_contact`), {
+          var_contact: 0,
+        })
+          .catch(error => console.log(error));
+
+        console.log('DATA SAVED_var_contacts');
+      } else if (data.var_contact == null) {
+        const db = getDatabase();
+        set(ref(db, `Newdata_${this.state.uuid}/variaveis`), {
+          var_consulta: 0,
+        })
+          .catch(error => console.log(error));
+        console.log('DATA SAVED_var_consult');
+      } else if (data.var_contact == null) {
+        const db = getDatabase();
+
+        set(ref(db, `Newdata_${this.state.uuid}/variaveis_contact`), {
+          var_contact: 0,
+        })
+          .catch(error => console.log(error));
+
+        console.log('DATA SAVED_var_contacts');
+      } else {
+        console.log("Já tem dados")
+      }
+    });
+
+
+  };
+
+  componentDidMount() {
+    this.getVariavelContactos();
+  }
 
   render() {
     //console.log(this.constructor.name);
@@ -151,7 +239,17 @@ export default class Home extends Component {
               </Button>
             </Col>
           </Row>
+
+          <Row className="otherSources">
+            <Col className="outsideSource">
+              <p>Para adicionar contactos, novas consultas e a medicação do utilizador: {this.state.email} Peça ajuda a uma colaboradora da ProBranca</p>
+              <Link to="/mostrarcontactos"><Button className="btnFill">
+                Ir para a ferramenta de administração
+              </Button></Link>
+            </Col>
+          </Row>
         </div>
+
 
         <Navbar ativo={"home"} />
 
@@ -176,6 +274,7 @@ export default class Home extends Component {
             </Button>
           </Modal.Footer>
         </Modal>
+
       </div>
     );
   }

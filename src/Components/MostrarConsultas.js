@@ -48,7 +48,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 var listItems;
 
-export default function MostrarContactos() {
+export default function MostrarConsultas() {
 
     const navigate = useNavigate();
 
@@ -56,8 +56,9 @@ export default function MostrarContactos() {
     const [email, setemail] = useState(auth.currentUser.reloadUserInfo.email);
     const [dados, setdados] = useState([]);
     const [datas, setdatas] = useState([]);
-    var [estado, setEstado] = useState(true)
     const [variavel, setvariavel] = useState([]);
+    var [estado, setEstado] = useState(true)
+
 
     useEffect(() => {
         setTimeout(() => {
@@ -70,33 +71,26 @@ export default function MostrarContactos() {
     });
 
 
-
-
     function tryFetch() {
 
 
 
         const db = getDatabase();
-        const starCountRef = ref(db, `Newdata_${uuid}/contactos`);
+        const starCountRef = ref(db, `Newdata_${uuid}/consultas`);
         onValue(starCountRef, (snapshot) => {
             var data = snapshot.val();
-
-            // this.setState({
-            //     dados: data,
-            //     datas: Object.values(snapshot.val())
-            // })
-
             setdados(data)
             setdatas(Object.values(snapshot.val()))
-            console.log(data)
+                
+            console.log(Object.values(snapshot.val()))
 
         });
 
-        const starCountRef2 = ref(db, `Newdata_${uuid}/variaveis_contact`);
+        const starCountRef2 = ref(db, `Newdata_${uuid}/variaveis`);
         onValue(starCountRef2, (snapshot) => {
             var data = snapshot.val();
-            setvariavel(data.var_contact);
-            console.log(data.var_contact)
+            setvariavel(data.var_consulta);
+            console.log(data.var_consulta)
 
         });
 
@@ -104,19 +98,8 @@ export default function MostrarContactos() {
     }
 
 
-
-
-
-
-    // sendProps = (nome_contacto) => {
-    //     const navigate = useNavigate();
-    //     console.log(nome_contacto)
-    //     navigate('/utilizadores', { state: nome_contacto })
-
-    // };
-
-    function toComponentB(numeroTel,nome) {
-        navigate('/userespec', { state: { numeroTel: numeroTel, nome: nome,id_consulta:variavel  } });
+    function toComponentB(dataConsulta,horaConsulta,nome) {
+        navigate('/userconsultaespec', { state: { dataConsulta: dataConsulta,horaConsulta:horaConsulta, nome: nome,id_consulta:variavel } });
     }
 
 
@@ -127,9 +110,11 @@ export default function MostrarContactos() {
         listItems = datas.map((data, i) =>
 
             <Col className="contact" key={i}>
-                <h3> {data.contacto_Nome} </h3> 
-                <p className="white">{data.contacto_telPesso}</p> 
-                <Button onClick={() => toComponentB(data.contacto_telPesso,data.contacto_Nome,variavel)} >   editar  </Button>
+            <h3> Consulta de: {data.contacto_Nome} </h3>
+            <p className="white">  Data da consulta: {data.data_consulta}</p> 
+            <p className="white">  Hora da consulta: {data.time_consulta}</p> 
+            <Button onClick={() => toComponentB(data.data_consulta,data.time_consulta,data.contacto_Nome,variavel)} >   Editar  </Button>
+            
             </Col>
 
         );
@@ -144,10 +129,10 @@ export default function MostrarContactos() {
                 <Col xs={8}>
 
 
-                    <h1 className="green">Mostrar contactos adicionados </h1>
+                    <h1 className="green">Mostrar consultados  </h1>
 
                     <p className="blue paragraphInfo">
-                        Pode verificar cada contacto adicionado ao utilizador
+                        Pode verificar cada contacto adicionado ao utilizador <span className='darkgreen'> {email}</span>
                     </p>
                 </Col>
 
@@ -163,7 +148,7 @@ export default function MostrarContactos() {
                 }
 
             </Row>
-            <Navbar_platform_admin ativo={"chamadas"} />
+            <Navbar_platform_admin ativo={"consulta"} />
         </div >
 
     )

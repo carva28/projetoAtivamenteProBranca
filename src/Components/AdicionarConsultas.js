@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import {
     Row,
     Button,
@@ -28,7 +29,7 @@ import {
 import Navbar from "../Containers/Navbar_platform_admin";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 import Navbar_platform_admin from '../Containers/Navbar_platform_admin';
-
+import { Link } from "react-router-dom";
 const firebase = require('./firebase');
 
 
@@ -47,7 +48,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const db_v2 = getDatabase(app);
-export default class AdicionarContactos extends Component {
+export default class AdicionarConsultas extends Component {
 
     //consultas e contactos
 
@@ -57,26 +58,26 @@ export default class AdicionarContactos extends Component {
         this.state = {
             uuid: auth.currentUser.reloadUserInfo.localId,
             email: auth.currentUser.reloadUserInfo.email,
-            contacto_telPesso: "",
+            data_consulta: "",
+            time_consulta: "",
             contacto_Nome: "",
-            variavel_contactos: 0,
             dados: [],
+            variavel_consulta: "",
             display_feedback: "none"
         }
         this.inputDataNumber = this.inputDataNumber.bind(this);
         this.inputName = this.inputName.bind(this);
+        this.inputTimeNumber = this.inputTimeNumber.bind(this);
     }
 
-
-
-    getVariavelContactos = () => {
+    getVariavelConsulta = () => {
 
         const db = getDatabase();
-        const starCountRef = ref(db, `Newdata_${this.state.uuid}/variaveis_contact`);
+        const starCountRef = ref(db, `Newdata_${this.state.uuid}/variaveis`);
         onValue(starCountRef, (snapshot) => {
             const data = snapshot.val();
             this.setState({
-                variavel_contactos: data.var_contact
+                variavel_consulta: data.var_consulta
             })
             console.log(data);
 
@@ -85,23 +86,27 @@ export default class AdicionarContactos extends Component {
 
     };
 
+
     componentDidMount() {
-        this.getVariavelContactos();
+        this.getVariavelConsulta();
     }
+
+
 
 
     submitData = (event) => {
 
-        if (this.state.contacto_telPesso != "" && this.state.contacto_Nome != "") {
+        if (this.state.data_consulta != "" && this.state.contacto_Nome != "") {
 
             const db = getDatabase();
-            set(ref(db, `Newdata_${this.state.uuid}/contactos/contacto_Contacto_${this.state.variavel_contactos + 1}`), {
-                contacto_telPesso: this.state.contacto_telPesso,
+            set(ref(db, `Newdata_${this.state.uuid}/consultas/consulta_ID_${this.state.variavel_consulta + 1}`), {
+                data_consulta: this.state.data_consulta,
                 contacto_Nome: this.state.contacto_Nome,
+                time_consulta: this.state.time_consulta,
             })
                 .catch(error => console.log(error));
             console.log('DATA SAVED');
-
+            
             this.setState({
                 display_feedback: "block"
             })
@@ -109,14 +114,14 @@ export default class AdicionarContactos extends Component {
                 this.setState({
                     display_feedback: "none"
                 })
-
                 //Atualizar variável do USER
                 const db = getDatabase();
-                set(ref(db, `Newdata_${this.state.uuid}/variaveis_contact`), {
-                    var_contact: this.state.variavel_contactos + 1,
+                set(ref(db, `Newdata_${this.state.uuid}/variaveis`), {
+                    var_consulta: this.state.variavel_consulta + 1,
                 })
                     .catch(error => console.log(error));
                 console.log('DATA SAVED__2');
+
 
             }, 5000);
 
@@ -132,7 +137,12 @@ export default class AdicionarContactos extends Component {
 
     inputDataNumber = (event) => {
 
-        this.setState({ contacto_telPesso: event.target.value });
+        this.setState({ data_consulta: event.target.value });
+    }
+
+    inputTimeNumber = (event) => {
+
+        this.setState({ time_consulta: event.target.value });
     }
 
     render() {
@@ -152,45 +162,67 @@ export default class AdicionarContactos extends Component {
 
                     <h1 className="green">Plataforma Ativ@mente</h1>
                     <p className="blue">
-                        Nas caixas abaixo, insira um contacto da conta do utilizador <span className='darkgreen'> {this.state.email}</span>
+                        Nas caixas abaixo, adicione a data da consulta da conta do utilizador <span className='darkgreen'> {this.state.email}</span>
                     </p>
 
                     <Form.Label id="label_p" className="green">
-                        Nome do contacto telefónico
+                        Nome da consulta
                     </Form.Label>
 
                     <Form.Control
                         type="text"
 
-                        placeholder="Introduza o nome do contacto a guardar"
+                        placeholder="Introduza o nome da consulta"
                         className="blue"
                         onChange={this.inputName}
                     />
 
                     <Form.Label id="label_p" className="green">
-                        Número do contacto telefónico
+                        Introduza a data da consulta
                     </Form.Label>
 
                     <Form.Control
-                        type="number"
+                        type="date"
 
                         onChange={this.inputDataNumber}
-                        placeholder="Escreva o contacto telefónico"
+                        placeholder="Introduza a data da consulta"
+                        className="blue"
+                    />
+
+                    <Form.Label id="label_p" className="green">
+                        Introduza a hora da consulta
+                    </Form.Label>
+
+                    <Form.Control
+                        type="time"
+                        onChange={this.inputTimeNumber}
+                        placeholder="Introduza a hora da consulta"
                         className="blue"
                     />
 
                     <Row className="alignBtns">
                         <Button className="btnFill" id="register_btn" onClick={this.submitData}>
-                            Registar Contacto
+                            Registar consulta
                         </Button>
                     </Row>
+
                     <p id="timer_Feedback" style={{ display: this.state.display_feedback }}>Dados guardados com sucesso</p>
+
+
+
+                    <Link to="/mostrarconsultas">
+                        <Button className="btnFill" id="register_btn" >
+                            Consultar consultas
+                        </Button>
+                    </Link>
+
                 </Col>
+
 
 
                 {/* <button onClick={this.getUserData} >Mostrar dados </button> */}
 
-                <Navbar_platform_admin ativo={"chamadas"} />
+                <Navbar_platform_admin ativo={"consulta"} />
             </div>
         )
     }
