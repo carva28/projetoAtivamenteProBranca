@@ -123,6 +123,28 @@ export default class Navbar_platform_admin extends Component {
               </p>
             </div>
           </Link>
+
+          <Link to="/adicionarmedicamentos">
+            <div
+              className={`linksMenu ${
+                this.state.active == "consulta" ? "active" : ""
+              }`}
+            >
+              {this.state.active == "consulta" ? (
+                <img src={calendarioVerde} alt="Menu para calendario" />
+              ) : (
+                <img src={calendarioBranco} alt="Menu para calendario" />
+              )}
+
+              <p
+                className={
+                  this.state.active == "consulta" ? "green" : "white"
+                }
+              >
+                Adicionar medicamentos
+              </p>
+            </div>
+          </Link>
           
         </Row>
       </div>

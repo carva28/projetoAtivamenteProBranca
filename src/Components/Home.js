@@ -42,7 +42,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 // const auth = getAuth(app);
-
+var listMedicamentos, listConsultas;
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -52,6 +52,8 @@ export default class Home extends Component {
       uuid: auth.currentUser.reloadUserInfo.localId,
       variavel_contactos: 0,
       variavel_consulta: 0,
+      medicamentos: [],
+      consultas: []
     };
   }
 
@@ -78,7 +80,7 @@ export default class Home extends Component {
         })
           .catch(error => console.log(error));
 
-        console.log('DATA SAVED_var_contacts');
+        // console.log('DATA SAVED_var_contacts');
       } else {
         this.setState({
           variavel_contactos: data.var_contact
@@ -105,7 +107,6 @@ export default class Home extends Component {
         })
           .catch(error => console.log(error));
 
-        console.log('DATA SAVED_var_consulta');
       } else {
         this.setState({
           variavel_consulta: data.var_consulta
@@ -133,7 +134,7 @@ export default class Home extends Component {
         })
           .catch(error => console.log(error));
 
-        console.log('DATA SAVED_var_med');
+        // console.log('DATA SAVED_var_med');
       } else {
         this.setState({
           variavel_medicame: data.variavel_medicame
@@ -141,7 +142,37 @@ export default class Home extends Component {
         console.log("Já tem dados")
       }
     });
+  };
 
+  getMedicamentosList = () => {
+
+    const db = getDatabase();
+    const starCountRef = ref(db, `Newdata_${this.state.uuid}/medicamentos`);
+    onValue(starCountRef, (snapshot) => {
+      var data = snapshot.val();
+      this.setState({
+        medicamentos: Object.values(snapshot.val())
+      })
+      // console.log(Object.values(snapshot.val()))
+
+    });
+
+
+
+  };
+
+  getConsultasList = () => {
+
+    const db = getDatabase();
+    const starCountRef = ref(db, `Newdata_${this.state.uuid}/consultas`);
+    onValue(starCountRef, (snapshot) => {
+      var data = snapshot.val();
+      this.setState({
+        consultas: Object.values(snapshot.val())
+      })
+      console.log(Object.values(snapshot.val()))
+
+    });
 
   };
 
@@ -149,10 +180,58 @@ export default class Home extends Component {
     this.getVariavelContactos();
     this.getVariavelConsulta();
     this.getVariavelMedicamentos();
+    this.getMedicamentosList();
+    this.getConsultasList();
   }
+
+
 
   render() {
     //console.log(this.constructor.name);
+
+    if (this.state.medicamentos.length > 0) {
+
+      listMedicamentos = this.state.medicamentos.map((data, i) =>
+
+        <>
+          <p className="bold" key={i}>{data.momento_tomar}</p>
+          <p>1 cápsula de <span className="medium">{data.medicamento}</span></p>
+        </>
+      );
+
+
+    } else {
+
+      <p className="bold" >Não tem medicamentos para tomar</p>
+
+    }
+
+    if (this.state.consultas.length > 1) {
+
+      listConsultas =
+        <>
+          <p className="bold">{this.state.consultas[this.state.consultas.length - 1].contacto_Nome}</p>
+          <p>Dia {this.state.consultas[this.state.consultas.length - 1].data_consulta} às {this.state.consultas[this.state.consultas.length - 1].time_consulta}</p>
+
+
+          <p className="bold">{this.state.consultas[this.state.consultas.length - 2].contacto_Nome}</p>
+          <p>Dia {this.state.consultas[this.state.consultas.length - 2].data_consulta} às {this.state.consultas[this.state.consultas.length - 2].time_consulta}</p>
+        </>;
+
+
+    } else if (this.state.consultas.length > 0 && this.state.consultas.length <= 1) {
+
+      listConsultas =
+        <>
+          <p className="bold">{this.state.consultas[this.state.consultas.length - 1].contacto_Nome}</p>
+          <p>Dia {this.state.consultas[this.state.consultas.length - 1].data_consulta} às {this.state.consultas[this.state.consultas.length - 1].time_consulta}</p>
+        </>;
+
+
+    } else {
+      listConsultas = <p className="bold" >Não tem consultas agendadas</p>;
+
+    }
 
     return (
       <div>
@@ -189,11 +268,10 @@ export default class Home extends Component {
 
               <Row>
                 <Col xs={6}>
-                  <p className="bold">29/06 às 14h30</p>
-                  <p>Hospital de Aveiro</p>
+                  {listConsultas}
 
-                  <p className="bold">03/07 às 10h40</p>
-                  <p>Hospital de Aveiro</p>
+                  {/* <p className="bold">03/07 às 10h40</p>
+                  <p>Hospital de Aveiro</p> */}
                 </Col>
 
                 <Col xs={6}>
@@ -207,15 +285,12 @@ export default class Home extends Component {
 
               <Row>
                 <Col xs={6}>
-                  <p className="bold">Pequeno-almoço</p>
-                  <p>
-                    1 cápsula de <span className="medium">Ferrum</span>
-                  </p>
+                  {listMedicamentos}
 
-                  <p className="bold">Almoço</p>
+                  {/* <p className="bold">Almoço</p>
                   <p>
                     1 saqueta de <span className="medium">Fosfoglutina</span>
-                  </p>
+                  </p> */}
                 </Col>
 
                 <Col xs={6} className="alignEnd">
