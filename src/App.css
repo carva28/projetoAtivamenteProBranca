@@ -57,6 +57,12 @@ p {
   font-weight: bold;
 }
 
+.none_a_link, .none_a_link:hover,.none_a_link:visited,.none_a_link:active,.none_a_link:link{
+  background-color: transparent;
+  color: white;
+  text-decoration: none;
+}
+
 .red {
   color: #ff5e4e;
 }
@@ -101,6 +107,11 @@ p {
 .btn.btnBorderBlue:hover {
   background-color: #223a5f;
   color: #fff;
+}
+
+.btn-primary:hover, .btn-primary:focus{
+  background-color: transparent;
+  border: none;
 }
 
 .btn.btnBorderBlue {
