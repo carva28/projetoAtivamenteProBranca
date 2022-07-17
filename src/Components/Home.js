@@ -50,6 +50,7 @@ export default class Home extends Component {
 
     this.state = {
       show: false,
+      show2: false,
       uuid: auth.currentUser.reloadUserInfo.localId,
       variavel_contactos: 0,
       variavel_consulta: 0,
@@ -60,6 +61,9 @@ export default class Home extends Component {
 
   openSponsors = () => this.setState({ show: true });
   handleClose = () => this.setState({ show: false });
+
+  openEmergency = () => this.setState({ show2: true });
+  closeEmergency = () => this.setState({ show2: false });
 
   logout = async () => {
     console.log("logout");
@@ -284,7 +288,11 @@ export default class Home extends Component {
                 i
               </Button>
 
-              <Button className="btnBorderRed blue" id="emergency">
+              <Button
+                className="btnBorderRed blue"
+                id="emergency"
+                onClick={this.openEmergency}
+              >
                 <img src={emergency} alt="ícone de telefone" />
                 Emergência
               </Button>
@@ -401,6 +409,7 @@ export default class Home extends Component {
 
         <Navbar ativo={"home"} />
 
+        {/* Modal informações */}
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title className="blue">
@@ -424,6 +433,52 @@ export default class Home extends Component {
             </Button>
 
             <Button className="btnBorderBlue blue" onClick={this.handleClose}>
+              Fechar janela
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+        {/* Modal contactos de emergência */}
+        <Modal show={this.state.show2} onHide={this.closeEmergency}>
+          <Modal.Header closeButton>
+            <Modal.Title className="blue">Contactos de emergência</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body style={{ margin: "5px 40px", fontSize: "2rem" }}>
+            <p className="blue">
+              <b>
+                <span className="green">INEM: </span>
+              </b>
+              <a href="tel:112">112</a>
+            </p>
+
+            <p className="blue">
+              <b>
+                <span className="green">GNR Albergaria-a-Velha: </span>
+              </b>
+              <a href="tel:234521237">234 521 237</a>
+            </p>
+
+            <p className="blue">
+              <b>
+                <span className="green">Bombeiros Albergaria-a-Velha: </span>
+              </b>
+              <a href="tel:234529112">234 529 112</a>
+            </p>
+
+            <p className="blue">
+              <b>
+                <span className="green">PROBRANCA: </span>
+              </b>
+              <a href="tel:234540220">234 540 220</a>
+            </p>
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button
+              className="btnBorderBlue blue"
+              onClick={this.closeEmergency}
+            >
               Fechar janela
             </Button>
           </Modal.Footer>

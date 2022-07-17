@@ -108,7 +108,7 @@ export default class Navbar extends Component {
                 this.state.active == "videos" ? "active" : ""
               }`}
             >
-              {this.state.active == "chamadas" ? (
+              {this.state.active == "videos" ? (
                 <img src={videosVerde} alt="Menu para videos" />
               ) : (
                 <img src={videosBranco} alt="Menu para videos" />

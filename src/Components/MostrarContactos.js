@@ -97,7 +97,7 @@ export default function MostrarContactos() {
         <Button
           className="btnFillWhite"
           onClick={() =>
-            toComponentB(data.contacto_telPesso, data.contacto_Nome, variavel)
+            toComponentB(data.contacto_telPesso, data.contacto_Nome, i + 1)
           }
         >
           {" "}

@@ -85,37 +85,46 @@ export default function MostrarConsultas() {
     // console.log(this.state.datas)
     listItems = datas.map((data, i) => (
       <Col className="contact" key={i}>
-        <h3> Consulta de: {data.contacto_Nome} </h3>
-        <p className="white"> Data da consulta: {data.data_consulta}</p>
-        <p className="white"> Hora da consulta: {data.time_consulta}</p>
+        <h3> Consulta de {data.contacto_Nome} </h3>
+        <p className="white">{data.data_consulta}</p>
+        <p className="white">{data.time_consulta}</p>
         <Button
+          className="btnFillWhite"
           onClick={() =>
             toComponentB(
               data.data_consulta,
               data.time_consulta,
               data.contacto_Nome,
-              variavel
+              i + 1
             )
           }
         >
           {" "}
-          Editar{" "}
+          Editar consulta{" "}
         </Button>
       </Col>
     ));
   }
 
   return (
-    <div className="frame" id="chamadas">
+    <div className="frame">
       <Row>
         <Col xs={8}>
-          <h1 className="green">Mostrar consultados </h1>
+          <h1 className="green">Consultas adicionadas</h1>
 
           <p className="blue paragraphInfo">
-            Pode verificar cada contacto adicionado ao utilizador{" "}
-            <span className="darkgreen"> {email}</span>
+            Veja as consultas adicionadas ao utilizador{" "}
+            {auth.currentUser.reloadUserInfo.email} e edite-as se necessário.
           </p>
         </Col>
+      </Row>
+
+      <Row>
+        <Link to="/adicionarconsulta">
+          <Button className="btnCenter btnFillGreen">
+            Adicionar nova consulta
+          </Button>
+        </Link>
       </Row>
 
       <Row className="contacts">

@@ -1,19 +1,229 @@
 import React, { Component } from "react";
-import { Row, Col, Card, Button } from "react-bootstrap";
+import { Row, Col, Card, Button,Modal } from "react-bootstrap";
+import logotipo from "../images/probranca-cor.png";
 import Navbar from "../Containers/Navbar";
+import { auth } from "./firebase";
 import emergency from "../images/icons/emergencia.png";
+import { useNavigate, Link } from "react-router-dom";
 import consultas from "../images/characters/consultas.svg";
 import medicamentos from "../images/characters/medicamentos.svg";
 import consultasIcone from "../images/icons/consultas.svg";
+import { initializeApp } from "firebase/app";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signOut,
+} from "firebase/auth";
+import {
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
+  addDoc,
+} from "firebase/firestore";
+import { getDatabase, ref, set, onValue } from "firebase/database";
+const firebase = require("./firebase");
+const firebaseConfig = {
+  apiKey: "AIzaSyDPwM0HTu_Xa52irgMjUbWbfczplh_JO48",
+  authDomain: "ativamenteprobranca.firebaseapp.com",
+  projectId: "ativamenteprobranca",
+  storageBucket: "ativamenteprobranca.appspot.com",
+  messagingSenderId: "147788951852",
+  appId: "1:147788951852:web:d019da8a750c193d4afc89",
+  measurementId: "G-T350E5L1GS",
+  databaseURL:
+    "https://ativamenteprobranca-default-rtdb.europe-west1.firebasedatabase.app/",
+};
 
+var listMedicamentos, listConsultas;
 export default class Calendario extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      show: false,
+      show2: false,
+      uuid: auth.currentUser.reloadUserInfo.localId,
+      variavel_contactos: 0,
+      variavel_consulta: 0,
+      medicamentos: [],
+      consultas: [],
+    };
   }
 
+
+  getVariavelConsulta = () => {
+    const db = getDatabase();
+    const starCountRef = ref(db, `Newdata_${this.state.uuid}/variaveis`);
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+
+      console.log(data.var_consulta);
+      if (data == null) {
+        const db = getDatabase();
+
+        set(ref(db, `Newdata_${this.state.uuid}/variaveis`), {
+          var_consulta: 0,
+        }).catch((error) => console.log(error));
+      } else {
+        this.setState({
+          variavel_consulta: data.var_consulta,
+        });
+        console.log("Já tem dados");
+      }
+    });
+  };
+
+  getVariavelMedicamentos = () => {
+    const db = getDatabase();
+    const starCountRef = ref(db, `Newdata_${this.state.uuid}/variavel_Med`);
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+
+      console.log(data);
+
+      if (data == null) {
+        const db = getDatabase();
+
+        set(ref(db, `Newdata_${this.state.uuid}/variavel_Med`), {
+          variavel_medicame: 0,
+        }).catch((error) => console.log(error));
+
+        // console.log('DATA SAVED_var_med');
+      } else {
+        this.setState({
+          variavel_medicame: data.variavel_medicame,
+        });
+        console.log("Já tem dados");
+      }
+    });
+  };
+
+
+  getMedicamentosList = () => {
+    const db = getDatabase();
+    const starCountRef = ref(db, `Newdata_${this.state.uuid}/medicamentos`);
+    onValue(starCountRef, (snapshot) => {
+      var data = snapshot.val();
+      this.setState({
+        medicamentos: Object.values(snapshot.val()),
+      });
+      // console.log(Object.values(snapshot.val()))
+    });
+  };
+
+  getConsultasList = () => {
+    const db = getDatabase();
+    const starCountRef = ref(db, `Newdata_${this.state.uuid}/consultas`);
+    onValue(starCountRef, (snapshot) => {
+      var data = snapshot.val();
+      this.setState({
+        consultas: Object.values(snapshot.val()),
+      });
+      console.log(Object.values(snapshot.val()));
+    });
+  };
+
+  openSponsors = () => this.setState({ show: true });
+  handleClose = () => this.setState({ show: false });
+
+  openEmergency = () => this.setState({ show2: true });
+  closeEmergency = () => this.setState({ show2: false });
+
   render() {
+    if (this.state.medicamentos.length > 0) {
+      listMedicamentos = this.state.medicamentos.map((data, i) => (
+        <>
+          <p className="bold" key={i}>
+            {data.momento_tomar}
+          </p>
+          <p>
+            1 cápsula de <span className="medium">{data.medicamento}</span>
+          </p>
+        </>
+      ));
+    } else {
+      <p className="bold">Não tem medicamentos para tomar</p>;
+    }
+
+    if (this.state.consultas.length > 1) {
+      listConsultas = (
+        <>
+          <p className="bold">
+            {
+              this.state.consultas[this.state.consultas.length - 1]
+                .contacto_Nome
+            }
+          </p>
+          <p>
+            Dia{" "}
+            {
+              this.state.consultas[this.state.consultas.length - 1]
+                .data_consulta
+            }{" "}
+            às{" "}
+            {
+              this.state.consultas[this.state.consultas.length - 1]
+                .time_consulta
+            }
+          </p>
+
+          <p className="bold">
+            {
+              this.state.consultas[this.state.consultas.length - 2]
+                .contacto_Nome
+            }
+          </p>
+          <p>
+            Dia{" "}
+            {
+              this.state.consultas[this.state.consultas.length - 2]
+                .data_consulta
+            }{" "}
+            às{" "}
+            {
+              this.state.consultas[this.state.consultas.length - 2]
+                .time_consulta
+            }
+          </p>
+        </>
+      );
+    } else if (
+      this.state.consultas.length > 0 &&
+      this.state.consultas.length <= 1
+    ) {
+      listConsultas = (
+        <>
+          <p className="bold">
+            {
+              this.state.consultas[this.state.consultas.length - 1]
+                .contacto_Nome
+            }
+          </p>
+          <p>
+            Dia{" "}
+            {
+              this.state.consultas[this.state.consultas.length - 1]
+                .data_consulta
+            }{" "}
+            às{" "}
+            {
+              this.state.consultas[this.state.consultas.length - 1]
+                .time_consulta
+            }
+          </p>
+        </>
+      );
+    } else {
+      listConsultas = <p className="bold">Não tem consultas agendadas</p>;
+    }
+
+
     return (
       <div>
         <div className="frame" id="calendario">
@@ -28,9 +238,15 @@ export default class Calendario extends Component {
             </Col>
 
             <Col xs={4} className="btnsAjuda">
-              <Button className="btnInfo blue">i</Button>
+            <Button className="btnInfo blue" onClick={this.openSponsors}>
+                i
+              </Button>
 
-              <Button className="btnBorderRed blue" id="emergency">
+              <Button
+                className="btnBorderRed blue"
+                id="emergency"
+                onClick={this.openEmergency}
+              >
                 <img src={emergency} alt="ícone de telefone" />
                 Emergência
               </Button>
@@ -43,11 +259,10 @@ export default class Calendario extends Component {
 
               <Row>
                 <Col xs={6}>
-                  <p className="bold">29/06 às 14h30</p>
-                  <p>Hospital de Aveiro</p>
+                  {listConsultas}
 
-                  <p className="bold">03/07 às 10h40</p>
-                  <p>Hospital de Aveiro</p>
+                  {/* <p className="bold">03/07 às 10h40</p>
+                  <p>Hospital de Aveiro</p> */}
                 </Col>
 
                 <Col xs={6}>
@@ -61,15 +276,12 @@ export default class Calendario extends Component {
 
               <Row>
                 <Col xs={6}>
-                  <p className="bold">Pequeno-almoço</p>
-                  <p>
-                    1 cápsula de <span className="medium">Ferrum</span>
-                  </p>
+                  {listMedicamentos}
 
-                  <p className="bold">Almoço</p>
+                  {/* <p className="bold">Almoço</p>
                   <p>
                     1 saqueta de <span className="medium">Fosfoglutina</span>
-                  </p>
+                  </p> */}
                 </Col>
 
                 <Col xs={6} className="alignEnd">
@@ -84,36 +296,97 @@ export default class Calendario extends Component {
               <h3 className="green">Próximas consultas:</h3>
 
               <Row>
-                <Col>
-                  <p className="bold">29/06 às 14h30</p>
-                  <p>Hospital de Aveiro</p>
+                <Col xs={6}>
+                  {listConsultas}
 
-                  <p className="bold">03/07 às 10h40</p>
-                  <p>Hospital de Aveiro</p>
+                  {/* <p className="bold">03/07 às 10h40</p>
+                  <p>Hospital de Aveiro</p> */}
                 </Col>
 
-                <Col>
-                  <p className="bold">29/06 às 14h30</p>
-                  <p>Hospital de Aveiro</p>
-
-                  <p className="bold">03/07 às 10h40</p>
-                  <p>Hospital de Aveiro</p>
-                </Col>
-
-                <Col>
-                  <p className="bold">29/06 às 14h30</p>
-                  <p>Hospital de Aveiro</p>
-
-                  <p className="bold">03/07 às 10h40</p>
-                  <p>Hospital de Aveiro</p>
-                </Col>
-
+           
                 <img src={consultasIcone} />
+ 
+               
               </Row>
             </Card>
           </Row>
 
           <Navbar ativo={"calendario"} />
+
+           {/* Modal informações */}
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title className="blue">
+              Este projeto foi desenvolvido por:
+            </Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <img src={logotipo} />
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Link to="/mostrarcontactos">
+              <Button className="btnFill">
+                Ir para a ferramenta de administração
+              </Button>
+            </Link>
+
+            <Button className="btnFill" onClick={this.logout}>
+              Sair da conta
+            </Button>
+
+            <Button className="btnBorderBlue blue" onClick={this.handleClose}>
+              Fechar janela
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+        {/* Modal contactos de emergência */}
+        <Modal show={this.state.show2} onHide={this.closeEmergency}>
+          <Modal.Header closeButton>
+            <Modal.Title className="blue">Contactos de emergência</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body style={{ margin: "5px 40px", fontSize: "2rem" }}>
+            <p className="blue">
+              <b>
+                <span className="green">INEM: </span>
+              </b>
+              <a href="tel:112">112</a>
+            </p>
+
+            <p className="blue">
+              <b>
+                <span className="green">GNR Albergaria-a-Velha: </span>
+              </b>
+              <a href="tel:234521237">234 521 237</a>
+            </p>
+
+            <p className="blue">
+              <b>
+                <span className="green">Bombeiros Albergaria-a-Velha: </span>
+              </b>
+              <a href="tel:234529112">234 529 112</a>
+            </p>
+
+            <p className="blue">
+              <b>
+                <span className="green">PROBRANCA: </span>
+              </b>
+              <a href="tel:234540220">234 540 220</a>
+            </p>
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button
+              className="btnBorderBlue blue"
+              onClick={this.closeEmergency}
+            >
+              Fechar janela
+            </Button>
+          </Modal.Footer>
+        </Modal>
         </div>
       </div>
     );

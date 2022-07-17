@@ -89,45 +89,18 @@ export default class Navbar_platform_admin extends Component {
           </Link>
           {/* FIM Link para mostrarcontactos */}
 
-          {/* Link para adicionarinformacoes */}
-          {/*  <Link to="/adicionarinformacoes">
+          {/* Link para mostrarconsultas */}
+          <Link to="/mostrarconsultas">
             <div
               className={`linksMenu ${
-                this.state.active == "adicionarinformacoes" ? "active" : ""
+                this.state.active == "adicionarconsulta" ||
+                this.state.active == "mostrarconsultas"
+                  ? "active"
+                  : ""
               }`}
             >
-              {this.state.active == "adicionarinformacoes" ? (
-                <img
-                  src={chamadasVerde}
-                  alt="Menu para adicionar informacoes"
-                />
-              ) : (
-                <img
-                  src={chamadasBranco}
-                  alt="Menu para adicionar informacoes"
-                />
-              )}
-
-              <p
-                className={
-                  this.state.active == "adicionarinformacoes"
-                    ? "green"
-                    : "white"
-                }
-              >
-                Adicionar contactos
-              </p>
-            </div>
-          </Link> */}
-          {/* FIM Link para adicionarinformacoes */}
-
-          <Link to="/adicionarconsulta">
-            <div
-              className={`linksMenu ${
-                this.state.active == "adicionarconsulta" ? "active" : ""
-              }`}
-            >
-              {this.state.active == "adicionarconsulta" ? (
+              {this.state.active == "adicionarconsulta" ||
+              this.state.active == "mostrarconsultas" ? (
                 <img src={calendarioVerde} alt="Menu para adicionar consulta" />
               ) : (
                 <img
@@ -138,14 +111,19 @@ export default class Navbar_platform_admin extends Component {
 
               <p
                 className={
-                  this.state.active == "adicionarconsulta" ? "green" : "white"
+                  this.state.active == "adicionarconsulta" ||
+                  this.state.active == "mostrarconsultas"
+                    ? "green"
+                    : "white"
                 }
               >
                 Consultas
               </p>
             </div>
           </Link>
+          {/* FIM Link para mostrarconsultas */}
 
+          {/* Link para mostrarmedicamentos */}
           <Link to="/mostrarmedicamentos">
             <div
               className={`linksMenu ${
@@ -174,6 +152,7 @@ export default class Navbar_platform_admin extends Component {
               </p>
             </div>
           </Link>
+          {/* FIM Link para mostrarmedicamentos */}
         </Row>
       </div>
     );

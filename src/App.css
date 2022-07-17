@@ -98,6 +98,10 @@ p {
   border: 2px solid #223a5f;
 }
 
+.btnGames{
+  padding: 20px 35px !important;
+}
+
 .btn.btnFill:hover {
   background-color: #fff;
   color: #223a5f;
@@ -166,6 +170,18 @@ p {
   margin: 10px auto 30px;
   display: block;
 }
+
+
+.btn_other{
+  margin-top: 20px !important;
+}
+.btn_otherGames2, .btn_otherGames{
+
+  margin-top: 30px !important;
+  margin-left: 20px !important;
+}
+
+
 
 .form-label {
   font-weight: 600;
@@ -362,7 +378,8 @@ p {
   height: 85%;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-between;
+  justify-content: flex-start;
+  row-gap: 20px;
 }
 
 .row#topicsMenu a {

@@ -92,6 +92,7 @@ export default function MostrarMedicamentos() {
   }
 
   function toComponentB(medicamen, quandoTomar, variavel) {
+    console.log("var: " + variavel);
     navigate("/usermedicarespec", {
       state: {
         medicamen: medicamen,
@@ -110,7 +111,7 @@ export default function MostrarMedicamentos() {
         <Button
           className="btnFillWhite"
           onClick={() =>
-            toComponentB(data.medicamento, data.momento_tomar, variavel)
+            toComponentB(data.medicamento, data.momento_tomar, i + 1)
           }
         >
           {" "}
@@ -124,11 +125,11 @@ export default function MostrarMedicamentos() {
     <div className="frame" id="chamadas">
       <Row>
         <Col xs={8}>
-          <h1 className="green">Mostrar medicamentos </h1>
+          <h1 className="green">Medicamentos adicionados</h1>
 
           <p className="blue paragraphInfo">
-            Pode verificar cada medicamento adicionado ao utilizador:{" "}
-            <span className="darkgreen"> {email}</span>
+            Veja os medicamentos adicionados ao utilizador{" "}
+            {auth.currentUser.reloadUserInfo.email} e edite-os se necessário.
           </p>
         </Col>
       </Row>

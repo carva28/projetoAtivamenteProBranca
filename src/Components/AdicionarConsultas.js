@@ -134,76 +134,65 @@ export default class AdicionarConsultas extends Component {
 
   render() {
     return (
-      <div>
-        {/* <input type="text" onChange={this.inputName} />
-                <input type="number" onChange={this.inputDataNumber} />
-                <button type="button" onClick={this.submitData}>Submit</button> */}
+      <div className="frame">
+        <Row>
+          <Col xs={8}>
+            <h1 className="green">Adicionar nova consulta</h1>
 
-        <Col xs={{ order: 1 }} id="noBgMain" className="new_bg_contactos">
-          <h1 className="green">Plataforma Ativ@mente</h1>
-          <p className="blue">
-            Nas caixas abaixo, adicione a data da consulta da conta do
-            utilizador <span className="darkgreen"> {this.state.email}</span>
-          </p>
+            <p className="blue paragraphInfo">
+              Nas caixas abaixo, insira as informações para adicionar um nova
+              consulta à conta do utilizador{" "}
+              <span className="darkgreen"> {this.state.email}</span>.
+            </p>
+          </Col>
+        </Row>
 
-          <Form.Label id="label_p" className="green">
-            Nome da consulta
-          </Form.Label>
+        <Form.Label id="label_p" className="green">
+          Especialidade da consulta
+        </Form.Label>
 
-          <Form.Control
-            type="text"
-            placeholder="Introduza o nome da consulta"
-            className="blue"
-            onChange={this.inputName}
-          />
+        <Form.Control
+          type="text"
+          placeholder="Introduza a especialidade da consulta"
+          className="blue"
+          onChange={this.inputName}
+        />
 
-          <Form.Label id="label_p" className="green">
-            Introduza a data da consulta
-          </Form.Label>
+        <Form.Label id="label_p" className="green">
+          Data da consulta
+        </Form.Label>
 
-          <Form.Control
-            type="date"
-            onChange={this.inputDataNumber}
-            placeholder="Introduza a data da consulta"
-            className="blue"
-          />
+        <Form.Control
+          type="date"
+          onChange={this.inputDataNumber}
+          placeholder="Introduza a data da consulta"
+          className="blue"
+        />
 
-          <Form.Label id="label_p" className="green">
-            Introduza a hora da consulta
-          </Form.Label>
+        <Form.Label id="label_p" className="green">
+          Hora da consulta
+        </Form.Label>
 
-          <Form.Control
-            type="time"
-            onChange={this.inputTimeNumber}
-            placeholder="Introduza a hora da consulta"
-            className="blue"
-          />
+        <Form.Control
+          type="time"
+          onChange={this.inputTimeNumber}
+          placeholder="Introduza a hora da consulta"
+          className="blue"
+        />
 
-          <Row className="alignBtns">
-            <Button
-              className="btnFill"
-              id="register_btn"
-              onClick={this.submitData}
-            >
-              Registar consulta
-            </Button>
-          </Row>
-
-          <p
-            id="timer_Feedback"
-            style={{ display: this.state.display_feedback }}
+        <Row className="alignBtns">
+          <Button
+            className="btnFill"
+            id="register_btn"
+            onClick={this.submitData}
           >
-            Dados guardados com sucesso
-          </p>
+            Registar consulta
+          </Button>
+        </Row>
 
-          <Link to="/mostrarconsultas">
-            <Button className="btnFill" id="register_btn">
-              Ver consultas
-            </Button>
-          </Link>
-        </Col>
-
-        {/* <button onClick={this.getUserData} >Mostrar dados </button> */}
+        <p id="timer_Feedback" style={{ display: this.state.display_feedback }}>
+          Dados guardados com sucesso
+        </p>
 
         <Navbar_platform_admin ativo={"adicionarconsulta"} />
       </div>
