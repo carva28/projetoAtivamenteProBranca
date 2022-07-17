@@ -12,8 +12,8 @@ import jogosBranco from "../images/icons/jogos-branco.png";
 import jogosVerde from "../images/icons/jogos-verde.png";
 import calendarioBranco from "../images/icons/calendario-branco.png";
 import calendarioVerde from "../images/icons/calendario-verde.png";
-import videosBranco from "../images/icons/videos-branco.png";
-import videosVerde from "../images/icons/videos-verde.png";
+import medBranco from "../images/icons/med-branco.png";
+import medVerde from "../images/icons/med-verde.png";
 
 export default class Navbar_platform_admin extends Component {
   constructor(props) {
@@ -57,95 +57,123 @@ export default class Navbar_platform_admin extends Component {
             </div>
           </Link>
           {/* FIM Link para home */}
-          {/* Link para chamadas */}
-          <Link to="/adicionarinformacoes">
-            <div
-              className={`linksMenu ${
-                this.state.active == "chamadas" ? "active" : ""
-              }`}
-            >
-              {this.state.active == "chamadas" ? (
-                <img src={chamadasVerde} alt="Menu para chamadas" />
-              ) : (
-                <img src={chamadasBranco} alt="Menu para chamadas" />
-              )}
 
-              <p
-                className={this.state.active == "chamadas" ? "green" : "white"}
-              >
-                Registar contactos
-              </p>
-            </div>
-          </Link>
-          {/* FIM Link para chamadas */}
-          {/* Link para calendario */}
+          {/* Link para mostrarcontactos */}
           <Link to="/mostrarcontactos">
             <div
               className={`linksMenu ${
-                this.state.active == "calendario" ? "active" : ""
+                this.state.active == "mostrarcontactos" ||
+                this.state.active == "adicionarinformacoes"
+                  ? "active"
+                  : ""
               }`}
             >
-              {this.state.active == "calendario" ? (
-                <img src={calendarioVerde} alt="Menu para calendario" />
+              {this.state.active == "mostrarcontactos" ||
+              this.state.active == "adicionarinformacoes" ? (
+                <img src={chamadasVerde} alt="Menu para mostrar contactos" />
               ) : (
-                <img src={calendarioBranco} alt="Menu para calendario" />
+                <img src={chamadasBranco} alt="Menu para mostrar contactos" />
               )}
 
               <p
                 className={
-                  this.state.active == "calendario" ? "green" : "white"
+                  this.state.active == "mostrarcontactos" ||
+                  this.state.active == "adicionarinformacoes"
+                    ? "green"
+                    : "white"
                 }
               >
-                Mostrar contactos
+                Contactos
               </p>
             </div>
           </Link>
-          {/* FIM Link para calendario */}
-         
+          {/* FIM Link para mostrarcontactos */}
+
+          {/* Link para adicionarinformacoes */}
+          {/*  <Link to="/adicionarinformacoes">
+            <div
+              className={`linksMenu ${
+                this.state.active == "adicionarinformacoes" ? "active" : ""
+              }`}
+            >
+              {this.state.active == "adicionarinformacoes" ? (
+                <img
+                  src={chamadasVerde}
+                  alt="Menu para adicionar informacoes"
+                />
+              ) : (
+                <img
+                  src={chamadasBranco}
+                  alt="Menu para adicionar informacoes"
+                />
+              )}
+
+              <p
+                className={
+                  this.state.active == "adicionarinformacoes"
+                    ? "green"
+                    : "white"
+                }
+              >
+                Adicionar contactos
+              </p>
+            </div>
+          </Link> */}
+          {/* FIM Link para adicionarinformacoes */}
+
           <Link to="/adicionarconsulta">
             <div
               className={`linksMenu ${
-                this.state.active == "consulta" ? "active" : ""
+                this.state.active == "adicionarconsulta" ? "active" : ""
               }`}
             >
-              {this.state.active == "consulta" ? (
-                <img src={calendarioVerde} alt="Menu para calendario" />
+              {this.state.active == "adicionarconsulta" ? (
+                <img src={calendarioVerde} alt="Menu para adicionar consulta" />
               ) : (
-                <img src={calendarioBranco} alt="Menu para calendario" />
+                <img
+                  src={calendarioBranco}
+                  alt="Menu para adicionar consulta"
+                />
               )}
 
               <p
                 className={
-                  this.state.active == "consulta" ? "green" : "white"
+                  this.state.active == "adicionarconsulta" ? "green" : "white"
                 }
               >
-                Adicionar consultas
+                Consultas
               </p>
             </div>
           </Link>
 
-          <Link to="/adicionarmedicamentos">
+          <Link to="/mostrarmedicamentos">
             <div
               className={`linksMenu ${
-                this.state.active == "consulta" ? "active" : ""
+                this.state.active == "adicionarmedicamentos" ||
+                this.state.active == "mostrarmedicamentos"
+                  ? "active"
+                  : ""
               }`}
             >
-              {this.state.active == "consulta" ? (
-                <img src={calendarioVerde} alt="Menu para calendario" />
+              {this.state.active == "adicionarmedicamentos" ||
+              this.state.active == "mostrarmedicamentos" ? (
+                <img src={medVerde} alt="Menu para calendario" />
               ) : (
-                <img src={calendarioBranco} alt="Menu para calendario" />
+                <img src={medBranco} alt="Menu para calendario" />
               )}
 
               <p
                 className={
-                  this.state.active == "consulta" ? "green" : "white"
+                  this.state.active == "adicionarmedicamentos" ||
+                  this.state.active == "mostrarmedicamentos"
+                    ? "green"
+                    : "white"
                 }
               >
-                Adicionar medicamentos
+                Medicamentos
               </p>
             </div>
           </Link>
-          
         </Row>
       </div>
     );

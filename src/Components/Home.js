@@ -6,7 +6,7 @@ import emergency from "../images/icons/emergencia.png";
 import consultas from "../images/characters/consultas.svg";
 import medicamentos from "../images/characters/medicamentos.svg";
 import logotipo from "../images/probranca-cor.png";
-import { Link, Navigate } from 'react-router-dom';
+import { useNavigate, Link } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import {
   GoogleAuthProvider,
@@ -26,9 +26,9 @@ import {
   addDoc,
 } from "firebase/firestore";
 import { getDatabase, ref, set, onValue } from "firebase/database";
-import Navbar_platform_admin from '../Containers/Navbar_platform_admin';
+import Navbar_platform_admin from "../Containers/Navbar_platform_admin";
 
-const firebase = require('./firebase');
+const firebase = require("./firebase");
 const firebaseConfig = {
   apiKey: "AIzaSyDPwM0HTu_Xa52irgMjUbWbfczplh_JO48",
   authDomain: "ativamenteprobranca.firebaseapp.com",
@@ -37,11 +37,12 @@ const firebaseConfig = {
   messagingSenderId: "147788951852",
   appId: "1:147788951852:web:d019da8a750c193d4afc89",
   measurementId: "G-T350E5L1GS",
-  databaseURL: "https://ativamenteprobranca-default-rtdb.europe-west1.firebasedatabase.app/"
+  databaseURL:
+    "https://ativamenteprobranca-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
 const app = initializeApp(firebaseConfig);
-// const auth = getAuth(app);
+
 var listMedicamentos, listConsultas;
 export default class Home extends Component {
   constructor(props) {
@@ -53,7 +54,7 @@ export default class Home extends Component {
       variavel_contactos: 0,
       variavel_consulta: 0,
       medicamentos: [],
-      consultas: []
+      consultas: [],
     };
   }
 
@@ -63,12 +64,15 @@ export default class Home extends Component {
   logout = async () => {
     console.log("logout");
     await logout(auth);
-    return (<Navigate to="/login" replace={true} />); /* THIS IS NOT WORKING */
+    window.location.reload();
   };
 
   getVariavelContactos = () => {
     const db = getDatabase();
-    const starCountRef = ref(db, `Newdata_${this.state.uuid}/variaveis_contact`);
+    const starCountRef = ref(
+      db,
+      `Newdata_${this.state.uuid}/variaveis_contact`
+    );
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
 
@@ -77,19 +81,16 @@ export default class Home extends Component {
 
         set(ref(db, `Newdata_${this.state.uuid}/variaveis_contact`), {
           var_contact: 0,
-        })
-          .catch(error => console.log(error));
+        }).catch((error) => console.log(error));
 
         // console.log('DATA SAVED_var_contacts');
       } else {
         this.setState({
-          variavel_contactos: data.var_contact
-        })
-        console.log("Já tem dados")
+          variavel_contactos: data.var_contact,
+        });
+        console.log("Já tem dados");
       }
     });
-
-
   };
 
   getVariavelConsulta = () => {
@@ -98,24 +99,20 @@ export default class Home extends Component {
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
 
-      console.log(data.var_consulta)
+      console.log(data.var_consulta);
       if (data == null) {
         const db = getDatabase();
 
         set(ref(db, `Newdata_${this.state.uuid}/variaveis`), {
           var_consulta: 0,
-        })
-          .catch(error => console.log(error));
-
+        }).catch((error) => console.log(error));
       } else {
         this.setState({
-          variavel_consulta: data.var_consulta
-        })
-        console.log("Já tem dados")
+          variavel_consulta: data.var_consulta,
+        });
+        console.log("Já tem dados");
       }
     });
-
-
   };
 
   getVariavelMedicamentos = () => {
@@ -124,56 +121,47 @@ export default class Home extends Component {
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
 
-      console.log(data)
+      console.log(data);
 
       if (data == null) {
         const db = getDatabase();
 
         set(ref(db, `Newdata_${this.state.uuid}/variavel_Med`), {
           variavel_medicame: 0,
-        })
-          .catch(error => console.log(error));
+        }).catch((error) => console.log(error));
 
         // console.log('DATA SAVED_var_med');
       } else {
         this.setState({
-          variavel_medicame: data.variavel_medicame
-        })
-        console.log("Já tem dados")
+          variavel_medicame: data.variavel_medicame,
+        });
+        console.log("Já tem dados");
       }
     });
   };
 
   getMedicamentosList = () => {
-
     const db = getDatabase();
     const starCountRef = ref(db, `Newdata_${this.state.uuid}/medicamentos`);
     onValue(starCountRef, (snapshot) => {
       var data = snapshot.val();
       this.setState({
-        medicamentos: Object.values(snapshot.val())
-      })
+        medicamentos: Object.values(snapshot.val()),
+      });
       // console.log(Object.values(snapshot.val()))
-
     });
-
-
-
   };
 
   getConsultasList = () => {
-
     const db = getDatabase();
     const starCountRef = ref(db, `Newdata_${this.state.uuid}/consultas`);
     onValue(starCountRef, (snapshot) => {
       var data = snapshot.val();
       this.setState({
-        consultas: Object.values(snapshot.val())
-      })
-      console.log(Object.values(snapshot.val()))
-
+        consultas: Object.values(snapshot.val()),
+      });
+      console.log(Object.values(snapshot.val()));
     });
-
   };
 
   componentDidMount() {
@@ -184,53 +172,94 @@ export default class Home extends Component {
     this.getConsultasList();
   }
 
-
-
   render() {
     //console.log(this.constructor.name);
 
     if (this.state.medicamentos.length > 0) {
-
-      listMedicamentos = this.state.medicamentos.map((data, i) =>
-
+      listMedicamentos = this.state.medicamentos.map((data, i) => (
         <>
-          <p className="bold" key={i}>{data.momento_tomar}</p>
-          <p>1 cápsula de <span className="medium">{data.medicamento}</span></p>
+          <p className="bold" key={i}>
+            {data.momento_tomar}
+          </p>
+          <p>
+            1 cápsula de <span className="medium">{data.medicamento}</span>
+          </p>
         </>
-      );
-
-
+      ));
     } else {
-
-      <p className="bold" >Não tem medicamentos para tomar</p>
-
+      <p className="bold">Não tem medicamentos para tomar</p>;
     }
 
     if (this.state.consultas.length > 1) {
-
-      listConsultas =
+      listConsultas = (
         <>
-          <p className="bold">{this.state.consultas[this.state.consultas.length - 1].contacto_Nome}</p>
-          <p>Dia {this.state.consultas[this.state.consultas.length - 1].data_consulta} às {this.state.consultas[this.state.consultas.length - 1].time_consulta}</p>
+          <p className="bold">
+            {
+              this.state.consultas[this.state.consultas.length - 1]
+                .contacto_Nome
+            }
+          </p>
+          <p>
+            Dia{" "}
+            {
+              this.state.consultas[this.state.consultas.length - 1]
+                .data_consulta
+            }{" "}
+            às{" "}
+            {
+              this.state.consultas[this.state.consultas.length - 1]
+                .time_consulta
+            }
+          </p>
 
-
-          <p className="bold">{this.state.consultas[this.state.consultas.length - 2].contacto_Nome}</p>
-          <p>Dia {this.state.consultas[this.state.consultas.length - 2].data_consulta} às {this.state.consultas[this.state.consultas.length - 2].time_consulta}</p>
-        </>;
-
-
-    } else if (this.state.consultas.length > 0 && this.state.consultas.length <= 1) {
-
-      listConsultas =
+          <p className="bold">
+            {
+              this.state.consultas[this.state.consultas.length - 2]
+                .contacto_Nome
+            }
+          </p>
+          <p>
+            Dia{" "}
+            {
+              this.state.consultas[this.state.consultas.length - 2]
+                .data_consulta
+            }{" "}
+            às{" "}
+            {
+              this.state.consultas[this.state.consultas.length - 2]
+                .time_consulta
+            }
+          </p>
+        </>
+      );
+    } else if (
+      this.state.consultas.length > 0 &&
+      this.state.consultas.length <= 1
+    ) {
+      listConsultas = (
         <>
-          <p className="bold">{this.state.consultas[this.state.consultas.length - 1].contacto_Nome}</p>
-          <p>Dia {this.state.consultas[this.state.consultas.length - 1].data_consulta} às {this.state.consultas[this.state.consultas.length - 1].time_consulta}</p>
-        </>;
-
-
+          <p className="bold">
+            {
+              this.state.consultas[this.state.consultas.length - 1]
+                .contacto_Nome
+            }
+          </p>
+          <p>
+            Dia{" "}
+            {
+              this.state.consultas[this.state.consultas.length - 1]
+                .data_consulta
+            }{" "}
+            às{" "}
+            {
+              this.state.consultas[this.state.consultas.length - 1]
+                .time_consulta
+            }
+          </p>
+        </>
+      );
     } else {
-      listConsultas = <p className="bold" >Não tem consultas agendadas</p>;
-
+      listConsultas = <p className="bold">Não tem consultas agendadas</p>;
     }
 
     return (
@@ -303,7 +332,7 @@ export default class Home extends Component {
           <Row className="otherSources">
             <Col className="outsideSource">
               <iframe
-                src="https://www.youtube.com/embed/_cVNCuvz8qI?controls=0"
+                src="https://www.youtube.com/embed/-ZXSzD1Dlis"
                 title="Canal de Fátima"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -312,7 +341,10 @@ export default class Home extends Component {
               ></iframe>
 
               <Button className="btnFill">
-                <a href="https://youtu.be/_cVNCuvz8qI" target="_blank">
+                <a
+                  href="https://www.youtube.com/embed/-ZXSzD1Dlis"
+                  target="_blank"
+                >
                   Ver “Fátima” em direto
                 </a>
               </Button>
@@ -320,15 +352,23 @@ export default class Home extends Component {
 
             <Col className="outsideSource">
               <iframe
-                src="https://www.youtube.com/embed/_cVNCuvz8qI?controls=0"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
+                src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FPROBRANCA%2Fvideos%2F706988213638447%2F&show_text=false&width=560&t=0"
                 className="boxShadow"
+                scrolling="no"
+                frameborder="0"
+                allowfullscreen="true"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                allowFullScreen="true"
               ></iframe>
 
-              <Button className="btnFill">Ver vídeos da ProBranca</Button>
+              <Button className="btnFill">
+                <a
+                  href="https://www.youtube.com/user/Probranca"
+                  target="_blank"
+                >
+                  Ver vídeos da ProBranca
+                </a>
+              </Button>
             </Col>
           </Row>
 
@@ -337,7 +377,9 @@ export default class Home extends Component {
               <div className="imgSource boxShadow" id="facebook"></div>
 
               <Button className="btnFill">
-                <a href="fb://facewebmodal/">Consultar Facebook</a>
+                <a href="https://play.google.com/store/apps/details?id=com.facebook.katana">
+                  Ver Facebook
+                </a>
               </Button>
             </Col>
 
@@ -353,15 +395,9 @@ export default class Home extends Component {
           </Row>
 
           <Row className="otherSources">
-            <Col className="outsideSource">
-              <p>Para adicionar contactos, novas consultas e a medicação do utilizador: {this.state.email} Peça ajuda a uma colaboradora da ProBranca</p>
-              <Link to="/mostrarcontactos"><Button className="btnFill">
-                Ir para a ferramenta de administração
-              </Button></Link>
-            </Col>
+            <Col className="outsideSource"></Col>
           </Row>
         </div>
-
 
         <Navbar ativo={"home"} />
 
@@ -377,16 +413,21 @@ export default class Home extends Component {
           </Modal.Body>
 
           <Modal.Footer>
+            <Link to="/mostrarcontactos">
+              <Button className="btnFill">
+                Ir para a ferramenta de administração
+              </Button>
+            </Link>
+
             <Button className="btnFill" onClick={this.logout}>
               Sair da conta
             </Button>
 
-            <Button className="btnFill" onClick={this.handleClose}>
+            <Button className="btnBorderBlue blue" onClick={this.handleClose}>
               Fechar janela
             </Button>
           </Modal.Footer>
         </Modal>
-
       </div>
     );
   }

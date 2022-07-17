@@ -16,6 +16,7 @@ import {
   logout,
 } from "./firebase";
 import imLogin from "../images/characters/login.svg";
+import { Link } from "react-router-dom";
 
 class Login extends React.Component {
   constructor() {
@@ -37,7 +38,9 @@ class Login extends React.Component {
       );
       console.log(user);
     } catch (error) {
-      console.log("Register \n" + error);
+      /* console.log("Register \n" + error); */
+      document.getElementById("erroLogin").innerHTML =
+        "Ocorreu algum erro, por favor verifique os dados inseridos.";
     }
   };
 
@@ -78,6 +81,7 @@ class Login extends React.Component {
               onChange={(e) => this.setState({ email: e.target.value })}
               placeholder="Clique aqui para escrever o seu email"
               className="blue"
+              required="required"
             />
 
             <Form.Label id="label_p" className="green">
@@ -90,14 +94,29 @@ class Login extends React.Component {
               onChange={(e) => this.setState({ password: e.target.value })}
               placeholder="Clique aqui para escrever a sua palavra-passe"
               className="blue"
+              required="required"
             />
 
             <p className="warning">O email deve incluir um @.</p>
+
+            <Row>
+              <div id="erroLogin" class="red"></div>
+            </Row>
 
             <Row className="alignBtns">
               <Button className="btnFill" onClick={this.login}>
                 Entrar
               </Button>
+            </Row>
+
+            <Row id="irParaReg">
+              <p>
+                Não tem conta? Registe-se
+                <Link to="/registar" className="green">
+                  aqui
+                </Link>
+                !
+              </p>
             </Row>
 
             {/* <Row className="alignBtns">

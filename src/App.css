@@ -57,7 +57,11 @@ p {
   font-weight: bold;
 }
 
-.none_a_link, .none_a_link:hover,.none_a_link:visited,.none_a_link:active,.none_a_link:link{
+.none_a_link,
+.none_a_link:hover,
+.none_a_link:visited,
+.none_a_link:active,
+.none_a_link:link {
   background-color: transparent;
   color: white;
   text-decoration: none;
@@ -99,6 +103,28 @@ p {
   color: #223a5f;
 }
 
+.btn.btnFillWhite {
+  background-color: #fff;
+  color: #223a5f;
+  border: 2px solid #fff;
+}
+
+.btn.btnFillWhite:hover {
+  background-color: #223a5f;
+  color: #fff;
+}
+
+.btn.btnFillGreen {
+  background-color: #11937c;
+  color: #fff;
+  border: 2px solid #11937c;
+}
+
+.btn.btnFillGreen:hover {
+  background-color: #fff;
+  color: #11937c;
+}
+
 .btn.btnBorderRed {
   border: 2px solid #ff5e4e;
   color: #ff5e4e;
@@ -109,7 +135,8 @@ p {
   color: #fff;
 }
 
-.btn-primary:hover, .btn-primary:focus{
+.btn-primary:hover,
+.btn-primary:focus {
   background-color: transparent;
   border: none;
 }
@@ -133,6 +160,11 @@ p {
   font-size: 1.4rem;
   font-weight: 900;
   color: inherit;
+}
+
+.btnCenter {
+  margin: 10px auto 30px;
+  display: block;
 }
 
 .form-label {
@@ -350,15 +382,19 @@ p {
 }
 
 .linksMenu img {
-  width: 35px;
+  width: 30px;
   display: block;
   margin: 0 auto 10px;
 }
 
 .linksMenu p {
+  max-width: 90%;
   text-align: center;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  line-height: 1.2rem;
+  display: block;
+  margin: 2px auto 0;
 }
 
 /* LOGIN / REGISTO */
@@ -370,6 +406,7 @@ p {
 }
 
 #bgMain {
+  width: 100%;
   padding: 100px 0;
   background-color: #5eb398;
   display: flex;
@@ -452,6 +489,23 @@ p.mainComponents {
   flex: 0 0 100%;
 }
 
+#erroLogin {
+  margin: 20px -25px -5px;
+  font-weight: bold;
+}
+
+#irParaReg > * {
+  width: auto;
+  padding: 0;
+  margin: 0;
+  text-align: right;
+}
+
+#irParaReg a {
+  margin-left: 5px;
+  text-decoration: underline;
+}
+
 /* HOME */
 
 /* CHAMADAS */
@@ -473,6 +527,11 @@ p.mainComponents {
   margin-bottom: 20px;
 }
 
+.contact button {
+  margin-top: 15px;
+  float: right;
+}
+
 /* CALENDÁRIO */
 .card#consultasAnt {
   width: 100%;
@@ -488,6 +547,13 @@ p.mainComponents {
 }
 .card#consultasAnt p:nth-child(even):last-of-type {
   margin-bottom: 100px;
+}
+
+/* ADMIN */
+#timer_Feedback {
+  width: 100%;
+  margin: 30px -15px -10px;
+  font-weight: bold;
 }
 
 /***** SOLITÁRIO *****/
@@ -711,11 +777,11 @@ div.result.green p {
 
 /***** Adicionar contactos ******/
 
-.new_bg_contactos{
+.new_bg_contactos {
   padding: 20px 40px 80px !important;
 }
 
-#register_btn{
+#register_btn {
   margin-top: 50px;
 }
 

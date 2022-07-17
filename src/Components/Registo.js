@@ -13,6 +13,7 @@ import {
   signInWithGoogle,
 } from "./firebase";
 import imgRegisto from "../images/characters/registo.svg";
+import { Link } from "react-router-dom";
 
 class Registo extends React.Component {
   constructor() {
@@ -97,6 +98,16 @@ class Registo extends React.Component {
               <Button className="btnFill" onClick={this.login}>
                 Registar
               </Button>
+            </Row>
+
+            <Row id="irParaReg">
+              <p>
+                Já tem conta? Inicie sessão
+                <Link to="/" className="green">
+                  aqui
+                </Link>
+                !
+              </p>
             </Row>
           </Row>
 

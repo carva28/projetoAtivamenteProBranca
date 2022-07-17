@@ -53,14 +53,20 @@ function App() {
           <Route path="/solitario" element={<Solitario />} />
           <Route path="/jogogalo" element={<JogoGalo />} />
           <Route path="/mostrarcontactos" element={<MostrarContactos />} />
-          <Route path="/userespec" element={<UserSpeciCont />}/>
-          <Route path="/adicionarconsulta" element={<AdicionarConsultas />}/>
-          <Route path="/mostrarconsultas" element={<MostrarConsultas />}/>
-          <Route path="/userconsultaespec" element={<UserSpeciConsulta />}/>
-          <Route path="/adicionarmedicamentos" element={<AdicionarMedicamentos />}/>
-          <Route path="/mostrarmedicamentos" element={<MostrarMedicamentos />}/>
-          <Route path="/usermedicarespec" element={<UserSpeciMedicamento />}/>
-          
+          <Route path="/userespec" element={<UserSpeciCont />} />
+          <Route path="/adicionarconsulta" element={<AdicionarConsultas />} />
+          <Route path="/mostrarconsultas" element={<MostrarConsultas />} />
+          <Route path="/userconsultaespec" element={<UserSpeciConsulta />} />
+          <Route
+            path="/adicionarmedicamentos"
+            element={<AdicionarMedicamentos />}
+          />
+          <Route
+            path="/mostrarmedicamentos"
+            element={<MostrarMedicamentos />}
+          />
+          <Route path="/usermedicarespec" element={<UserSpeciMedicamento />} />
+
           <Route
             path="/adicionarinformacoes"
             element={<AdicionarContactos />}
