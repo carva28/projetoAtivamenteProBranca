@@ -98,13 +98,15 @@ p {
   border: 2px solid #223a5f;
 }
 
-.btnGames{
+.btnGames {
   padding: 20px 35px !important;
+  margin: 0 auto 40px !important;
 }
 
 .btn.btnFill:hover {
   background-color: #fff;
   color: #223a5f;
+  border: 2px solid #223a5f;
 }
 
 .btn.btnFillWhite {
@@ -127,6 +129,7 @@ p {
 .btn.btnFillGreen:hover {
   background-color: #fff;
   color: #11937c;
+  border: 2px solid #11937c;
 }
 
 .btn.btnBorderRed {
@@ -171,17 +174,21 @@ p {
   display: block;
 }
 
-
-.btn_other{
+.btn_other {
   margin-top: 20px !important;
 }
-.btn_otherGames2, .btn_otherGames{
 
+.btn_otherGames2,
+.btn_otherGames {
   margin-top: 30px !important;
   margin-left: 20px !important;
 }
 
-
+.btnSmaller {
+  padding: 12px 15px;
+  background-color: transparent;
+  font-size: 1rem;
+}
 
 .form-label {
   font-weight: 600;
@@ -533,15 +540,16 @@ p.mainComponents {
 .contacts {
   padding: 0;
   margin: 20px 0 0;
-  gap: 50px;
+  gap: 30px 50px;
 }
 
 .contact {
-  padding: 30px 40px;
+  padding: 25px 30px;
   border-radius: 10px;
   background-color: #223a5f;
   color: #fff;
-  margin-bottom: 20px;
+  max-width: 30%;
+  min-width: 30%;
 }
 
 .contact button {
@@ -553,6 +561,8 @@ p.mainComponents {
 .card#consultasAnt {
   width: 100%;
   position: relative;
+  padding-bottom: 35px;
+  margin-top: 40px;
 }
 
 .card#consultasAnt .row img {
@@ -747,6 +757,28 @@ p.mainComponents {
   text-align: center;
   line-height: 126px;
   vertical-align: middle;
+}
+
+#jogos .card {
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+
+#jogos .cards h3 {
+  margin-bottom: 15px;
+}
+
+#jogos .cards p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+#jogos .cards img {
+  width: 88%;
+}
+
+#jogos .cards .row {
+  align-items: center;
 }
 
 /**** Jogo Galo ****/

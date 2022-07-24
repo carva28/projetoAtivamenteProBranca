@@ -3,6 +3,7 @@ import tic_image from "../images/characters/tic_toe.svg";
 import solitaire_img from "../images/characters/carta_solitaire.svg";
 import { Row, Col, Card, Button, Modal } from "react-bootstrap";
 import logotipo from "../images/probranca-cor.png";
+import bpi from "../images/bpi.png";
 import Navbar from "../Containers/Navbar";
 import emergency from "../images/icons/emergencia.png";
 import { useNavigate, Link } from "react-router-dom";
@@ -31,8 +32,8 @@ export class Jogos extends Component {
             <Col xs={8}>
               <h1 className="green">Jogos</h1>
               <p className="blue paragraphInfo">
-                No painel abaixo veja as suas próximas consultas e os seus
-                contactos mais recentes.
+                Divirta-se com os jogos que temos para si! Jogo do galo,
+                Solitário ou até Tetris e Candy Crush!
                 <br />
                 Do lado direito pode consultar páginas específicas.
               </p>
@@ -56,39 +57,34 @@ export class Jogos extends Component {
 
           <Row className="cards">
             <Card className="col-6 boxShadow">
-              <h3 className="green">Jogo 1</h3>
-
               <Row>
-                <Col xs={6}>
-                  <p className="bold">Jogo Solitário</p>
+                <Col xs={5}>
+                  <img src={solitaire_img} />
+                </Col>
+
+                <Col xs={7}>
+                  <h3 className="green">Jogo Solitário</h3>
                   <p>
                     Jogo de cartas para um jogador. Utiliza o baralho completo,
                     52 cartas, com o objetivo de fazer um monte dos quatro
-                    naipes.{" "}
+                    naipes.
                   </p>
                 </Col>
-
-                <Col xs={6}>
-                  <img src={solitaire_img} />
-                </Col>
               </Row>
 
-              <Row>
-                <Button
-                  className="btnGames btnFill alignCenter "
-                  style={{ margin: "40px auto 50px" }}
-                >
-                  <Link to="/solitario">Jogar Solitário</Link>
-                </Button>
-              </Row>
+              <Button className="btnGames btnFill alignCenter">
+                <Link to="/solitario">Jogar Solitário</Link>
+              </Button>
             </Card>
 
             <Card className="col-6 boxShadow">
-              <h3 className="red">Jogo 2</h3>
-
               <Row>
-                <Col xs={6}>
-                  <p className="bold">Jogo do Galo</p>
+                <Col xs={5}>
+                  <img src={tic_image} />
+                </Col>
+
+                <Col xs={7}>
+                  <h3 className="green">Jogo do Galo</h3>
                   <p>
                     O jogo do galo consiste em alinhar os três símbolos
                     escolhidos (cruz ou bola) na vertical, na horizontal ou na
@@ -96,52 +92,41 @@ export class Jogos extends Component {
                     esses três símbolos.
                   </p>
                 </Col>
-
-                <Col xs={6} className="alignEnd">
-                  <img src={tic_image} />
-                </Col>
-                <Button
-                  className="btnGames btnFill alignCenter"
-                  style={{ margin: "40px auto 50px" }}
-                >
-                  <Link to="/jogogalo">Jogo do Galo</Link>
-                </Button>
               </Row>
+
+              <Button className="btnGames btnFill alignCenter">
+                <Link to="/jogogalo">Jogo do Galo</Link>
+              </Button>
             </Card>
 
-            <Card className="col-6 boxShadow">
+            <Card className="col-12 boxShadow" style={{ width: "100%" }}>
               <h3 className="red">Outros jogos</h3>
 
               <Row>
-                <Col xs={6}>
-                  <p className="bold">
-                    Jogar outros jogos no tablet (dispositivo)
-                  </p>
-                  <p>
-                    Pode jogar outros jogos que se encontram disponíveis,
-                    gratuitamente, no seu tablet (dispositivo). Para isso basta
-                    clicar num dos botões abaixo e será redirecionado para uma
-                    nova página, na qual basta clicar no botão verde "ABRIR".
-                  </p>
-                </Col>
+                <p>
+                  Pode jogar outros jogos que se encontram disponíveis neste
+                  dispositivo, gratuitamente. Para isso basta clicar num dos
+                  botões abaixo e será redirecionado para uma nova página, na
+                  qual basta clicar no botão verde "ABRIR".
+                </p>
 
-                <Col xs={6}>
-                  <Row className="btn_other">
-                    <Button className="btnGames btnFill btn_otherGames">
-                      <a href="https://play.google.com/store/apps/details?id=com.n3twork.tetris">
-                        Jogar TETRIS
-                      </a>
-                    </Button>
-                  </Row>
+                <Row className="btn_other">
+                  <Col>
+                    <a href="https://play.google.com/store/apps/details?id=com.n3twork.tetris">
+                      <Button className="btnGames btnFill alignCenter">
+                        Jogar "Tetris"
+                      </Button>
+                    </a>
+                  </Col>
 
-                  <Row className="btn_other">
-                    <Button className="btnGames btnFill btn_otherGames2">
-                      <a href="https://play.google.com/store/apps/details?id=com.king.candycrushsaga">
-                        Jogar Candy Crush
-                      </a>
-                    </Button>
-                  </Row>
-                </Col>
+                  <Col>
+                    <a href="https://play.google.com/store/apps/details?id=com.king.candycrushsaga">
+                      <Button className="btnGames btnFill alignCenter">
+                        Jogar "Candy Crush"
+                      </Button>
+                    </a>
+                  </Col>
+                </Row>
               </Row>
             </Card>
           </Row>
@@ -159,6 +144,7 @@ export class Jogos extends Component {
 
           <Modal.Body>
             <img src={logotipo} />
+            <img src={bpi} />
           </Modal.Body>
 
           <Modal.Footer>
@@ -172,7 +158,10 @@ export class Jogos extends Component {
               Sair da conta
             </Button>
 
-            <Button className="btnBorderBlue blue" onClick={this.handleClose}>
+            <Button
+              className="btnBorderBlue blue btnSmaller"
+              onClick={this.handleClose}
+            >
               Fechar janela
             </Button>
           </Modal.Footer>

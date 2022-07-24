@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Row } from "react-bootstrap";
+import { Row, Button, Modal } from "react-bootstrap";
 import logotipo from "../images/probranca-branco.png";
 import conferencia from "../images/icons/conferencia-branco.png";
 import pesquisa from "../images/icons/pesquisa-branco.png";
@@ -23,6 +23,9 @@ export default class Navbar extends Component {
       active: this.props.ativo,
     };
   }
+
+  openModal = () => this.setState({ show: true });
+  closeModal = () => this.setState({ show: false });
 
   render() {
     console.log(this.state.active);
@@ -120,7 +123,7 @@ export default class Navbar extends Component {
             </div>
           </Link>
           {/* FIM Link para videos */}
-          <div className="linksMenu">
+          <div className="linksMenu" onClick={this.openModal}>
             <img
               src={conferencia}
               alt="Menu para conferência Zoom com ProBranca"
@@ -151,6 +154,35 @@ export default class Navbar extends Component {
             <p className="white">Pesquisar</p>
           </div> */}
         </Row>
+
+        {/* Modal contactos de emergência */}
+        <Modal show={this.state.show} onHide={this.closeModal}>
+          <Modal.Header closeButton></Modal.Header>
+
+          <Modal.Body style={{ margin: "5px 40px", fontSize: "2rem" }}>
+            <p className="blue">
+              Ao clicar "Ir" será redirecionado para uma videochamada com os
+              membros da ProBranca.
+              <br />
+              Se quiser aderir à videochamada, clique <b>"Ir"</b>.
+              <br />
+              Se não quiser, clique "Fechar janela".
+            </p>
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button
+              className="btnBorderBlue btnSmaller blue"
+              onClick={this.closeModal}
+            >
+              Fechar janela
+            </Button>
+
+            <Link to="https://us06web.zoom.us/j/5598075256?pwd=ZnRqYUViaE83bjlDU21LZk92RWg1dz09">
+              <Button className="btnFillGreen white">Ir</Button>
+            </Link>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }

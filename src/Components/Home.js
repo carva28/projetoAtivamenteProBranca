@@ -6,25 +6,9 @@ import emergency from "../images/icons/emergencia.png";
 import consultas from "../images/characters/consultas.svg";
 import medicamentos from "../images/characters/medicamentos.svg";
 import logotipo from "../images/probranca-cor.png";
+import bpi from "../images/bpi.png";
 import { useNavigate, Link } from "react-router-dom";
 import { initializeApp } from "firebase/app";
-import {
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut,
-} from "firebase/auth";
-import {
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc,
-} from "firebase/firestore";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 import Navbar_platform_admin from "../Containers/Navbar_platform_admin";
 
@@ -340,17 +324,17 @@ export default class Home extends Component {
           <Row className="otherSources">
             <Col className="outsideSource">
               <iframe
-                src="https://www.youtube.com/embed/-ZXSzD1Dlis"
-                title="Canal de Fátima"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="boxShadow"
+                src="https://rd3.videos.sapo.pt/playhtml?file=https://rd3.videos.sapo.pt/v6Lza88afnReWzVdAQap/mov/24"
+                frameborder="0"
+                scrolling="no"
+                allowfullscreen
+                mozallowfullscreen
+                webkitallowfullscreen
               ></iframe>
 
               <Button className="btnFill">
                 <a
-                  href="https://www.youtube.com/embed/-ZXSzD1Dlis"
+                  href="https://rd3.videos.sapo.pt/playhtml?file=https://rd3.videos.sapo.pt/v6Lza88afnReWzVdAQap/mov/24"
                   target="_blank"
                 >
                   Ver “Fátima” em direto
@@ -360,7 +344,7 @@ export default class Home extends Component {
 
             <Col className="outsideSource">
               <iframe
-                src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FPROBRANCA%2Fvideos%2F706988213638447%2F&show_text=false&width=560&t=0"
+                src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FPROBRANCA%2Fvideos%2F706988213638447%2F&show_text=false&t=0"
                 className="boxShadow"
                 scrolling="no"
                 frameborder="0"
@@ -419,6 +403,7 @@ export default class Home extends Component {
 
           <Modal.Body>
             <img src={logotipo} />
+            <img src={bpi} />
           </Modal.Body>
 
           <Modal.Footer>
@@ -432,7 +417,7 @@ export default class Home extends Component {
               Sair da conta
             </Button>
 
-            <Button className="btnBorderBlue blue" onClick={this.handleClose}>
+            <Button className="btnBorderBlue blue btnSmaller" onClick={this.handleClose}>
               Fechar janela
             </Button>
           </Modal.Footer>
@@ -476,7 +461,7 @@ export default class Home extends Component {
 
           <Modal.Footer>
             <Button
-              className="btnBorderBlue blue"
+              className="btnBorderBlue blue btnSmaller"
               onClick={this.closeEmergency}
             >
               Fechar janela

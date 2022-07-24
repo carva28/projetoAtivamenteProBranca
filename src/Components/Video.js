@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Row, Col, Card, Button,Modal } from "react-bootstrap";
+import { Row, Col, Card, Button, Modal } from "react-bootstrap";
 import logotipo from "../images/probranca-cor.png";
+import bpi from "../images/bpi.png";
 import Navbar from "../Containers/Navbar";
 import emergency from "../images/icons/emergencia.png";
 import { useNavigate, Link } from "react-router-dom";
@@ -15,16 +16,13 @@ export default class Video extends Component {
     };
   }
 
-
   openSponsors = () => this.setState({ show: true });
   handleClose = () => this.setState({ show: false });
 
   openEmergency = () => this.setState({ show2: true });
   closeEmergency = () => this.setState({ show2: false });
-  
 
   render() {
-
     return (
       <div>
         <div className="frame" id="calendario">
@@ -33,13 +31,12 @@ export default class Video extends Component {
               <h1 className="green">Vídeos</h1>
 
               <p className="blue paragraphInfo">
-                No painel abaixo veja as suas próximas consultas, os
-                medicamentos que deve tomar e as suas consultas anteriores.
+                No painel abaixo veja em direto a canal de Fátima ou veja os vídeos da ProBranca.
               </p>
             </Col>
 
             <Col xs={4} className="btnsAjuda">
-            <Button className="btnInfo blue" onClick={this.openSponsors}>
+              <Button className="btnInfo blue" onClick={this.openSponsors}>
                 i
               </Button>
 
@@ -57,16 +54,16 @@ export default class Video extends Component {
           <Row className="otherSources">
             <Col className="outsideSource">
               <iframe
-                src="https://www.youtube.com/embed/-ZXSzD1Dlis"
-                title="Canal de Fátima"
+                src="https://rd3.videos.sapo.pt/playhtml?file=https://rd3.videos.sapo.pt/v6Lza88afnReWzVdAQap/mov/24"
                 frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="boxShadow"
+                scrolling="no"
+                allowfullscreen
+                mozallowfullscreen
+                webkitallowfullscreen
               ></iframe>
 
               <Button className="btnFill">
-                <a href="https://youtu.be/_cVNCuvz8qI" target="_blank">
+                <a href="https://rd3.videos.sapo.pt/playhtml?file=https://rd3.videos.sapo.pt/v6Lza88afnReWzVdAQap/mov/24" target="_blank">
                   Ver “Fátima” em direto
                 </a>
               </Button>
@@ -74,7 +71,7 @@ export default class Video extends Component {
 
             <Col className="outsideSource">
               <iframe
-                 src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FPROBRANCA%2Fvideos%2F706988213638447%2F&show_text=false&width=560&t=0"
+                src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2FPROBRANCA%2Fvideos%2F706988213638447%2F&show_text=false&t=0"
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -87,10 +84,10 @@ export default class Video extends Component {
           </Row>
         </div>
 
-        <Navbar ativo={"videos"}/>
+        <Navbar ativo={"videos"} />
 
-          {/* Modal informações */}
-          <Modal show={this.state.show} onHide={this.handleClose}>
+        {/* Modal informações */}
+        <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
             <Modal.Title className="blue">
               Este projeto foi desenvolvido por:
@@ -99,6 +96,7 @@ export default class Video extends Component {
 
           <Modal.Body>
             <img src={logotipo} />
+            <img src={bpi} />
           </Modal.Body>
 
           <Modal.Footer>
@@ -112,7 +110,7 @@ export default class Video extends Component {
               Sair da conta
             </Button>
 
-            <Button className="btnBorderBlue blue" onClick={this.handleClose}>
+            <Button className="btnBorderBlue blue btnSmaller" onClick={this.handleClose}>
               Fechar janela
             </Button>
           </Modal.Footer>

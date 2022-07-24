@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Form, Button, Modal } from "react-bootstrap";
 import logotipo from "../images/probranca-cor.png";
+import bpi from "../images/bpi.png";
 import Navbar from "../Containers/Navbar";
 import emergency from "../images/icons/emergencia.png";
 import { useNavigate, Link } from "react-router-dom";
@@ -44,6 +45,8 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 var listItems, listItems_2;
 export default class Chamadas extends Component {
+
+
   constructor(props) {
     super(props);
 
@@ -77,7 +80,9 @@ export default class Chamadas extends Component {
 
       console.log(data);
     });
+    
   }
+
 
   textoPesquisa = (event) => {
     this.setState({ pesquisa: event.target.value });
@@ -90,7 +95,7 @@ export default class Chamadas extends Component {
           console.log(this.state.datas[key].contacto_Nome);
           listItems = "";
           document.getElementById("div_content").style.display = "none";
-          document.getElementById("div_content_v2").style.display = "block";
+          document.getElementById("div_content_v2").style.display = "flex";
           listItems_2 = (
             <Col className="contact" key={key}>
               <h3> {this.state.datas[key].contacto_Nome} </h3>
@@ -99,7 +104,7 @@ export default class Chamadas extends Component {
                 href={`https://api.whatsapp.com/send?phone=${this.state.datas[key].contacto_telPesso}`}
                 target="_blank"
               >
-                <Button> Ligar por WhatsApp </Button>
+                <Button className="btnFillWhite blue">Ligar</Button>
               </a>
             </Col>
           );
@@ -109,7 +114,7 @@ export default class Chamadas extends Component {
       listItems_2 = "";
 
       if (this.state.datas.length > 0) {
-        document.getElementById("div_content").style.display = "block";
+        document.getElementById("div_content").style.display = "flex";
         document.getElementById("div_content_v2").style.display = "none";
         listItems = this.state.datas.map((data, i) => (
           <Col className="contact" key={i}>
@@ -119,7 +124,7 @@ export default class Chamadas extends Component {
               href={`https://api.whatsapp.com/send?phone=${data.contacto_telPesso}`}
               target="_blank"
             >
-              <Button> Ligar por WhatsApp </Button>
+              <Button className="btnFillWhite blue">Ligar</Button>
             </a>
           </Col>
         ));
@@ -137,7 +142,7 @@ export default class Chamadas extends Component {
             href={`https://api.whatsapp.com/send?phone=${data.contacto_telPesso}`}
             target="_blank"
           >
-            <Button> Ligar por WhatsApp </Button>
+            <Button className="btnFillWhite blue">Ligar</Button>
           </a>
         </Col>
       ));
@@ -152,7 +157,8 @@ export default class Chamadas extends Component {
 
               <p className="blue paragraphInfo">
                 Pode ligar para qualquer um dos contactos abaixo, basta clicar
-                no nome da pessoa que pretende contactar.
+                no nome da pessoa que pretende contactar e começará uma chamada
+                no Skype.
               </p>
             </Col>
 
@@ -234,6 +240,7 @@ export default class Chamadas extends Component {
 
             <Modal.Body>
               <img src={logotipo} />
+              <img src={bpi} />
             </Modal.Body>
 
             <Modal.Footer>
@@ -247,7 +254,10 @@ export default class Chamadas extends Component {
                 Sair da conta
               </Button>
 
-              <Button className="btnBorderBlue blue" onClick={this.handleClose}>
+              <Button
+                className="btnBorderBlue blue btnSmaller"
+                onClick={this.handleClose}
+              >
                 Fechar janela
               </Button>
             </Modal.Footer>

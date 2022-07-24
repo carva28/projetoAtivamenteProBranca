@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Row, Col, Card, Button,Modal } from "react-bootstrap";
+import { Row, Col, Card, Button, Modal } from "react-bootstrap";
 import logotipo from "../images/probranca-cor.png";
+import bpi from "../images/bpi.png";
 import Navbar from "../Containers/Navbar";
 import { auth } from "./firebase";
 import emergency from "../images/icons/emergencia.png";
@@ -8,25 +9,9 @@ import { useNavigate, Link } from "react-router-dom";
 import consultas from "../images/characters/consultas.svg";
 import medicamentos from "../images/characters/medicamentos.svg";
 import consultasIcone from "../images/icons/consultas.svg";
-import { initializeApp } from "firebase/app";
-import {
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut,
-} from "firebase/auth";
-import {
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc,
-} from "firebase/firestore";
 import { getDatabase, ref, set, onValue } from "firebase/database";
+import moment from "moment";
+
 const firebase = require("./firebase");
 const firebaseConfig = {
   apiKey: "AIzaSyDPwM0HTu_Xa52irgMjUbWbfczplh_JO48",
@@ -40,7 +25,10 @@ const firebaseConfig = {
     "https://ativamenteprobranca-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
-var listMedicamentos, listConsultas;
+var listMedicamentos,
+  listConsultas,
+  listConsultasPassadas,
+  consultasPassadas = [];
 export default class Calendario extends Component {
   constructor(props) {
     super(props);
@@ -55,7 +43,6 @@ export default class Calendario extends Component {
       consultas: [],
     };
   }
-
 
   getVariavelConsulta = () => {
     const db = getDatabase();
@@ -104,7 +91,6 @@ export default class Calendario extends Component {
     });
   };
 
-
   getMedicamentosList = () => {
     const db = getDatabase();
     const starCountRef = ref(db, `Newdata_${this.state.uuid}/medicamentos`);
@@ -125,6 +111,7 @@ export default class Calendario extends Component {
       this.setState({
         consultas: Object.values(snapshot.val()),
       });
+
       console.log(Object.values(snapshot.val()));
     });
   };
@@ -135,7 +122,23 @@ export default class Calendario extends Component {
   openEmergency = () => this.setState({ show2: true });
   closeEmergency = () => this.setState({ show2: false });
 
+  componentDidMount() {
+    this.getVariavelConsulta();
+    this.getVariavelMedicamentos();
+    this.getMedicamentosList();
+    this.getConsultasList();
+  }
+
   render() {
+    var dateMaquina = new Date();
+    let dia = dateMaquina.getDate();
+    let mes = dateMaquina.getMonth();
+    let ano = dateMaquina.getFullYear();
+
+    if (mes > 1) {
+      mes = mes + 1;
+    }
+
     if (this.state.medicamentos.length > 0) {
       listMedicamentos = this.state.medicamentos.map((data, i) => (
         <>
@@ -151,78 +154,72 @@ export default class Calendario extends Component {
       <p className="bold">Não tem medicamentos para tomar</p>;
     }
 
-    if (this.state.consultas.length > 1) {
-      listConsultas = (
-        <>
-          <p className="bold">
-            {
-              this.state.consultas[this.state.consultas.length - 1]
-                .contacto_Nome
-            }
-          </p>
-          <p>
-            Dia{" "}
-            {
-              this.state.consultas[this.state.consultas.length - 1]
-                .data_consulta
-            }{" "}
-            às{" "}
-            {
-              this.state.consultas[this.state.consultas.length - 1]
-                .time_consulta
-            }
-          </p>
+    if (this.state.consultas.length > 0) {
+      consultasPassadas = [];
+      listConsultas = this.state.consultas.map((data, i) => {
+        var dataConsulta = new Date(data.data_consulta);
+        let mesConsulta = dataConsulta.getMonth();
+        if (mesConsulta > 1) {
+          mesConsulta = mesConsulta + 1;
+        }
 
-          <p className="bold">
-            {
-              this.state.consultas[this.state.consultas.length - 2]
-                .contacto_Nome
-            }
-          </p>
-          <p>
-            Dia{" "}
-            {
-              this.state.consultas[this.state.consultas.length - 2]
-                .data_consulta
-            }{" "}
-            às{" "}
-            {
-              this.state.consultas[this.state.consultas.length - 2]
-                .time_consulta
-            }
-          </p>
-        </>
-      );
-    } else if (
-      this.state.consultas.length > 0 &&
-      this.state.consultas.length <= 1
-    ) {
-      listConsultas = (
-        <>
-          <p className="bold">
-            {
-              this.state.consultas[this.state.consultas.length - 1]
-                .contacto_Nome
-            }
-          </p>
-          <p>
-            Dia{" "}
-            {
-              this.state.consultas[this.state.consultas.length - 1]
-                .data_consulta
-            }{" "}
-            às{" "}
-            {
-              this.state.consultas[this.state.consultas.length - 1]
-                .time_consulta
-            }
-          </p>
-        </>
-      );
+        let diaConsulta = dataConsulta.getDate();
+        let dif_Ano = moment(ano.toString()).isSame(
+          dataConsulta.getFullYear().toString()
+        );
+        let dif_Mes = moment(mes.toString()).isSame(mesConsulta.toString());
+
+        //se o mês o ano são iguais
+        if (dif_Ano && dif_Mes) {
+          if (diaConsulta >= dia) {
+            return (
+              <>
+                <p className="bold" key={i}>
+                  {data.contacto_Nome}
+                </p>
+                <p>
+                  Dia <span className="medium">{data.data_consulta}</span> às{" "}
+                  <span className="medium">{data.time_consulta}</span>
+                </p>
+              </>
+            );
+          } else {
+            consultasPassadas.push([
+              data.contacto_Nome,
+              data.data_consulta,
+              data.time_consulta,
+            ]);
+          }
+        } else {
+          consultasPassadas.push([
+            data.contacto_Nome,
+            data.data_consulta,
+            data.time_consulta,
+          ]);
+        }
+      });
     } else {
       listConsultas = <p className="bold">Não tem consultas agendadas</p>;
     }
 
+    if (consultasPassadas.length > 0) {
+      listConsultasPassadas = consultasPassadas.map((dataPassada, i) => {
+        return (
+          <>
+            <p className="bold" key={i}>
+              {dataPassada[0]}
+            </p>
+            <p>
+              Dia <span className="medium">{dataPassada[1]}</span> às{" "}
+              <span className="medium">{dataPassada[2]}</span>
+            </p>
+          </>
+        );
+      });
+    }
+    // else {
+
+    // }
 
     return (
       <div>
@@ -238,7 +235,7 @@ export default class Calendario extends Component {
             </Col>
 
             <Col xs={4} className="btnsAjuda">
-            <Button className="btnInfo blue" onClick={this.openSponsors}>
+              <Button className="btnInfo blue" onClick={this.openSponsors}>
                 i
               </Button>
 
@@ -293,100 +290,103 @@ export default class Calendario extends Component {
 
           <Row className="cards">
             <Card className="col-12 boxShadow" id="consultasAnt">
-              <h3 className="green">Próximas consultas:</h3>
+              <h3 className="green">Consultas passadas</h3>
 
               <Row>
                 <Col xs={6}>
-                  {listConsultas}
+                  {listConsultasPassadas}
 
                   {/* <p className="bold">03/07 às 10h40</p>
                   <p>Hospital de Aveiro</p> */}
                 </Col>
 
-           
                 <img src={consultasIcone} />
- 
-               
               </Row>
             </Card>
           </Row>
 
           <Navbar ativo={"calendario"} />
 
-           {/* Modal informações */}
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title className="blue">
-              Este projeto foi desenvolvido por:
-            </Modal.Title>
-          </Modal.Header>
+          {/* Modal informações */}
+          <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title className="blue">
+                Este projeto foi desenvolvido por:
+              </Modal.Title>
+            </Modal.Header>
 
-          <Modal.Body>
-            <img src={logotipo} />
-          </Modal.Body>
+            <Modal.Body>
+              <img src={logotipo} />
+              <img src={bpi} />
+            </Modal.Body>
 
-          <Modal.Footer>
-            <Link to="/mostrarcontactos">
-              <Button className="btnFill">
-                Ir para a ferramenta de administração
+            <Modal.Footer>
+              <Link to="/mostrarcontactos">
+                <Button className="btnFill">
+                  Ir para a ferramenta de administração
+                </Button>
+              </Link>
+
+              <Button className="btnFill" onClick={this.logout}>
+                Sair da conta
               </Button>
-            </Link>
 
-            <Button className="btnFill" onClick={this.logout}>
-              Sair da conta
-            </Button>
+              <Button
+                className="btnBorderBlue blue btnSmaller"
+                onClick={this.handleClose}
+              >
+                Fechar janela
+              </Button>
+            </Modal.Footer>
+          </Modal>
 
-            <Button className="btnBorderBlue blue" onClick={this.handleClose}>
-              Fechar janela
-            </Button>
-          </Modal.Footer>
-        </Modal>
+          {/* Modal contactos de emergência */}
+          <Modal show={this.state.show2} onHide={this.closeEmergency}>
+            <Modal.Header closeButton>
+              <Modal.Title className="blue">
+                Contactos de emergência
+              </Modal.Title>
+            </Modal.Header>
 
-        {/* Modal contactos de emergência */}
-        <Modal show={this.state.show2} onHide={this.closeEmergency}>
-          <Modal.Header closeButton>
-            <Modal.Title className="blue">Contactos de emergência</Modal.Title>
-          </Modal.Header>
+            <Modal.Body style={{ margin: "5px 40px", fontSize: "2rem" }}>
+              <p className="blue">
+                <b>
+                  <span className="green">INEM: </span>
+                </b>
+                <a href="tel:112">112</a>
+              </p>
 
-          <Modal.Body style={{ margin: "5px 40px", fontSize: "2rem" }}>
-            <p className="blue">
-              <b>
-                <span className="green">INEM: </span>
-              </b>
-              <a href="tel:112">112</a>
-            </p>
+              <p className="blue">
+                <b>
+                  <span className="green">GNR Albergaria-a-Velha: </span>
+                </b>
+                <a href="tel:234521237">234 521 237</a>
+              </p>
 
-            <p className="blue">
-              <b>
-                <span className="green">GNR Albergaria-a-Velha: </span>
-              </b>
-              <a href="tel:234521237">234 521 237</a>
-            </p>
+              <p className="blue">
+                <b>
+                  <span className="green">Bombeiros Albergaria-a-Velha: </span>
+                </b>
+                <a href="tel:234529112">234 529 112</a>
+              </p>
 
-            <p className="blue">
-              <b>
-                <span className="green">Bombeiros Albergaria-a-Velha: </span>
-              </b>
-              <a href="tel:234529112">234 529 112</a>
-            </p>
+              <p className="blue">
+                <b>
+                  <span className="green">PROBRANCA: </span>
+                </b>
+                <a href="tel:234540220">234 540 220</a>
+              </p>
+            </Modal.Body>
 
-            <p className="blue">
-              <b>
-                <span className="green">PROBRANCA: </span>
-              </b>
-              <a href="tel:234540220">234 540 220</a>
-            </p>
-          </Modal.Body>
-
-          <Modal.Footer>
-            <Button
-              className="btnBorderBlue blue"
-              onClick={this.closeEmergency}
-            >
-              Fechar janela
-            </Button>
-          </Modal.Footer>
-        </Modal>
+            <Modal.Footer>
+              <Button
+                className="btnBorderBlue blue"
+                onClick={this.closeEmergency}
+              >
+                Fechar janela
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </div>
       </div>
     );
