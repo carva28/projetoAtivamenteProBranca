@@ -111,7 +111,7 @@ class Registo extends React.Component {
             </Row>
           </Row>
 
-          <Row id="infoHelp">
+          {/* <Row id="infoHelp">
             <Col>
               <h3>Precisa de ajuda?</h3>
               <p>Se precisar de ajuda, clique no botão ao lado direito.</p>
@@ -120,7 +120,7 @@ class Registo extends React.Component {
             <Col>
               <Button className="btnBorderRed">Ajuda</Button>
             </Col>
-          </Row>
+          </Row> */}
         </Col>
       </Row>
     );
