@@ -9,6 +9,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, set, onValue } from "firebase/database";
+import Data_Extensa from "./Data_Extensa";
 const firebase = require("./firebase");
 
 const firebaseConfig = {
@@ -141,7 +142,7 @@ export default class Chamadas extends Component {
           <Row>
             <Col xs={8}>
               <h1 className="green">Chamadas</h1>
-
+              <Data_Extensa/>
               <p className="blue paragraphInfo">
                 Aqui pode ligar para os seus contactos preferidos. Para fazer uma chamada WhatsApp, carregue no nome da pessoa com quem pretende falar.
               <br/>

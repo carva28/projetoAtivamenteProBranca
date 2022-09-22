@@ -6,6 +6,7 @@ import Navbar from "../Containers/Navbar";
 import { auth, logout } from "./firebase";
 import emergency from "../images/icons/emergencia.png";
 import { useNavigate, Link } from "react-router-dom";
+import Data_Extensa from "./Data_Extensa";
 
 export default class Video extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ export default class Video extends Component {
           <Row>
             <Col xs={8}>
               <h1 className="green">Vídeos</h1>
-
+              <Data_Extensa/>
               <p className="blue paragraphInfo">
                 No painel abaixo veja em direto o canal de Fátima ou veja os vídeos da ProBranca.
                 <br/>

@@ -14,6 +14,7 @@ import { getDatabase, ref, set, onValue } from "firebase/database";
 import Navbar_platform_admin from "../Containers/Navbar_platform_admin";
 import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Data_Extensa from "./Data_Extensa";
 const firebase = require("./firebase");
 
 const firebaseConfig = {
@@ -111,6 +112,7 @@ export default function MostrarConsultas() {
       <Row>
         <Col xs={8}>
           <h1 className="green">Consultas adicionadas</h1>
+          <Data_Extensa/>
 
           <p className="blue paragraphInfo">
             Veja as consultas adicionadas ao utilizador{" "}

@@ -11,6 +11,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 import importarPDF from "../images/Documentos/politica_dados_Probranca.pdf";
+import Data_Extensa from "./Data_Extensa";
 
 const firebase = require("./firebase");
 const firebaseConfig = {
@@ -272,6 +273,8 @@ export default class Home extends Component {
               <h1 className="green">
                 Bem-vindo <span className="blue">{email_UserAtivo3}</span>
               </h1>
+
+              <Data_Extensa/>
 
               <p className="blue paragraphInfo">
                 No painel abaixo veja as suas próximas consultas, os medicamentos a tomar e coloque-se a par das últimas novidades dos seus amigos e do mundo.

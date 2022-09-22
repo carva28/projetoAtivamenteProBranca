@@ -3,7 +3,26 @@ import { Row, Col, Form, Alert } from "react-bootstrap";
 import { auth, createUserWithEmailAndPassword } from "./firebase";
 import imgRegisto from "../images/characters/registo.svg";
 import { Link } from "react-router-dom";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getDatabase, ref, set, onValue } from "firebase/database";
+const firebase = require("./firebase");
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDPwM0HTu_Xa52irgMjUbWbfczplh_JO48",
+  authDomain: "ativamenteprobranca.firebaseapp.com",
+  projectId: "ativamenteprobranca",
+  storageBucket: "ativamenteprobranca.appspot.com",
+  messagingSenderId: "147788951852",
+  appId: "1:147788951852:web:d019da8a750c193d4afc89",
+  measurementId: "G-T350E5L1GS",
+  databaseURL:
+    "https://ativamenteprobranca-default-rtdb.europe-west1.firebasedatabase.app/",
+};
+
+
+const app = initializeApp(firebaseConfig);
+let renderComponentButton;
 class Registo extends React.Component {
   constructor() {
     super();
@@ -14,7 +33,20 @@ class Registo extends React.Component {
       email: "",
       password: "",
       showAlert: false,
+      sec_ProBranc: "",
+      estadoComponent: false
     };
+  }
+
+  componentDidMount() {
+    const db = getDatabase();
+    const starCountRef = ref(db, "ProBrancaSec");
+    onValue(starCountRef, (snapshot) => {
+      this.setState({
+        sec_ProBranc: snapshot.val()
+      });
+
+    });
   }
 
   register = async () => {
@@ -35,7 +67,31 @@ class Registo extends React.Component {
     }
   };
 
-  login = async () => {};
+
+  login = async () => { };
+
+  comparaCode = (evt) => {
+    if (evt.target.value == this.state.sec_ProBranc) {
+      this.setState({
+        estadoComponent:true
+      })
+      renderComponentButton = <Row className="alignBtns">
+        <Form.Control
+          onClick={this.register}
+          type="submit"
+          value="Registar"
+          className="btnFill"
+        />
+      </Row>;
+    }else{
+      this.setState({
+        estadoComponent:false
+      })
+      renderComponentButton = <Row className="alignBtns">
+       <p>Não se pode registar sem código</p>
+      </Row>;
+    }
+  }
 
   render() {
     const showAlert = this.state.showAlert;
@@ -102,14 +158,20 @@ class Registo extends React.Component {
               required
             />
 
-            <Row className="alignBtns">
-              <Form.Control
-                onClick={this.register}
-                type="submit"
-                value="Registar"
-                className="btnFill"
-              />
-            </Row>
+            <Form.Label id="label_p" className="green">
+              Código ProBranca{" "}
+            </Form.Label>
+
+            <Form.Control
+              type="password"
+              onChange={this.comparaCode}
+              placeholder="Insira o código secreto da ProBranca"
+              className="blue"
+              required
+            />
+
+            {renderComponentButton}
+
 
             <Row id="irParaReg">
               <p>

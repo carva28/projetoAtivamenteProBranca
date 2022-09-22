@@ -8,6 +8,7 @@ import Navbar from "../Containers/Navbar";
 import { auth, logout } from "./firebase";
 import emergency from "../images/icons/emergencia.png";
 import { useNavigate, Link } from "react-router-dom";
+import Data_Extensa from "./Data_Extensa";
 
 export class Jogos extends Component {
   constructor(props) {
@@ -38,6 +39,7 @@ export class Jogos extends Component {
           <Row>
             <Col xs={8}>
               <h1 className="green">Jogos</h1>
+              <Data_Extensa/>
               <p className="blue paragraphInfo">
                 Alterar para "Para aceder a outros espaços da plataforma, navegue nos botões da barra à direita”
                 <br />

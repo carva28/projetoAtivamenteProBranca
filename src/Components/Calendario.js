@@ -11,6 +11,7 @@ import medicamentos from "../images/characters/medicamentos.svg";
 import consultasIcone from "../images/icons/consultas.svg";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 import moment from "moment";
+import Data_Extensa from "./Data_Extensa";
 
 const firebase = require("./firebase");
 const firebaseConfig = {
@@ -233,7 +234,7 @@ export default class Calendario extends Component {
           <Row>
             <Col xs={8}>
               <h1 className="green">Calendário</h1>
-
+              <Data_Extensa/>
               <p className="blue paragraphInfo">
                 Aqui pode ver as suas próximas consultas, os medicamento que está a tomar e as consultas anteriores.
                 Para aceder a outros espaços da plataforma, navegue nos botões da barra à direita
