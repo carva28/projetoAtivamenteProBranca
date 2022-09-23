@@ -15,23 +15,23 @@
 
 h1 {
   font-weight: 800;
-  font-size: 2.9rem;
+  font-size: 3.5rem;
 }
 
 h2 {
   font-weight: 800;
-  font-size: 2.4rem;
+  font-size: 3.4rem;
 }
 
 h3 {
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 2.4rem;
 }
 
 .informacao_h3{
   margin-top: 60px;
   margin-bottom: 60px;
-  font-size: 1.4rem;
+  font-size: 2.4rem;
 }
 
 a,
@@ -42,7 +42,7 @@ a:hover {
 
 p {
   font-weight: 400;
-  font-size: 1.3rem;
+  font-size: 1.9rem;
   margin-bottom: 0;
 }
 
@@ -102,7 +102,7 @@ p {
 .btn {
   padding: 10px 35px;
   background-color: transparent;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   flex-basis: max-content;
   transition: all 0.5s ease-in-out;
@@ -114,6 +114,10 @@ p {
   border: 2px solid #223a5f;
 }
 
+input[type="text"],input[type="email"],input[type="password"]{
+  font-size: 2.0rem;
+}
+
 input[type="submit"].form-control,
 input[type="submit"].form-control:focus {
   width: auto;
@@ -121,7 +125,7 @@ input[type="submit"].form-control:focus {
   background-color: #223a5f;
   color: #fff;
   border: 2px solid #223a5f;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 .btnGames {
@@ -221,6 +225,7 @@ input[type="submit"].form-control:focus {
   margin-bottom: 10px;
   margin-top: 30px;
   padding: 0;
+  font-size: 2.0rem;
 }
 
 .alignBtns {

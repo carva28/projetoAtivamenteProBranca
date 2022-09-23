@@ -37,10 +37,10 @@ export default class Video extends Component {
           <Row>
             <Col xs={8}>
               <h1 className="green">Vídeos</h1>
-              <Data_Extensa/>
+              <Data_Extensa />
               <p className="blue paragraphInfo">
                 No painel abaixo veja em direto o canal de Fátima ou veja os vídeos da ProBranca.
-                <br/>
+                <br />
                 Para aceder a outros espaços da plataforma, navegue nos botões da barra à direita
               </p>
             </Col>
@@ -89,7 +89,12 @@ export default class Video extends Component {
                 className="boxShadow"
               ></iframe>
 
-              <Button className="btnFill">Ver vídeos da ProBranca</Button>
+              <Button className="btnFill">
+                <a href="https://www.youtube.com/user/Probranca" target="_blank">
+                  Ver vídeos da ProBranca
+                </a>
+
+              </Button>
             </Col>
           </Row>
         </div>

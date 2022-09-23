@@ -8,7 +8,7 @@ render() {
    
     return (
         <div>
-            <p>Hoje é {Data.toLocaleDateString('pt-PT',options)}</p>
+            <h3>Hoje é {Data.toLocaleDateString('pt-PT',options)}</h3>
         </div>
     )
 }

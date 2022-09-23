@@ -33,21 +33,10 @@ class Registo extends React.Component {
       email: "",
       password: "",
       showAlert: false,
-      sec_ProBranc: "",
-      estadoComponent: false
     };
   }
 
-  componentDidMount() {
-    const db = getDatabase();
-    const starCountRef = ref(db, "ProBrancaSec");
-    onValue(starCountRef, (snapshot) => {
-      this.setState({
-        sec_ProBranc: snapshot.val()
-      });
 
-    });
-  }
 
   register = async () => {
     try {
@@ -70,28 +59,7 @@ class Registo extends React.Component {
 
   login = async () => { };
 
-  comparaCode = (evt) => {
-    if (evt.target.value == this.state.sec_ProBranc) {
-      this.setState({
-        estadoComponent:true
-      })
-      renderComponentButton = <Row className="alignBtns">
-        <Form.Control
-          onClick={this.register}
-          type="submit"
-          value="Registar"
-          className="btnFill"
-        />
-      </Row>;
-    }else{
-      this.setState({
-        estadoComponent:false
-      })
-      renderComponentButton = <Row className="alignBtns">
-       <p>Não se pode registar sem código</p>
-      </Row>;
-    }
-  }
+
 
   render() {
     const showAlert = this.state.showAlert;
@@ -101,7 +69,7 @@ class Registo extends React.Component {
         <Col xs={{ order: 1 }} id="bgMain">
           <img src={imgRegisto} />
 
-          <h1 className="mainComponents white">Regista-te</h1>
+          <h1 className="mainComponents white">Registe-se</h1>
         </Col>
 
         <Col xs={{ order: 1 }} id="noBgMain">
@@ -158,19 +126,15 @@ class Registo extends React.Component {
               required
             />
 
-            <Form.Label id="label_p" className="green">
-              Código ProBranca{" "}
-            </Form.Label>
 
-            <Form.Control
-              type="password"
-              onChange={this.comparaCode}
-              placeholder="Insira o código secreto da ProBranca"
-              className="blue"
-              required
-            />
-
-            {renderComponentButton}
+            <Row className="alignBtns">
+              <Form.Control
+                onClick={this.register}
+                type="submit"
+                value="Registar"
+                className="btnFill"
+              />
+            </Row>
 
 
             <Row id="irParaReg">

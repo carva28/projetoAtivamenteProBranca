@@ -298,7 +298,7 @@ export default class Home extends Component {
               </Button>
             </Col>
           </Row>
-          <h3 class="informacao_h3">Aqui pode ver as suas próximas consultas e os medicamento que está a tomar:</h3>
+          <h3 className="informacao_h3">Aqui pode ver as suas próximas consultas e os medicamento que está a tomar:</h3>
 
           <Row className="cards">
             <Card className="col-6 boxShadow">
@@ -337,7 +337,7 @@ export default class Home extends Component {
               </Row>
             </Card>
           </Row>
-          <h3 class="informacao_h3">O canal do Santuário de Fátima e o canal da Probranca:</h3>
+          <h3 className="informacao_h3">O canal do Santuário de Fátima e o canal da Probranca:</h3>
           <Row className="otherSources">
 
             <Col className="outsideSource">
@@ -381,7 +381,7 @@ export default class Home extends Component {
               </Button>
             </Col>
           </Row>
-          <h3 class="informacao_h3">Aceder ao Facebook e ao Google (se tiver conta):</h3>
+          <h3 className="informacao_h3">Aceder ao Facebook e ao Google (se tiver conta):</h3>
           <Row className="otherSources">
             <Col className="outsideSource">
               <div className="imgSource boxShadow" id="facebook"></div>

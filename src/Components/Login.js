@@ -99,7 +99,7 @@ class Login extends React.Component {
             <p className="warning">O email deve incluir um @.</p>
 
             <Row>
-              <div id="erroLogin" class="red"></div>
+              <div id="erroLogin" className="red"></div>
             </Row>
 
             <Row className="alignBtns">
@@ -111,7 +111,7 @@ class Login extends React.Component {
               />
             </Row>
 
-            <Row id="irParaReg">
+            {/* <Row id="irParaReg">
               <p>
                 Não tem conta? Registe-se
                 <Link to="/registar" className="green">
@@ -119,7 +119,7 @@ class Login extends React.Component {
                 </Link>
                 !
               </p>
-            </Row>
+            </Row> */}
 
             {/* <Row className="alignBtns">
               <Button className="btnFill" onClick={this.logout}>

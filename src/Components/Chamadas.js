@@ -86,7 +86,7 @@ export default class Chamadas extends Component {
             <Col className="contact" key={key}>
               <h3> {this.state.datas[key].contacto_Nome} </h3>
               <a
-                class="none_a_link"
+                className="none_a_link"
                 href={`https://api.whatsapp.com/send?phone=${this.state.datas[key].contacto_telPesso}`}
                 target="_blank"
               >
@@ -106,7 +106,7 @@ export default class Chamadas extends Component {
           <Col className="contact" key={i}>
             <h3> {data.contacto_Nome} </h3>
             <a
-              class="none_a_link"
+              className="none_a_link"
               href={`https://api.whatsapp.com/send?phone=${data.contacto_telPesso}`}
               target="_blank"
             >
@@ -124,7 +124,7 @@ export default class Chamadas extends Component {
         <Col className="contact" key={i}>
           <h3> {data.contacto_Nome} </h3>
           <a
-            class="none_a_link"
+            className="none_a_link"
             href={`https://api.whatsapp.com/send?phone=${data.contacto_telPesso}`}
             target="_blank"
           >
