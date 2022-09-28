@@ -455,7 +455,7 @@ input[type="submit"].form-control:focus {
 }
 
 #chamadasMenu {
-  background-color: #f22e62;
+  background-color: #1c8f46;
 }
 
 #calendarioMenu {
@@ -463,7 +463,7 @@ input[type="submit"].form-control:focus {
 }
 
 #videosMenu {
-  background-color: #ff1717;
+  background-color: #c4302b;
 }
 
 #zoomMenu {
@@ -892,6 +892,13 @@ div.result.green p {
 
 #register_btn {
   margin-top: 50px;
+}
+
+/*****   Data  ********/
+
+#data_Extenso{
+  margin-top: 1em;
+  margin-bottom: 0.7em;
 }
 
 @media only screen and (orientation: portrait) {

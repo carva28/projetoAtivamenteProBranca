@@ -10,8 +10,8 @@ import chamadasBranco from "../images/icons/chamadas-branco.png";
 import chamadasVerde from "../images/icons/chamadas-verde.png";
 import jogosBranco from "../images/icons/jogos-branco.png";
 import jogosVerde from "../images/icons/jogos-verde.png";
-import calendarioBranco from "../images/icons/calendario-branco.png";
-import calendarioVerde from "../images/icons/calendario-verde.png";
+import saudeBranco from "../images/icons/saude-branco.png";
+import saudeVerde from "../images/icons/saude-verde.png";
 import videosBranco from "../images/icons/videos-branco.png";
 import videosVerde from "../images/icons/videos-verde.png";
 
@@ -91,9 +91,9 @@ export default class Navbar extends Component {
               }`}
             >
               {this.state.active == "calendario" ? (
-                <img src={calendarioVerde} alt="Menu para calendario" />
+                <img src={saudeVerde} alt="Menu para calendario" />
               ) : (
-                <img src={calendarioBranco} alt="Menu para calendario" />
+                <img src={saudeBranco} alt="Menu para calendario" />
               )}
 
               <p
@@ -101,7 +101,7 @@ export default class Navbar extends Component {
                   this.state.active == "calendario" ? "green" : "white"
                 }
               >
-                Calendário
+                Saúde
               </p>
             </div>
           </Link>
