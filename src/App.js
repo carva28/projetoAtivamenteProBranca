@@ -113,8 +113,8 @@ function App() {
           <Route path="*" element={<Login />} />
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
-          <Route path={"/registar/" + sec_ProBranc} element={<Registo />} />
-          <Route path={"/registar/202.5/"} element={<Registo />} />
+          <Route path={"/registar" + sec_ProBranc} element={<Registo />} />
+          <Route path={"/registar2025/"} element={<Registo />} />
         </Routes>
       </BrowserRouter>
     );
