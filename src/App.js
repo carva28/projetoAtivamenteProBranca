@@ -103,6 +103,8 @@ function App() {
             path="/adicionarinformacoes"
             element={<AdicionarContactos />}
           />
+          <Route path={"/registar" + sec_ProBranc} element={<Registo />} />
+          <Route path={"/registar2025"} element={<Registo />} />
         </Routes>
       </BrowserRouter>
     );
@@ -114,7 +116,7 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path={"/registar" + sec_ProBranc} element={<Registo />} />
-          <Route path={"/registar2025/"} element={<Registo />} />
+          <Route path={"/registar2025"} element={<Registo />} />
         </Routes>
       </BrowserRouter>
     );
