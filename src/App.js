@@ -30,7 +30,6 @@ import MostrarMedicamentos from "./Components/MostrarMedicamentos";
 import UserSpeciMedicamento from "./Components/UserSpeciMedicamento";
 import { initializeApp } from "firebase/app";
 
-
 import { getDatabase, ref, set, onValue } from "firebase/database";
 const firebase = require("./Components/firebase");
 
@@ -46,7 +45,6 @@ const firebaseConfig = {
     "https://ativamenteprobranca-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
-
 const app = initializeApp(firebaseConfig);
 
 function App() {
@@ -59,20 +57,18 @@ function App() {
       setuser_normal(user);
       setisSignedIn(true);
     }
-
   });
 
   useEffect(() => {
     const db = getDatabase();
     const starCountRef = ref(db, "ProBrancaSec");
-    onValue(starCountRef, (snapshot) => {
-      setsec_ProBranc(snapshot.val())
-    });
 
+    onValue(starCountRef, (snapshot) => {
+      setsec_ProBranc(snapshot.val());
+    });
   });
 
   if (isSignedIn) {
-
     return (
       <BrowserRouter>
         <Routes>
@@ -103,8 +99,6 @@ function App() {
             path="/adicionarinformacoes"
             element={<AdicionarContactos />}
           />
-          <Route path={"/registar" + sec_ProBranc} element={<Registo />} />
-          <Route path={"/registar2025"} element={<Registo />} />
         </Routes>
       </BrowserRouter>
     );
@@ -115,8 +109,7 @@ function App() {
           <Route path="*" element={<Login />} />
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
-          <Route path={"/registar" + sec_ProBranc} element={<Registo />} />
-          <Route path={"/registar2025"} element={<Registo />} />
+          <Route path={`/registar${sec_ProBranc}`} element={<Registo />} />
         </Routes>
       </BrowserRouter>
     );
