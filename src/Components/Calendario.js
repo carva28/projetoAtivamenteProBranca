@@ -153,7 +153,7 @@ export default class Calendario extends Component {
         <Row>
           <p key={i}>
             {data.momento_tomar} tome{" "}
-            <span className="bold">{data.medicamento}</span>
+            <span className="bold">{data.medicamento}</span>.
           </p>
         </Row>
       ));
@@ -180,15 +180,14 @@ export default class Calendario extends Component {
         if (dif_Ano && dif_Mes) {
           if (diaConsulta >= dia) {
             return (
-              <>
-                <p className="bold" key={i}>
-                  {data.contacto_Nome}
+              <Row>
+                <p key={i}>
+                  <span className="bold"> {data.contacto_Nome}</span>:
+                  <br /> <span className="bold">
+                    {data.data_consulta}
+                  </span> às <span className="bold">{data.time_consulta}</span>
                 </p>
-                <p>
-                  Dia <span className="medium">{data.data_consulta}</span> às{" "}
-                  <span className="medium">{data.time_consulta}</span>
-                </p>
-              </>
+              </Row>
             );
           } else {
             consultasPassadas.push([
@@ -217,7 +216,7 @@ export default class Calendario extends Component {
               {dataPassada[0]}
             </p>
             <p>
-              Dia <span className="medium">{dataPassada[1]}</span> às{" "}
+              <span className="medium">{dataPassada[1]}</span> às{" "}
               <span className="medium">{dataPassada[2]}</span>
             </p>
           </Col>
@@ -275,22 +274,15 @@ export default class Calendario extends Component {
             <Card className="col-6 boxShadow">
               <h3 className="green">Próximas consultas:</h3>
 
-              <Row>
-                <Col xs={6}>
-                  {listConsultas}
+              <Row>{listConsultas}</Row>
 
-                  {/* <p className="bold">03/07 às 10h40</p>
-                  <p>Hospital de Aveiro</p> */}
-                </Col>
-
-                <Col xs={6}>
-                  <img src={consultas} />
-                </Col>
-              </Row>
+              <Col xs={6} className="alignEnd">
+                <img src={consultas} />
+              </Col>
             </Card>
 
             <Card className="col-6 boxShadow">
-              <h3 className="red">Tome os seguintes medicamentos:</h3>
+              <h3 className="red">Medicamentos para tomar:</h3>
 
               <Row>{listMedicamentos}</Row>
 
@@ -305,8 +297,9 @@ export default class Calendario extends Component {
               <h3 className="green">Consultas passadas</h3>
 
               <Row>{listConsultasPassadas}</Row>
-
-              <img src={consultasIcone} />
+              <Col xs={1} className="alignEnd">
+                <img src={consultasIcone} />
+              </Col>
             </Card>
           </Row>
 

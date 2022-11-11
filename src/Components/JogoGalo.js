@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Navbar from "../Containers/Navbar";
 import { auth, logout } from "./firebase";
 import { Button } from "react-bootstrap";
+import desligar from "../images/icons/logout.png";
 
 var c = 0;
 const defaultSquares = () => new Array(9).fill(null);

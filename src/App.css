@@ -287,6 +287,7 @@ input[type="submit"].form-control:focus {
   justify-content: flex-start;
   flex-flow: column wrap;
   gap: 20px;
+  padding: 0;
 }
 
 .boxShadow {
@@ -325,6 +326,7 @@ input[type="submit"].form-control:focus {
 
 .cards img {
   width: 100%;
+  margin-top: 20px;
 }
 
 #emergency {
