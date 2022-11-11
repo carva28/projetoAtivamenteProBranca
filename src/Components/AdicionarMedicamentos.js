@@ -74,7 +74,7 @@ export default class AdicionarMedicamentos extends Component {
       this.setState({
         variavel_Med: data.variavel_medicame,
       });
-      console.log(data);
+      //console.log(data);
     });
   };
 
@@ -97,7 +97,7 @@ export default class AdicionarMedicamentos extends Component {
           momento_tomar: this.state.momento_tomar,
         }
       ).catch((error) => console.log(error));
-      console.log("DATA SAVED");
+      //console.log("DATA SAVED");
 
       this.setState({
         display_feedback: "block",
@@ -112,7 +112,7 @@ export default class AdicionarMedicamentos extends Component {
         set(ref(db, `Newdata_${this.state.uuid}/variavel_Med`), {
           variavel_medicame: this.state.variavel_Med + 1,
         }).catch((error) => console.log(error));
-        console.log("DATA SAVED__2");
+        //console.log("DATA SAVED__2");
       }, 5000);
     }
   };
@@ -129,37 +129,35 @@ export default class AdicionarMedicamentos extends Component {
     return (
       <div className="frame">
         <Row>
-          <Col xs={8}>
-            <h1 className="green">Adicionar novo contacto</h1>
+          <h1 className="green">Adicionar novo medicamento</h1>
 
-            <p className="blue paragraphInfo">
-              Nas caixas abaixo, insira as informações para adicionar um novo
-              medicamento à conta do utilizador{" "}
-              <span className="darkgreen"> {this.state.email}</span>.
-            </p>
-          </Col>
+          <p className="blue paragraphInfo">
+            Nas caixas abaixo, insira as informações para adicionar um novo
+            medicamento à conta do utilizador {" "}
+            <span className="darkgreen">{this.state.email}</span>.
+          </p>
         </Row>
 
         <Row>
           <Form.Label id="label_p" className="green">
-            Nome do medicamento e quantidade/dose de toma
+          Quantidade/dose de toma + Medicamento
           </Form.Label>
 
           <Form.Control
             type="text"
-            placeholder="Introduza o nome do medicamento e dose"
+            placeholder="(ex.: 1 comprimido de Brufen)"
             className="blue"
             onChange={this.inputName}
           />
 
           <Form.Label id="label_p" className="green">
-            Refeições
+            Momento da toma
           </Form.Label>
 
           <Form.Control
             type="text"
             onChange={this.inputDataNumber}
-            placeholder="Escreva o momento da toma do medicamento"
+            placeholder="(ex.: Ao almoço/ Antes de jantar/ De tarde)"
             className="blue"
           />
 

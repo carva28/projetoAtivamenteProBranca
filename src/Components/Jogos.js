@@ -9,6 +9,7 @@ import { auth, logout } from "./firebase";
 import emergency from "../images/icons/emergencia.png";
 import { useNavigate, Link } from "react-router-dom";
 import Data_Extensa from "./Data_Extensa";
+import desligar from "../images/icons/logout.png";
 
 export class Jogos extends Component {
   constructor(props) {
@@ -37,20 +38,25 @@ export class Jogos extends Component {
       <div>
         <div className="frame" id="jogos">
           <Row>
-            <Col xs={8}>
+            <Col xs={9}>
               <h1 className="green">Jogos</h1>
-              <Data_Extensa/>
-              <p className="blue paragraphInfo">
-                Alterar para "Para aceder a outros espaços da plataforma, navegue nos botões da barra à direita”
-                <br />
-                Do lado direito pode consultar páginas específicas.
-              </p>
+              <Data_Extensa />
             </Col>
 
-            <Col xs={4} className="btnsAjuda">
-              <Button className="btnInfo blue" onClick={this.openSponsors}>
-                i
-              </Button>
+            <Col xs={3} className="btnsAjuda">
+              <Row>
+                <Button
+                  className="btnInfo blue"
+                  id="desligar"
+                  onClick={this.logout}
+                >
+                  <img src={desligar} />
+                </Button>
+
+                <Button className="btnInfo blue" onClick={this.openSponsors}>
+                  i
+                </Button>
+              </Row>
 
               <Button
                 className="btnBorderRed blue"
@@ -61,6 +67,13 @@ export class Jogos extends Component {
                 Emergência
               </Button>
             </Col>
+
+            <Row>
+              <p className="blue paragraphInfo">
+                Para aceder a outros espaços da plataforma, navegue nos botões
+                da barra à direita.
+              </p>
+            </Row>
           </Row>
 
           <Row className="cards">
@@ -112,12 +125,11 @@ export class Jogos extends Component {
 
               <Row>
                 <p>
-                  Para jogar outros jogos instalados neste tablet, carregue num dos botões abaixo.
-
-                  Pode jogar outros jogos que se encontram disponíveis neste
-                  dispositivo, gratuitamente. Para isso basta clicar num dos
-                  botões abaixo e será redirecionado para uma nova página, na
-                  qual basta clicar no botão verde "ABRIR".
+                  Para jogar outros jogos instalados neste tablet, carregue num
+                  dos botões abaixo. Pode jogar outros jogos que se encontram
+                  disponíveis neste dispositivo, gratuitamente. Para isso basta
+                  clicar num dos botões abaixo e será redirecionado para uma
+                  nova página, na qual basta clicar no botão verde "ABRIR".
                 </p>
 
                 <Row className="btn_other">

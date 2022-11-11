@@ -7,6 +7,7 @@ import { auth, logout } from "./firebase";
 import emergency from "../images/icons/emergencia.png";
 import { useNavigate, Link } from "react-router-dom";
 import Data_Extensa from "./Data_Extensa";
+import desligar from "../images/icons/logout.png";
 
 export default class Video extends Component {
   constructor(props) {
@@ -35,20 +36,25 @@ export default class Video extends Component {
       <div>
         <div className="frame" id="calendario">
           <Row>
-            <Col xs={8}>
+            <Col xs={9}>
               <h1 className="green">Vídeos</h1>
               <Data_Extensa />
-              <p className="blue paragraphInfo">
-                No painel abaixo veja em direto o canal de Fátima ou veja os vídeos da ProBranca.
-                <br />
-                Para aceder a outros espaços da plataforma, navegue nos botões da barra à direita
-              </p>
             </Col>
 
-            <Col xs={4} className="btnsAjuda">
-              <Button className="btnInfo blue" onClick={this.openSponsors}>
-                i
-              </Button>
+            <Col xs={3} className="btnsAjuda">
+              <Row>
+                <Button
+                  className="btnInfo blue"
+                  id="desligar"
+                  onClick={this.logout}
+                >
+                  <img src={desligar} />
+                </Button>
+
+                <Button className="btnInfo blue" onClick={this.openSponsors}>
+                  i
+                </Button>
+              </Row>
 
               <Button
                 className="btnBorderRed blue"
@@ -59,6 +65,16 @@ export default class Video extends Component {
                 Emergência
               </Button>
             </Col>
+
+            <Row>
+              <p className="blue paragraphInfo">
+                No painel abaixo veja em direto o canal de Fátima ou veja os
+                vídeos da ProBranca.
+                <br />
+                Para aceder a outros espaços da plataforma, navegue nos botões
+                da barra à direita.
+              </p>
+            </Row>
           </Row>
 
           <Row className="otherSources">
@@ -73,7 +89,10 @@ export default class Video extends Component {
               ></iframe>
 
               <Button className="btnFill">
-                <a href="https://rd3.videos.sapo.pt/playhtml?file=https://rd3.videos.sapo.pt/v6Lza88afnReWzVdAQap/mov/24" target="_blank">
+                <a
+                  href="https://rd3.videos.sapo.pt/playhtml?file=https://rd3.videos.sapo.pt/v6Lza88afnReWzVdAQap/mov/24"
+                  target="_blank"
+                >
                   Ver “Fátima” em direto
                 </a>
               </Button>
@@ -90,10 +109,12 @@ export default class Video extends Component {
               ></iframe>
 
               <Button className="btnFill">
-                <a href="https://www.youtube.com/user/Probranca" target="_blank">
+                <a
+                  href="https://www.youtube.com/user/Probranca"
+                  target="_blank"
+                >
                   Ver vídeos da ProBranca
                 </a>
-
               </Button>
             </Col>
           </Row>
@@ -125,7 +146,10 @@ export default class Video extends Component {
               Sair da conta
             </Button>
 
-            <Button className="btnBorderBlue blue btnSmaller" onClick={this.handleClose}>
+            <Button
+              className="btnBorderBlue blue btnSmaller"
+              onClick={this.handleClose}
+            >
               Fechar janela
             </Button>
           </Modal.Footer>

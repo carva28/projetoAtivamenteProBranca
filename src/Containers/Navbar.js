@@ -28,17 +28,17 @@ export default class Navbar extends Component {
   closeModal = () => this.setState({ show: false });
 
   render() {
-    console.log(this.state.active);
+    //console.log(this.state.active);
 
     return (
       <div id="navBar">
-        <Row>
+        {/* <Row>
           <img
             src={logotipo}
             alt="logótipo da ProBranca"
             className="logotipo"
           />
-        </Row>
+        </Row> */}
 
         <Row id="topicsMenu">
           {/* Link para home */}
@@ -75,7 +75,9 @@ export default class Navbar extends Component {
               )}
 
               <p
-                className={this.state.active == "chamadas" ? "green" : "white"}
+                className={
+                  this.state.active == "chamadas" ? "chamadas" : "white"
+                }
               >
                 Chamadas
               </p>
@@ -91,14 +93,14 @@ export default class Navbar extends Component {
               }`}
             >
               {this.state.active == "calendario" ? (
-                <img src={saudeVerde} alt="Menu para calendario" />
+                <img src={saudeVerde} alt="Menu para saúde" />
               ) : (
-                <img src={saudeBranco} alt="Menu para calendario" />
+                <img src={saudeBranco} alt="Menu para saúde" />
               )}
 
               <p
                 className={
-                  this.state.active == "calendario" ? "green" : "white"
+                  this.state.active == "calendario" ? "saude" : "white"
                 }
               >
                 Saúde
@@ -120,8 +122,10 @@ export default class Navbar extends Component {
                 <img src={videosBranco} alt="Menu para videos" />
               )}
 
-              <p className={this.state.active == "videos" ? "green" : "white"}>
-                Vídeos
+              <p
+                className={this.state.active == "videos" ? "youtube" : "white"}
+              >
+                YouTube
               </p>
             </div>
           </Link>
@@ -147,7 +151,7 @@ export default class Navbar extends Component {
                 <img src={jogosBranco} alt="Menu para jogos" />
               )}
 
-              <p className={this.state.active == "jogos" ? "green" : "white"}>
+              <p className={this.state.active == "jogos" ? "jogos" : "white"}>
                 Jogos
               </p>
             </div>
@@ -159,7 +163,7 @@ export default class Navbar extends Component {
           </div> */}
         </Row>
 
-        {/* Modal contactos de emergência */}
+        {/* Modal zoom ProBranca */}
         <Modal show={this.state.show} onHide={this.closeModal}>
           <Modal.Header closeButton></Modal.Header>
 
@@ -168,7 +172,8 @@ export default class Navbar extends Component {
               Ao clicar "Ligar" será redirecionado para uma videochamada com os
               membros da ProBranca.
               <br />
-              Carregue em  <b>"Ligar"</b> para participar nas sessões com a Probranca.
+              Carregue em <b>"Ligar"</b> para participar nas sessões com a
+              Probranca.
               <br />
               Se não quiser, clique "Fechar janela".
             </p>
@@ -190,6 +195,7 @@ export default class Navbar extends Component {
             </a>
           </Modal.Footer>
         </Modal>
+        {/* Final da modal */}
       </div>
     );
   }

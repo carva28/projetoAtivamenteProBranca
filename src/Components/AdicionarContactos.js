@@ -55,7 +55,7 @@ export default class AdicionarContactos extends Component {
       this.setState({
         variavel_contactos: data.var_contact,
       });
-      console.log(data);
+      //console.log(data);
     });
   };
 
@@ -78,7 +78,7 @@ export default class AdicionarContactos extends Component {
           contacto_Nome: this.state.contacto_Nome,
         }
       ).catch((error) => console.log(error));
-      console.log("DATA SAVED");
+      //console.log("DATA SAVED");
 
       this.setState({
         display_feedback: "block",
@@ -93,7 +93,7 @@ export default class AdicionarContactos extends Component {
         set(ref(db, `Newdata_${this.state.uuid}/variaveis_contact`), {
           var_contact: this.state.variavel_contactos + 1,
         }).catch((error) => console.log(error));
-        console.log("DATA SAVED__2");
+        //console.log("DATA SAVED__2");
       }, 5000);
     }
   };
@@ -110,14 +110,13 @@ export default class AdicionarContactos extends Component {
     return (
       <div className="frame">
         <Row>
-          <Col xs={8}>
-            <h1 className="green">Adicionar novo contacto</h1>
+          <h1 className="green">Adicionar novo contacto</h1>
 
-            <p className="blue paragraphInfo">
-              Nas caixas abaixo, insira as informações para adicionar um novo contacto à conta do utilizador{" "}
-              <span className="darkgreen"> {this.state.email}</span>.
-            </p>
-          </Col>
+          <p className="blue paragraphInfo">
+            Nas caixas abaixo, insira as informações para adicionar um novo
+            contacto à conta do utilizador{" "}
+            <span className="darkgreen"> {this.state.email}</span>.
+          </p>
         </Row>
 
         <Row>

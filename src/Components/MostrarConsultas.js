@@ -85,7 +85,7 @@ export default function MostrarConsultas() {
   if (datas.length > 0) {
     // console.log(this.state.datas)
     listItems = datas.map((data, i) => (
-      <Col className="contact" key={i}>
+      <Col className="medicamento" xs={6} key={i}>
         <h3> Consulta de {data.contacto_Nome} </h3>
         <p className="white">{data.data_consulta}</p>
         <p className="white">{data.time_consulta}</p>
@@ -110,15 +110,12 @@ export default function MostrarConsultas() {
   return (
     <div className="frame">
       <Row>
-        <Col xs={8}>
-          <h1 className="green">Consultas adicionadas</h1>
-          <Data_Extensa/>
+        <h1 className="green">Consultas</h1>
 
-          <p className="blue paragraphInfo">
-            Veja as consultas adicionadas ao utilizador{" "}
-            {auth.currentUser.reloadUserInfo.email} e edite-as se necessário.
-          </p>
-        </Col>
+        <p className="blue paragraphInfo">
+          Veja as consultas adicionadas ao utilizador{" "}
+          {auth.currentUser.reloadUserInfo.email} e edite-as se necessário.
+        </p>
       </Row>
 
       <Row>
@@ -129,12 +126,7 @@ export default function MostrarConsultas() {
         </Link>
       </Row>
 
-      <Row className="contacts">
-        {
-          listItems
-          /* dados.map((fruit) => ) */
-        }
-      </Row>
+      <Row className="medicamentos">{listItems}</Row>
 
       <Navbar_platform_admin ativo={"mostrarconsultas"} />
     </div>

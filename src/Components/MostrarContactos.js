@@ -92,8 +92,8 @@ export default function MostrarContactos() {
   if (datas.length > 0) {
     // console.log(this.state.datas)
     listItems = datas.map((data, i) => (
-      <Col className="contact" key={i}>
-        <h3> {data.contacto_Nome} </h3>
+      <Col className="medicamento" xs={6} key={i}>
+        <h3>{data.contacto_Nome}</h3>
         <p className="white">{data.contacto_telPesso}</p>
         <Button
           className="btnFillWhite"
@@ -113,14 +113,16 @@ export default function MostrarContactos() {
   return (
     <div className="frame">
       <Row>
-        <Col xs={8}>
-          <h1 className="green">Contactos adicionados</h1>
-          <Data_Extensa/>
-          <p className="blue paragraphInfo">
-            Veja os contactos adicionados ao utilizador{" "}
-            {auth.currentUser.reloadUserInfo.email} e edite-os se necessário.
-          </p>
-        </Col>
+        <h1 className="green">Contactos</h1>
+
+        <p className="blue paragraphInfo">
+          Veja os contactos adicionados ao utilizador{" "}
+          <span className="darkgreen">
+            {" "}
+            {auth.currentUser.reloadUserInfo.email}
+          </span>{" "}
+          e edite-os se necessário.
+        </p>
       </Row>
 
       <Row>
@@ -131,12 +133,7 @@ export default function MostrarContactos() {
         </Link>
       </Row>
 
-      <Row className="contacts">
-        {
-          listItems
-          /* dados.map((fruit) => ) */
-        }
-      </Row>
+      <Row className="medicamentos">{listItems}</Row>
 
       <Navbar_platform_admin ativo={"mostrarcontactos"} />
     </div>

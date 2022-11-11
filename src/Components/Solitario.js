@@ -4,6 +4,7 @@ import { createStore, combineReducers } from "redux";
 import { Provider, connect } from "react-redux";
 import Navbar from "../Containers/Navbar";
 import { auth, logout } from "./firebase";
+import { Button } from "react-bootstrap";
 // const { createStore, combineReducers } = 'redux';
 
 //const { connect, Provider } = 'react-redux';
@@ -37,6 +38,9 @@ const Game = (() => {
         style={{ visibility: congratulation ? "visible" : "hidden" }}
       >
         <h1>Parabéns, ganhou!</h1>
+        <Button className="btn btnFillWhite" onClick={refreshPage}>
+          Recomeçar
+        </Button>
       </div>
     </div>
   );
@@ -52,6 +56,10 @@ const Game = (() => {
 
   return connect(mapStateToProps)(UnconnectedGame);
 })();
+
+function refreshPage() {
+  window.location.reload(false);
+}
 
 const Stock = (() => {
   const UnconnectedStock = ({ rest, flopped }) => (

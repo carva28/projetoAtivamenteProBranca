@@ -105,7 +105,7 @@ export default function MostrarMedicamentos() {
   if (datas.length > 0) {
     // console.log(this.state.datas)
     listItems = datas.map((data, i) => (
-      <Col className="contact" key={i}>
+      <Col xs={6} className="medicamento" key={i}>
         <h3> {data.medicamento} </h3>
         <p className="white">{data.momento_tomar}</p>
         <Button
@@ -122,16 +122,14 @@ export default function MostrarMedicamentos() {
   }
 
   return (
-    <div className="frame" id="chamadas">
+    <div className="frame">
       <Row>
-        <Col xs={8}>
-          <h1 className="green">Medicamentos adicionados</h1>
+        <h1 className="green">Medicamentos</h1>
 
-          <p className="blue paragraphInfo">
-            Veja os medicamentos adicionados ao utilizador{" "}
-            {auth.currentUser.reloadUserInfo.email} e edite-os se necessário.
-          </p>
-        </Col>
+        <p className="blue paragraphInfo">
+          Veja os medicamentos adicionados ao utilizador{" "}
+          {auth.currentUser.reloadUserInfo.email} e edite-os se necessário.
+        </p>
       </Row>
 
       <Row>
@@ -142,12 +140,7 @@ export default function MostrarMedicamentos() {
         </Link>
       </Row>
 
-      <Row className="contacts">
-        {
-          listItems
-          /* dados.map((fruit) => ) */
-        }
-      </Row>
+      <Row className="medicamentos">{listItems}</Row>
       <Navbar_platform_admin ativo={"mostrarmedicamentos"} />
     </div>
   );

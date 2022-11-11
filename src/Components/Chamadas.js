@@ -10,6 +10,8 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 import Data_Extensa from "./Data_Extensa";
+import desligar from "../images/icons/logout.png";
+
 const firebase = require("./firebase");
 
 const firebaseConfig = {
@@ -26,7 +28,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-var listItems, listItems_2;
+var listItems,
+  listItems_2 = [];
 
 export default class Chamadas extends Component {
   constructor(props) {
@@ -51,7 +54,7 @@ export default class Chamadas extends Component {
   closeEmergency = () => this.setState({ show2: false });
 
   logout = async () => {
-    console.log("logout");
+    //console.log("logout");
     await logout(auth);
     window.location.reload();
   };
@@ -66,28 +69,39 @@ export default class Chamadas extends Component {
         datas: Object.values(snapshot.val()),
       });
 
-      console.log(data);
+      //console.log(data);
     });
   }
 
   textoPesquisa = (event) => {
+    listItems_2 = [];
     this.setState({ pesquisa: event.target.value });
+
     if (event.target.value != "") {
       let searchQuery = event.target.value.toLowerCase();
+
+      //console.log(this.state.datas);
+
       for (const key in this.state.datas) {
-        let respost = this.state.datas[key].contacto_Nome.toLowerCase();
-        console.log(respost.slice(0, searchQuery.length).indexOf(searchQuery));
-        if (respost.slice(0, searchQuery.length).indexOf(searchQuery) !== -1) {
-          console.log(this.state.datas[key].contacto_Nome);
+        let nomeExiste = this.state.datas[key].contacto_Nome.toLowerCase();
+        let contactoTlmv = this.state.datas[key].contacto_telPesso;
+
+        if (nomeExiste.startsWith(searchQuery)) {
+          /* console.log({
+            thisstatedatas: this.state.datas[key].contacto_Nome.toLowerCase()
+          }); */
+
+          /* Esconde lista de todos os contactos */
           listItems = "";
           document.getElementById("div_content").style.display = "none";
           document.getElementById("div_content_v2").style.display = "flex";
-          listItems_2 = (
+
+          listItems_2.push(
             <Col className="contact" key={key}>
               <h3> {this.state.datas[key].contacto_Nome} </h3>
               <a
                 className="none_a_link"
-                href={`https://api.whatsapp.com/send?phone=${this.state.datas[key].contacto_telPesso}`}
+                href={`https://api.whatsapp.com/send?phone=${contactoTlmv}`}
                 target="_blank"
               >
                 <Button className="btnFillWhite blue">Ligar</Button>
@@ -97,11 +111,12 @@ export default class Chamadas extends Component {
         }
       }
     } else {
-      listItems_2 = "";
+      listItems_2 = [];
 
       if (this.state.datas.length > 0) {
         document.getElementById("div_content").style.display = "flex";
         document.getElementById("div_content_v2").style.display = "none";
+
         listItems = this.state.datas.map((data, i) => (
           <Col className="contact" key={i}>
             <h3> {data.contacto_Nome} </h3>
@@ -133,27 +148,36 @@ export default class Chamadas extends Component {
         </Col>
       ));
     } else {
-      listItems = <p className="blue medium">Não tem contactos adicionados pela Probranca.</p>;
+      listItems = (
+        <p className="blue medium">
+          Não tem contactos adicionados pela Probranca.
+        </p>
+      );
     }
 
     return (
       <div>
         <div className="frame" id="chamadas">
           <Row>
-            <Col xs={8}>
+            <Col xs={9}>
               <h1 className="green">Chamadas</h1>
-              <Data_Extensa/>
-              <p className="blue paragraphInfo">
-                Aqui pode ligar para os seus contactos preferidos. Para fazer uma chamada WhatsApp, carregue no nome da pessoa com quem pretende falar.
-              <br/>
-                Para aceder a outros espaços da plataforma, navegue nos botões da barra à direita
-              </p>
+              <Data_Extensa />
             </Col>
 
-            <Col xs={4} className="btnsAjuda">
-              <Button className="btnInfo blue" onClick={this.openSponsors}>
-                i
-              </Button>
+            <Col xs={3} className="btnsAjuda">
+              <Row>
+                <Button
+                  className="btnInfo blue"
+                  id="desligar"
+                  onClick={this.logout}
+                >
+                  <img src={desligar} />
+                </Button>
+
+                <Button className="btnInfo blue" onClick={this.openSponsors}>
+                  i
+                </Button>
+              </Row>
 
               <Button
                 className="btnBorderRed blue"
@@ -164,6 +188,16 @@ export default class Chamadas extends Component {
                 Emergência
               </Button>
             </Col>
+
+            <Row>
+              <p className="blue paragraphInfo">
+                Ligue para os seus contactos preferidos. Para fazer uma chamada
+                WhatsApp, carregue no nome da pessoa com quem pretende falar.
+                <br />
+                Para aceder a outros espaços da plataforma, navegue nos botões
+                da barra à direita.
+              </p>
+            </Row>
           </Row>
 
           <Row>

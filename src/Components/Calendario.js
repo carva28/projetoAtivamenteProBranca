@@ -12,6 +12,7 @@ import consultasIcone from "../images/icons/consultas.svg";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 import moment from "moment";
 import Data_Extensa from "./Data_Extensa";
+import desligar from "../images/icons/logout.png";
 
 const firebase = require("./firebase");
 const firebaseConfig = {
@@ -30,6 +31,7 @@ var listMedicamentos,
   listConsultas,
   listConsultasPassadas,
   consultasPassadas = [];
+
 export default class Calendario extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +64,7 @@ export default class Calendario extends Component {
         this.setState({
           variavel_consulta: data.var_consulta,
         });
-        console.log("Já tem dados");
+        //console.log("Já tem dados");
       }
     });
   };
@@ -73,7 +75,7 @@ export default class Calendario extends Component {
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
 
-      console.log(data);
+      //console.log(data);
 
       if (data == null) {
         const db = getDatabase();
@@ -87,7 +89,7 @@ export default class Calendario extends Component {
         this.setState({
           variavel_medicame: data.variavel_medicame,
         });
-        console.log("Já tem dados");
+        //console.log("Já tem dados");
       }
     });
   };
@@ -113,7 +115,7 @@ export default class Calendario extends Component {
         consultas: Object.values(snapshot.val()),
       });
 
-      console.log(Object.values(snapshot.val()));
+      //console.log(Object.values(snapshot.val()));
     });
   };
 
@@ -124,7 +126,7 @@ export default class Calendario extends Component {
   closeEmergency = () => this.setState({ show2: false });
 
   logout = async () => {
-    console.log("logout");
+    //console.log("logout");
     await logout(auth);
     window.location.reload();
   };
@@ -148,14 +150,12 @@ export default class Calendario extends Component {
 
     if (this.state.medicamentos.length > 0) {
       listMedicamentos = this.state.medicamentos.map((data, i) => (
-        <>
-          <p className="bold" key={i}>
-            {data.momento_tomar}
+        <Row>
+          <p key={i}>
+            {data.momento_tomar} tome{" "}
+            <span className="bold">{data.medicamento}</span>
           </p>
-          <p>
-            1 cápsula de <span className="medium">{data.medicamento}</span>
-          </p>
-        </>
+        </Row>
       ));
     } else {
       <p className="bold">Não tem medicamentos para tomar</p>;
@@ -212,7 +212,7 @@ export default class Calendario extends Component {
     if (consultasPassadas.length > 0) {
       listConsultasPassadas = consultasPassadas.map((dataPassada, i) => {
         return (
-          <>
+          <Col xs={6}>
             <p className="bold" key={i}>
               {dataPassada[0]}
             </p>
@@ -220,7 +220,7 @@ export default class Calendario extends Component {
               Dia <span className="medium">{dataPassada[1]}</span> às{" "}
               <span className="medium">{dataPassada[2]}</span>
             </p>
-          </>
+          </Col>
         );
       });
     }
@@ -232,19 +232,25 @@ export default class Calendario extends Component {
       <div>
         <div className="frame" id="calendario">
           <Row>
-            <Col xs={8}>
+            <Col xs={9}>
               <h1 className="green">Calendário</h1>
-              <Data_Extensa/>
-              <p className="blue paragraphInfo">
-                Aqui pode ver as suas próximas consultas, os medicamento que está a tomar e as consultas anteriores.
-                Para aceder a outros espaços da plataforma, navegue nos botões da barra à direita
-              </p>
+              <Data_Extensa />
             </Col>
 
-            <Col xs={4} className="btnsAjuda">
-              <Button className="btnInfo blue" onClick={this.openSponsors}>
-                i
-              </Button>
+            <Col xs={3} className="btnsAjuda">
+              <Row>
+                <Button
+                  className="btnInfo blue"
+                  id="desligar"
+                  onClick={this.logout}
+                >
+                  <img src={desligar} />
+                </Button>
+
+                <Button className="btnInfo blue" onClick={this.openSponsors}>
+                  i
+                </Button>
+              </Row>
 
               <Button
                 className="btnBorderRed blue"
@@ -255,6 +261,14 @@ export default class Calendario extends Component {
                 Emergência
               </Button>
             </Col>
+
+            <Row>
+              <p className="blue paragraphInfo">
+                Aqui pode ver as suas próximas consultas, os medicamento que
+                está a tomar e as consultas anteriores. Para aceder a outros
+                espaços da plataforma, navegue nos botões da barra à direita
+              </p>
+            </Row>
           </Row>
 
           <Row className="cards">
@@ -278,20 +292,11 @@ export default class Calendario extends Component {
             <Card className="col-6 boxShadow">
               <h3 className="red">Tome os seguintes medicamentos:</h3>
 
-              <Row>
-                <Col xs={6}>
-                  {listMedicamentos}
+              <Row>{listMedicamentos}</Row>
 
-                  {/* <p className="bold">Almoço</p>
-                  <p>
-                    1 saqueta de <span className="medium">Fosfoglutina</span>
-                  </p> */}
-                </Col>
-
-                <Col xs={6} className="alignEnd">
-                  <img src={medicamentos} />
-                </Col>
-              </Row>
+              <Col xs={6} className="alignEnd">
+                <img src={medicamentos} />
+              </Col>
             </Card>
           </Row>
 
@@ -299,16 +304,9 @@ export default class Calendario extends Component {
             <Card className="col-12 boxShadow" id="consultasAnt">
               <h3 className="green">Consultas passadas</h3>
 
-              <Row>
-                <Col xs={6}>
-                  {listConsultasPassadas}
+              <Row>{listConsultasPassadas}</Row>
 
-                  {/* <p className="bold">03/07 às 10h40</p>
-                  <p>Hospital de Aveiro</p> */}
-                </Col>
-
-                <img src={consultasIcone} />
-              </Row>
+              <img src={consultasIcone} />
             </Card>
           </Row>
 

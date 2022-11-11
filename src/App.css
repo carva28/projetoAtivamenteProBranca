@@ -28,7 +28,7 @@ h3 {
   font-size: 2.4rem;
 }
 
-.informacao_h3{
+.informacao_h3 {
   margin-top: 60px;
   margin-bottom: 60px;
   font-size: 2.4rem;
@@ -61,6 +61,22 @@ p {
 .darkgreen {
   color: #387c66;
   font-weight: bold;
+}
+
+.chamadas {
+  color: #1c8f46;
+}
+
+.saude {
+  color: #29a0ff;
+}
+
+.youtube {
+  color: #c4302b;
+}
+
+.jogos {
+  color: #f25c05;
 }
 
 .none_a_link,
@@ -97,6 +113,7 @@ p {
   font-weight: 500;
   height: auto;
   border: none;
+  font-size: 2rem;
 }
 
 .btn {
@@ -114,8 +131,10 @@ p {
   border: 2px solid #223a5f;
 }
 
-input[type="text"],input[type="email"],input[type="password"]{
-  font-size: 2.0rem;
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  font-size: 2rem;
 }
 
 input[type="submit"].form-control,
@@ -199,6 +218,14 @@ input[type="submit"].form-control:focus {
   color: inherit;
 }
 
+#desligar {
+  margin-right: 20px;
+}
+
+#desligar img {
+  width: 28px;
+}
+
 .btnCenter {
   margin: 10px auto 30px;
   display: block;
@@ -215,9 +242,9 @@ input[type="submit"].form-control:focus {
 }
 
 .btnSmaller {
-  padding: 12px 15px;
+  /*  padding: 12px 15px; */
   background-color: transparent;
-  font-size: 1rem;
+  /* font-size: 1rem; */
 }
 
 .form-label {
@@ -225,7 +252,7 @@ input[type="submit"].form-control:focus {
   margin-bottom: 10px;
   margin-top: 30px;
   padding: 0;
-  font-size: 2.0rem;
+  font-size: 2rem;
 }
 
 .alignBtns {
@@ -249,7 +276,7 @@ input[type="submit"].form-control:focus {
 }
 
 .frame {
-  width: 88%;
+  width: 85%;
   max-width: 100%;
   padding: 60px;
 }
@@ -284,6 +311,8 @@ input[type="submit"].form-control:focus {
 .cards .row {
   padding: 0;
   margin: 0;
+  justify-content: space-between;
+  text-transform: initial;
 }
 
 .cards h3 {
@@ -296,6 +325,11 @@ input[type="submit"].form-control:focus {
 
 .cards img {
   width: 100%;
+}
+
+#emergency {
+  font-size: 1.4rem;
+  padding: 10px 25px;
 }
 
 #emergency img {
@@ -313,13 +347,9 @@ input[type="submit"].form-control:focus {
 }
 
 .otherSources.row {
-  width: 80%;
-  max-width: 80%;
-  margin: 50px auto 20px;
-}
-
-.outsideSource {
-  margin-top: 40px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto 20px;
 }
 
 .outsideSource iframe,
@@ -412,13 +442,13 @@ input[type="submit"].form-control:focus {
 }
 
 .row#topicsMenu {
-  width: 180px;
+  width: 200px;
   margin: 0 auto;
-  height: 78%;
+  height: 100vh;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: flex-start;
-  row-gap: 22px;
+  justify-content: center;
+  row-gap: 25px;
   overflow: scroll;
 }
 
@@ -431,7 +461,11 @@ input[type="submit"].form-control:focus {
   margin: 0 auto;
   padding: 18px 0 14px;
   border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+#navBar.adminNav .linksMenu p {
+  font-size: 1.2rem;
 }
 
 .linksMenu.active {
@@ -448,10 +482,10 @@ input[type="submit"].form-control:focus {
   max-width: 90%;
   text-align: center;
   font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.2rem;
+  font-size: 1.4rem;
+  line-height: 1.4rem;
   display: block;
-  margin: 2px auto 0;
+  margin: 15px auto 0;
 }
 
 #chamadasMenu {
@@ -472,7 +506,7 @@ input[type="submit"].form-control:focus {
 
 #jogosMenu {
   background-color: #f25c05;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 /* LOGIN / REGISTO */
@@ -591,6 +625,35 @@ p.mainComponents {
 }
 
 /* HOME */
+#home {
+  /* apagar se voltarmos p/ backup */
+  width: 90%;
+  margin: 60px auto;
+  padding: 0;
+}
+
+#home .linksMenu {
+  width: 100%;
+  margin: 0;
+  padding: 40px 0;
+}
+
+#home .linksMenu#inicio {
+  /* width: 33.3333%; */
+  background-color: #5eb398;
+}
+
+#home .linksMenu img {
+  width: 50px;
+}
+
+#home .linksMenu p {
+  font-size: 1.8rem;
+}
+
+#entrada .row {
+  margin: 25px 0;
+}
 
 /* CHAMADAS */
 #searchContact {
@@ -632,8 +695,9 @@ p.mainComponents {
   top: 30px;
   right: 20px;
 }
+
 .card#consultasAnt p:nth-child(even):last-of-type {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 /* ADMIN */
@@ -641,6 +705,27 @@ p.mainComponents {
   width: 100%;
   margin: 30px -15px -10px;
   font-weight: bold;
+}
+
+.medicamentos {
+  padding: 0;
+  margin: 20px 0 0;
+  column-gap: 20px;
+  justify-content: space-between;
+}
+
+.medicamento {
+  width: 48%;
+  padding: 25px 30px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: #223a5f;
+  color: #fff;
+}
+
+.medicamento button {
+  margin-top: 15px;
+  float: right;
 }
 
 /***** SOLITÁRIO *****/
@@ -866,22 +951,34 @@ div.square {
   text-align: center;
   color: #223a5f;
 }
+
 div.result {
   font-size: 2rem;
-  padding: 10px;
-}
-div.result.green {
-  background-color: #5eb398;
-  height: 100px;
-}
-div.result.red {
-  background-color: #ff5e4e;
-  height: 100px;
+  padding: 20px 15px;
+  /* height: 100px; */
 }
 
-div.result.red p,
-div.result.green p {
-  font-size: 3.5rem;
+div.result.green {
+  background-color: #5eb398;
+}
+
+div.result.red {
+  background-color: #ff5e4e;
+}
+
+div.result.empate {
+  background-color: #223a5f;
+}
+
+div.result p {
+  font-size: 3rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+div.result button {
+  margin: 15px auto 10px;
+  display: block;
 }
 
 /***** Adicionar contactos ******/
@@ -896,9 +993,11 @@ div.result.green p {
 
 /*****   Data  ********/
 
-#data_Extenso{
-  margin-top: 1em;
+#dataExtensa {
+  margin-top: 15px;
   margin-bottom: 0.7em;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 @media only screen and (orientation: portrait) {

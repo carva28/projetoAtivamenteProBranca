@@ -77,7 +77,7 @@ export default class AdicionarConsultas extends Component {
       this.setState({
         variavel_consulta: data.var_consulta,
       });
-      console.log(data);
+      //console.log(data);
     });
   };
 
@@ -101,7 +101,7 @@ export default class AdicionarConsultas extends Component {
           time_consulta: this.state.time_consulta,
         }
       ).catch((error) => console.log(error));
-      console.log("DATA SAVED");
+      //console.log("DATA SAVED");
 
       this.setState({
         display_feedback: "block",
@@ -115,7 +115,7 @@ export default class AdicionarConsultas extends Component {
         set(ref(db, `Newdata_${this.state.uuid}/variaveis`), {
           var_consulta: this.state.variavel_consulta + 1,
         }).catch((error) => console.log(error));
-        console.log("DATA SAVED__2");
+        //console.log("DATA SAVED__2");
       }, 5000);
     }
   };
@@ -136,15 +136,13 @@ export default class AdicionarConsultas extends Component {
     return (
       <div className="frame">
         <Row>
-          <Col xs={8}>
-            <h1 className="green">Adicionar nova consulta</h1>
+          <h1 className="green">Adicionar nova consulta</h1>
 
-            <p className="blue paragraphInfo">
-              Nas caixas abaixo, insira as informações para adicionar um nova
-              consulta à conta do utilizador{" "}
-              <span className="darkgreen"> {this.state.email}</span>.
-            </p>
-          </Col>
+          <p className="blue paragraphInfo">
+            Nas caixas abaixo, insira as informações para adicionar um nova
+            consulta à conta do utilizador{" "}
+            <span className="darkgreen"> {this.state.email}</span>.
+          </p>
         </Row>
 
         <Form.Label id="label_p" className="green">
@@ -153,7 +151,7 @@ export default class AdicionarConsultas extends Component {
 
         <Form.Control
           type="text"
-          placeholder="Introduza a especialidade da consulta"
+          placeholder="(ex.: Cardiologia)"
           className="blue"
           onChange={this.inputName}
         />
