@@ -155,7 +155,7 @@ export default class Home extends Component {
               </Col>
 
               <Col>
-                <Link to="/">
+                <Link to="/videos">
                   <div id="videosMenu" className="linksMenu">
                     <img src={videosBranco} />
                     <p className="white">YouTube</p>
