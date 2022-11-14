@@ -39,7 +39,9 @@ var listMedicamentos,
   email_UserAtivo,
   email_UserAtivo1,
   email_UserAtivo2,
-  email_UserAtivo3;
+  email_UserAtivo3,
+  sec_ProBranc,
+  setsec_ProBranc;
 
 export default class Home extends Component {
   constructor(props) {
@@ -54,6 +56,7 @@ export default class Home extends Component {
       variavel_consulta: 0,
       medicamentos: [],
       consultas: [],
+      codigo: null,
     };
   }
 
@@ -72,10 +75,22 @@ export default class Home extends Component {
     window.location.reload();
   };
 
+  componentDidMount() {
+    const db = getDatabase();
+    const starCountRef = ref(db, "ProBrancaSec");
+
+    onValue(starCountRef, (snapshot) => {
+      var data = snapshot.val();
+
+      this.setState({
+        codigo: data,
+      });
+    });
+  }
+
   render() {
     if (auth.currentUser.email != "") {
       email_UserAtivo = auth.currentUser.email;
-
       email_UserAtivo1 = email_UserAtivo.replace("@gmail.com", "");
       email_UserAtivo2 = email_UserAtivo1.replace("@ua.pt", "");
       email_UserAtivo3 = email_UserAtivo2.replace(".", " ");
@@ -97,16 +112,12 @@ export default class Home extends Component {
 
             <Col xs={3} className="btnsAjuda">
               <Row>
-                <Button
-                  className="btnInfo blue"
-                  id="desligar"
-                  onClick={this.logout}
-                >
-                  <img src={desligar} />
-                </Button>
-
                 <Button className="btnInfo blue" onClick={this.openSponsors}>
                   i
+                </Button>
+
+                <Button className="btnFill" id="desligar" onClick={this.logout}>
+                  <img src={desligar} />
                 </Button>
               </Row>
 
@@ -204,21 +215,21 @@ export default class Home extends Component {
           </Modal.Body>
 
           <Modal.Footer>
-            <Link to="/mostrarcontactos">
-              <Button className="btnFill">
-                Ir para a ferramenta de administração
-              </Button>
-            </Link>
+            {window.location.href.indexOf(this.state.codigo) != -1 ? (
+              <Link to="/mostrarcontactos">
+                <Button className="btnFill">
+                  Ir para a ferramenta de administração
+                </Button>
+              </Link>
+            ) : (
+              ""
+            )}
 
             <a href={importarPDF} target="_blank">
               <Button className="btnFill">
                 Consultar as Condições de Utilização
               </Button>
             </a>
-
-            {/* <Button className="btnFill">
-              Sair da conta
-            </Button> */}
 
             <Button
               className="btnBorderBlue blue btnSmaller"

@@ -74,12 +74,24 @@ function App() {
         <Routes>
           <Route path="*" element={<Home />} />
           <Route path="/" element={<Home />} />
+          <Route path={`/${sec_ProBranc}`} element={<Home />} />
+
           <Route path="/chamadas" element={<Chamadas />} />
+          <Route path={`/chamadas${sec_ProBranc}`} element={<Chamadas />} />
+
           <Route path="/calendario" element={<Calendario />} />
+          <Route path={`/calendario${sec_ProBranc}`} element={<Calendario />} />
+
           <Route path="/videos" element={<Video />} />
+          <Route path={`/videos${sec_ProBranc}`} element={<Video />} />
+
           <Route path="/jogos" element={<Jogos />} />
+          <Route path={`/jogos${sec_ProBranc}`} element={<Jogos />} />
+
           <Route path="/solitario" element={<Solitario />} />
           <Route path="/jogogalo" element={<JogoGalo />} />
+
+          {/* admin */}
           <Route path="/mostrarcontactos" element={<MostrarContactos />} />
           <Route path="/userespec" element={<UserSpeciCont />} />
           <Route path="/adicionarconsulta" element={<AdicionarConsultas />} />

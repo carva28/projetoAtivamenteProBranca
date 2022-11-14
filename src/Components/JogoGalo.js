@@ -22,7 +22,7 @@ const lines = [
 
 export default function JogoGalo() {
   function refreshPage() {
-    window.location.reload(false);
+    window.location.reload();
   }
 
   const [squares, setSquares] = useState(defaultSquares());

@@ -44,6 +44,7 @@ export default class Chamadas extends Component {
       pesquisa: "",
       resultado: [],
       estado: false,
+      codigo: null,
     };
   }
 
@@ -68,8 +69,16 @@ export default class Chamadas extends Component {
       this.setState({
         datas: Object.values(snapshot.val()),
       });
+    });
 
-      //console.log(data);
+    const starCountRef2 = ref(db, "ProBrancaSec");
+
+    onValue(starCountRef2, (snapshot) => {
+      var data = snapshot.val();
+
+      this.setState({
+        codigo: data,
+      });
     });
   }
 
@@ -166,16 +175,12 @@ export default class Chamadas extends Component {
 
             <Col xs={3} className="btnsAjuda">
               <Row>
-                <Button
-                  className="btnInfo blue"
-                  id="desligar"
-                  onClick={this.logout}
-                >
-                  <img src={desligar} />
-                </Button>
-
                 <Button className="btnInfo blue" onClick={this.openSponsors}>
                   i
+                </Button>
+
+                <Button className="btnFill" id="desligar" onClick={this.logout}>
+                  <img src={desligar} />
                 </Button>
               </Row>
 
@@ -191,8 +196,9 @@ export default class Chamadas extends Component {
 
             <Row>
               <p className="blue paragraphInfo">
-                Ligue para os seus contactos preferidos. Para fazer uma chamada
-                WhatsApp, carregue no nome da pessoa com quem pretende falar.
+                Ligue para os seus contactos preferidos pelo WhatsApp. Para
+                efetuar uma chamada, clique em "Ligar" junto ao nome da pessoa
+                com quem pretende falar.
                 <br />
                 Para aceder a outros espaços da plataforma, navegue nos botões
                 da barra à direita.
@@ -266,15 +272,15 @@ export default class Chamadas extends Component {
             </Modal.Body>
 
             <Modal.Footer>
-              <Link to="/mostrarcontactos">
-                <Button className="btnFill">
-                  Ir para a ferramenta de administração
-                </Button>
-              </Link>
-
-              <Button className="btnFill" onClick={this.logout}>
-                Sair da conta
-              </Button>
+              {window.location.href.indexOf(this.state.codigo) != -1 ? (
+                <Link to="/mostrarcontactos">
+                  <Button className="btnFill">
+                    Ir para a ferramenta de administração
+                  </Button>
+                </Link>
+              ) : (
+                ""
+              )}
 
               <Button
                 className="btnBorderBlue blue btnSmaller"

@@ -44,6 +44,7 @@ export default class Calendario extends Component {
       variavel_consulta: 0,
       medicamentos: [],
       consultas: [],
+      codigo: null,
     };
   }
 
@@ -114,8 +115,6 @@ export default class Calendario extends Component {
       this.setState({
         consultas: Object.values(snapshot.val()),
       });
-
-      //console.log(Object.values(snapshot.val()));
     });
   };
 
@@ -126,7 +125,6 @@ export default class Calendario extends Component {
   closeEmergency = () => this.setState({ show2: false });
 
   logout = async () => {
-    //console.log("logout");
     await logout(auth);
     window.location.reload();
   };
@@ -136,6 +134,17 @@ export default class Calendario extends Component {
     this.getVariavelMedicamentos();
     this.getMedicamentosList();
     this.getConsultasList();
+
+    const db = getDatabase();
+    const starCountRef = ref(db, "ProBrancaSec");
+
+    onValue(starCountRef, (snapshot) => {
+      var data = snapshot.val();
+
+      this.setState({
+        codigo: data,
+      });
+    });
   }
 
   render() {
@@ -232,22 +241,18 @@ export default class Calendario extends Component {
         <div className="frame" id="calendario">
           <Row>
             <Col xs={9}>
-              <h1 className="green">Calendário</h1>
+              <h1 className="green">Saúde</h1>
               <Data_Extensa />
             </Col>
 
             <Col xs={3} className="btnsAjuda">
               <Row>
-                <Button
-                  className="btnInfo blue"
-                  id="desligar"
-                  onClick={this.logout}
-                >
-                  <img src={desligar} />
-                </Button>
-
                 <Button className="btnInfo blue" onClick={this.openSponsors}>
                   i
+                </Button>
+
+                <Button className="btnFill" id="desligar" onClick={this.logout}>
+                  <img src={desligar} />
                 </Button>
               </Row>
 
@@ -263,9 +268,11 @@ export default class Calendario extends Component {
 
             <Row>
               <p className="blue paragraphInfo">
-                Aqui pode ver as suas próximas consultas, os medicamento que
-                está a tomar e as consultas anteriores. Para aceder a outros
-                espaços da plataforma, navegue nos botões da barra à direita
+                Aqui pode ver as suas próximas consultas, os medicamentos que
+                deve tomar e as suas consultas anteriores.
+                <br />
+                Para aceder a outros espaços da plataforma, navegue nos botões
+                da barra à direita
               </p>
             </Row>
           </Row>
@@ -319,15 +326,15 @@ export default class Calendario extends Component {
             </Modal.Body>
 
             <Modal.Footer>
-              <Link to="/mostrarcontactos">
-                <Button className="btnFill">
-                  Ir para a ferramenta de administração
-                </Button>
-              </Link>
-
-              <Button className="btnFill" onClick={this.logout}>
-                Sair da conta
-              </Button>
+              {window.location.href.indexOf(this.state.codigo) != -1 ? (
+                <Link to="/mostrarcontactos">
+                  <Button className="btnFill">
+                    Ir para a ferramenta de administração
+                  </Button>
+                </Link>
+              ) : (
+                ""
+              )}
 
               <Button
                 className="btnBorderBlue blue btnSmaller"

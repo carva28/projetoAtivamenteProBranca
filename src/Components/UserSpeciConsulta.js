@@ -85,7 +85,7 @@ export default function UserSpeciConsulta() {
         contacto_Nome: nomeConsulta,
         time_consulta: time_consulta,
       }).catch((error) => console.log(error));
-      console.log("DATA SAVED");
+      /* console.log("DATA SAVED"); */
 
       setdisplaySate("block");
       var timer = setTimeout(() => {

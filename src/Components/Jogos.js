@@ -10,6 +10,7 @@ import emergency from "../images/icons/emergencia.png";
 import { useNavigate, Link } from "react-router-dom";
 import Data_Extensa from "./Data_Extensa";
 import desligar from "../images/icons/logout.png";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 
 export class Jogos extends Component {
   constructor(props) {
@@ -18,7 +19,21 @@ export class Jogos extends Component {
     this.state = {
       show: false,
       show2: false,
+      codigo: null,
     };
+  }
+
+  componentDidMount() {
+    const db = getDatabase();
+    const starCountRef = ref(db, "ProBrancaSec");
+
+    onValue(starCountRef, (snapshot) => {
+      var data = snapshot.val();
+
+      this.setState({
+        codigo: data,
+      });
+    });
   }
 
   openSponsors = () => this.setState({ show: true });
@@ -28,7 +43,6 @@ export class Jogos extends Component {
   closeEmergency = () => this.setState({ show2: false });
 
   logout = async () => {
-    console.log("logout");
     await logout(auth);
     window.location.reload();
   };
@@ -45,16 +59,12 @@ export class Jogos extends Component {
 
             <Col xs={3} className="btnsAjuda">
               <Row>
-                <Button
-                  className="btnInfo blue"
-                  id="desligar"
-                  onClick={this.logout}
-                >
-                  <img src={desligar} />
-                </Button>
-
                 <Button className="btnInfo blue" onClick={this.openSponsors}>
                   i
+                </Button>
+
+                <Button className="btnFill" id="desligar" onClick={this.logout}>
+                  <img src={desligar} />
                 </Button>
               </Row>
 
@@ -178,15 +188,15 @@ export class Jogos extends Component {
           </Modal.Body>
 
           <Modal.Footer>
-            <Link to="/mostrarcontactos">
-              <Button className="btnFill">
-                Ir para a ferramenta de administração
-              </Button>
-            </Link>
-
-            <Button className="btnFill" onClick={this.logout}>
-              Sair da conta
-            </Button>
+            {window.location.href.indexOf(this.state.codigo) != -1 ? (
+              <Link to="/mostrarcontactos">
+                <Button className="btnFill">
+                  Ir para a ferramenta de administração
+                </Button>
+              </Link>
+            ) : (
+              ""
+            )}
 
             <Button
               className="btnBorderBlue blue btnSmaller"

@@ -20,7 +20,6 @@ const firebaseConfig = {
     "https://ativamenteprobranca-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
-
 const app = initializeApp(firebaseConfig);
 let renderComponentButton;
 class Registo extends React.Component {
@@ -35,8 +34,6 @@ class Registo extends React.Component {
       showAlert: false,
     };
   }
-
-
 
   register = async () => {
     try {
@@ -56,10 +53,7 @@ class Registo extends React.Component {
     }
   };
 
-
-  login = async () => { };
-
-
+  login = async () => {};
 
   render() {
     const showAlert = this.state.showAlert;
@@ -69,7 +63,12 @@ class Registo extends React.Component {
         <Col xs={{ order: 1 }} id="bgMain">
           <img src={imgRegisto} />
 
-          <h1 className="mainComponents white">Registe-se</h1>
+          <Row>
+            <h1 className="mainComponents white">Registo</h1>
+            <p className="mainComponents white">
+              Efetue o registo de utente da ProBranca, preenchendo os campos apresentados.
+            </p>
+          </Row>
         </Col>
 
         <Col xs={{ order: 1 }} id="noBgMain">
@@ -84,7 +83,7 @@ class Registo extends React.Component {
               color="success"
               style={{ display: showAlert ? "block" : "none" }}
             >
-              This is a success alert — check it out!
+              Sucesso
             </Alert>
 
             <Form.Label id="label_p" className="green">
@@ -126,7 +125,6 @@ class Registo extends React.Component {
               required
             />
 
-
             <Row className="alignBtns">
               <Form.Control
                 onClick={this.register}
@@ -135,7 +133,6 @@ class Registo extends React.Component {
                 className="btnFill"
               />
             </Row>
-
 
             <Row id="irParaReg">
               <p>

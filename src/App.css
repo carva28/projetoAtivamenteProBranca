@@ -209,6 +209,7 @@ input[type="submit"].form-control:focus {
 
 .btn.btnInfo,
 .btn.btnInfo:active {
+  margin-right: 20px;
   background-color: #ebeff0;
   font-family: "Lora", Times, serif;
   padding: 6px 22px;
@@ -219,7 +220,8 @@ input[type="submit"].form-control:focus {
 }
 
 #desligar {
-  margin-right: 20px;
+  margin-right: 12px;
+  padding: 10px 20px;
 }
 
 #desligar img {
@@ -284,9 +286,9 @@ input[type="submit"].form-control:focus {
 .btnsAjuda {
   display: flex;
   align-items: flex-end;
-  justify-content: flex-start;
   flex-flow: column wrap;
-  gap: 20px;
+  justify-content: flex-start;
+  row-gap: 20px;
   padding: 0;
 }
 
