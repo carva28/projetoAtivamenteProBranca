@@ -118,7 +118,7 @@ function App() {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="*" element={<Login />} />
+          {/* <Route path="*" element={<Login />} /> */}
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path={`/registar${sec_ProBranc}`} element={<Registo />} />
