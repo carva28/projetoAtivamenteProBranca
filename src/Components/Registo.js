@@ -4,7 +4,7 @@ import { auth, createUserWithEmailAndPassword } from "./firebase";
 import imgRegisto from "../images/characters/registo.svg";
 import { Link } from "react-router-dom";
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, updatePassword } from "firebase/auth";
 import { getDatabase, ref, set, onValue } from "firebase/database";
 const firebase = require("./firebase");
 
@@ -31,6 +31,7 @@ class Registo extends React.Component {
       name: "",
       email: "",
       password: "",
+      novaPassword: "",
       showAlert: false,
     };
   }
@@ -49,11 +50,35 @@ class Registo extends React.Component {
         showAlert: true,
       });
     } catch (error) {
-      console.log("Register \n" + error);
+      let ar = [];
+      ar.push(error);
+
+      if (ar[0].code == "auth/weak-password") {
+        document.getElementById("error_registo").innerHTML =
+          "A password deve conter no minímo 6 caracteres";
+      } else if (ar[0].code == "auth/email-already-in-use") {
+        document.getElementById("error_registo").innerHTML =
+          "O email que inseriu já está registado";
+      }
     }
   };
 
-  login = async () => {};
+  recuperarPassword = async () => {
+    const auth = getAuth();
+
+    const user = auth.currentUser;
+
+    updatePassword(user, this.state.novaPassword)
+      .then(() => {
+        // Update successful.
+        console.log("Sucesso");
+      })
+      .catch((error) => {
+        // An error ocurred
+        // ...
+        console.log(error);
+      });
+  };
 
   render() {
     const showAlert = this.state.showAlert;
@@ -66,7 +91,8 @@ class Registo extends React.Component {
           <Row>
             <h1 className="mainComponents white">Registo</h1>
             <p className="mainComponents white">
-              Efetue o registo de utente da ProBranca, preenchendo os campos apresentados.
+              Efetue o registo de utente da ProBranca, preenchendo os campos
+              apresentados.
             </p>
           </Row>
         </Col>
@@ -126,6 +152,28 @@ class Registo extends React.Component {
             />
 
             <Row className="alignBtns">
+              <p id="error_registo" className="red"></p>
+              <div id="recuperarPass"></div>
+              <Form.Label id="label_p" className="green">
+                Nova palavra-passe{" "}
+              </Form.Label>
+              
+              <Form.Control
+                id="input"
+                type="password"
+                value={this.state.novaPassword}
+                onChange={(e) =>
+                  this.setState({ novaPassword: e.target.value })
+                }
+
+                className="btnFill"
+              />
+              <Form.Control
+                onClick={this.recuperarPassword}
+                type="submit"
+                value="Recuperar"
+                className="btnFill"
+              />
               <Form.Control
                 onClick={this.register}
                 type="submit"

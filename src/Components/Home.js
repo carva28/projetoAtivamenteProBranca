@@ -91,6 +91,9 @@ export default class Home extends Component {
   render() {
     if (auth.currentUser.email != "") {
       email_UserAtivo = auth.currentUser.email;
+      email_UserAtivo1 = email_UserAtivo.replace("@oninet.pt", "");
+      email_UserAtivo1 = email_UserAtivo.replace("@sapo.pt", "");
+      email_UserAtivo1 = email_UserAtivo.replace("@hotmail.com", "");
       email_UserAtivo1 = email_UserAtivo.replace("@gmail.com", "");
       email_UserAtivo2 = email_UserAtivo1.replace("@ua.pt", "");
       email_UserAtivo3 = email_UserAtivo2.replace(".", " ");
