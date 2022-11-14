@@ -141,7 +141,7 @@ export default class Home extends Component {
 
           <div id="entrada">
             <Row>
-              <Col>
+              <Col xs={4}>
                 {/* <Link to="/">
                   <div className="linksMenu" id="inicio">
                     <img src={homeBranco} alt="Menu para voltar a início" />
@@ -156,7 +156,7 @@ export default class Home extends Component {
                 </Link>
               </Col>
 
-              <Col>
+              <Col xs={4}>
                 <Link to="/calendario">
                   <div id="calendarioMenu" className="linksMenu">
                     <img src={saudeBranco} />
@@ -165,7 +165,7 @@ export default class Home extends Component {
                 </Link>
               </Col>
 
-              <Col>
+              <Col xs={4}>
                 <Link to="/videos">
                   <div id="videosMenu" className="linksMenu">
                     <img src={videosBranco} />
@@ -176,7 +176,7 @@ export default class Home extends Component {
             </Row>
 
             <Row>
-              <Col>
+              <Col xs={4}>
                 <div
                   id="zoomMenu"
                   className="linksMenu"
@@ -187,7 +187,7 @@ export default class Home extends Component {
                 </div>
               </Col>
 
-              <Col>
+              <Col xs={4}>
                 <Link to="/jogos">
                   <div id="jogosMenu" className="linksMenu">
                     <img src={jogosBranco} />
@@ -195,8 +195,6 @@ export default class Home extends Component {
                   </div>
                 </Link>
               </Col>
-
-              <Col></Col>
             </Row>
           </div>
         </div>

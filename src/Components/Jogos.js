@@ -160,7 +160,7 @@ export class Jogos extends Component {
                   </Col>
 
                   <Col>
-                    <a href="play.google.com/store/apps/details?id=air.br.com.sueca.mobile">
+                    <a href="https://play.google.com/store/apps/details?id=air.br.com.sueca.mobile">
                       <Button className="btnGames btnFill alignCenter">
                         Jogar "Sueca"
                       </Button>
