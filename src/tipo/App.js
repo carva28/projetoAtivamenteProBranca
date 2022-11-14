@@ -30,6 +30,7 @@ import MostrarMedicamentos from "./Components/MostrarMedicamentos";
 import UserSpeciMedicamento from "./Components/UserSpeciMedicamento";
 import { initializeApp } from "firebase/app";
 
+
 import { getDatabase, ref, set, onValue } from "firebase/database";
 const firebase = require("./Components/firebase");
 
@@ -45,6 +46,7 @@ const firebaseConfig = {
     "https://ativamenteprobranca-default-rtdb.europe-west1.firebasedatabase.app/",
 };
 
+
 const app = initializeApp(firebaseConfig);
 
 function App() {
@@ -57,41 +59,31 @@ function App() {
       setuser_normal(user);
       setisSignedIn(true);
     }
+
   });
 
   useEffect(() => {
     const db = getDatabase();
     const starCountRef = ref(db, "ProBrancaSec");
-
     onValue(starCountRef, (snapshot) => {
-      setsec_ProBranc(snapshot.val());
+      setsec_ProBranc(snapshot.val())
     });
+
   });
 
   if (isSignedIn) {
+
     return (
       <BrowserRouter>
         <Routes>
           <Route path="*" element={<Home />} />
           <Route path="/" element={<Home />} />
-          <Route path={`/${sec_ProBranc}`} element={<Home />} />
-
           <Route path="/chamadas" element={<Chamadas />} />
-          <Route path={`/chamadas${sec_ProBranc}`} element={<Chamadas />} />
-
           <Route path="/calendario" element={<Calendario />} />
-          <Route path={`/calendario${sec_ProBranc}`} element={<Calendario />} />
-
           <Route path="/videos" element={<Video />} />
-          <Route path={`/videos${sec_ProBranc}`} element={<Video />} />
-
           <Route path="/jogos" element={<Jogos />} />
-          <Route path={`/jogos${sec_ProBranc}`} element={<Jogos />} />
-
           <Route path="/solitario" element={<Solitario />} />
           <Route path="/jogogalo" element={<JogoGalo />} />
-
-          {/* admin */}
           <Route path="/mostrarcontactos" element={<MostrarContactos />} />
           <Route path="/userespec" element={<UserSpeciCont />} />
           <Route path="/adicionarconsulta" element={<AdicionarConsultas />} />
@@ -118,10 +110,10 @@ function App() {
     return (
       <BrowserRouter>
         <Routes>
-          {/* <Route path="*" element={<Login />} /> */}
+          <Route path="*" element={<Login />} />
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
-          <Route path={`/registar${sec_ProBranc}`} element={<Registo />} />
+          <Route path={"/registar/" + sec_ProBranc} element={<Registo />} />
         </Routes>
       </BrowserRouter>
     );
