@@ -44,7 +44,7 @@ export class Jogos extends Component {
 
   logout = async () => {
     await logout(auth);
-    window.location.reload();
+    window.location.replace("https://ativamenteprobranca.pt/");
   };
 
   render() {

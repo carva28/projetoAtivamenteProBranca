@@ -126,7 +126,8 @@ export default class Calendario extends Component {
 
   logout = async () => {
     await logout(auth);
-    window.location.reload();
+    //window.location.reload();
+    window.location.replace("https://ativamenteprobranca.pt/");
   };
 
   componentDidMount() {

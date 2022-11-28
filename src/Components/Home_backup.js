@@ -58,7 +58,7 @@ export default class Home extends Component {
   logout = async () => {
     //console.log("logout");
     await logout(auth);
-    window.location.reload();
+    window.location.replace("https://ativamenteprobranca.pt/");
   };
 
   getVariavelContactos = () => {

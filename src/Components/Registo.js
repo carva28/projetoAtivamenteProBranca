@@ -153,7 +153,7 @@ class Registo extends React.Component {
 
             <Row className="alignBtns">
               <p id="error_registo" className="red"></p>
-              <div id="recuperarPass"></div>
+              {/* <div id="recuperarPass"></div>
               <Form.Label id="label_p" className="green">
                 Nova palavra-passe{" "}
               </Form.Label>
@@ -173,7 +173,7 @@ class Registo extends React.Component {
                 type="submit"
                 value="Recuperar"
                 className="btnFill"
-              />
+              /> */}
               <Form.Control
                 onClick={this.register}
                 type="submit"

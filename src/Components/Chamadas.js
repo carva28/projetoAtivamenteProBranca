@@ -57,7 +57,7 @@ export default class Chamadas extends Component {
   logout = async () => {
     //console.log("logout");
     await logout(auth);
-    window.location.reload();
+    window.location.replace("https://ativamenteprobranca.pt/");
   };
 
   componentDidMount() {

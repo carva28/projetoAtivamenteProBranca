@@ -22,7 +22,7 @@ const lines = [
 
 export default function JogoGalo() {
   function refreshPage() {
-    window.location.reload();
+    window.location.replace("https://ativamenteprobranca.pt/");
   }
 
   const [squares, setSquares] = useState(defaultSquares());
