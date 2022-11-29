@@ -151,25 +151,18 @@ export default class Calendario extends Component {
   render() {
     var dateMaquina = new Date();
     let dia = dateMaquina.getDate();
-    let mes = dateMaquina.getMonth();
     let ano = dateMaquina.getFullYear();
 
+    let mes = dateMaquina.getMonth();
     if (mes > 1) {
       mes = mes + 1;
     }
 
-    if (this.state.medicamentos.length > 0) {
-      listMedicamentos = this.state.medicamentos.map((data, i) => (
-        <Row>
-          <p key={i}>
-            {data.momento_tomar} tome{" "}
-            <span className="bold">{data.medicamento}</span>.
-          </p>
-        </Row>
-      ));
-    } else {
-      <p className="bold">Não tem medicamentos para tomar</p>;
-    }
+    /* console.log({
+      dia: dia,
+      mes: mes,
+      ano: ano,
+    }); */
 
     if (this.state.consultas.length > 0) {
       consultasPassadas = [];
@@ -181,18 +174,32 @@ export default class Calendario extends Component {
         }
 
         let diaConsulta = dataConsulta.getDate();
+        /* console.log({
+          diaConsulta: diaConsulta,
+        }); */
+
         let dif_Ano = moment(ano.toString()).isSame(
           dataConsulta.getFullYear().toString()
         );
+
         let dif_Mes = moment(mes.toString()).isSame(mesConsulta.toString());
 
-        //se o mês o ano são iguais
-        if (dif_Ano && dif_Mes) {
+        /* console.log({
+          dataConsulta: dataConsulta,
+          mes: mes,
+          mesConsulta: mesConsulta,
+        }); */
+
+        // SE o mês atual é igual ENTÃO
+        if (mes == mesConsulta) {
+          console.log("mês atual == consulta");
+
+          // SE o dia da consulta for superior ao dia de hoje ENTÃO
           if (diaConsulta >= dia) {
             return (
               <Row>
                 <p key={i}>
-                  <span className="bold"> {data.contacto_Nome}</span>:
+                  <span className="bold">Consulta de {data.contacto_Nome}</span>
                   <br /> <span className="bold">
                     {data.data_consulta}
                   </span> às <span className="bold">{data.time_consulta}</span>
@@ -206,6 +213,20 @@ export default class Calendario extends Component {
               data.time_consulta,
             ]);
           }
+
+          // SE o mês atual é inferior ao mês da consulta ENTÃO
+        } else if (mes < mesConsulta) {
+          console.log("mês atual < consulta");
+          return (
+            <Row style={{ marginBottom: "20px" }}>
+              <p key={i}>
+                <span className="bold">Consulta de {data.contacto_Nome}</span>
+                <br /> <span className="bold">
+                  {data.data_consulta}
+                </span> às <span className="bold">{data.time_consulta}</span>
+              </p>
+            </Row>
+          );
         } else {
           consultasPassadas.push([
             data.contacto_Nome,
@@ -233,9 +254,19 @@ export default class Calendario extends Component {
         );
       });
     }
-    // else {
 
-    // }
+    if (this.state.medicamentos.length > 0) {
+      listMedicamentos = this.state.medicamentos.map((data, i) => (
+        <Row>
+          <p key={i}>
+            {data.momento_tomar} tome{" "}
+            <span className="bold">{data.medicamento}</span>.
+          </p>
+        </Row>
+      ));
+    } else {
+      <p className="bold">Não tem medicamentos para tomar</p>;
+    }
 
     return (
       <div>

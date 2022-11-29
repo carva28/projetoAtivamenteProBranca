@@ -55,15 +55,17 @@ export default function MostrarConsultas() {
   function tryFetch() {
     const db = getDatabase();
     const starCountRef = ref(db, `Newdata_${uuid}/consultas`);
+
     onValue(starCountRef, (snapshot) => {
       var data = snapshot.val();
+      console.log(data);
+
       setdados(data);
       setdatas(Object.values(snapshot.val()));
-
-      console.log(Object.values(snapshot.val()));
     });
 
     const starCountRef2 = ref(db, `Newdata_${uuid}/variaveis`);
+
     onValue(starCountRef2, (snapshot) => {
       var data = snapshot.val();
       setvariavel(data.var_consulta);
@@ -71,7 +73,7 @@ export default function MostrarConsultas() {
     });
   }
 
-  function toComponentB(dataConsulta, horaConsulta, nome) {
+  function toComponentB(dataConsulta, horaConsulta, nome, variavel) {
     navigate("/userconsultaespec", {
       state: {
         dataConsulta: dataConsulta,
@@ -114,7 +116,11 @@ export default function MostrarConsultas() {
 
         <p className="blue paragraphInfo">
           Veja as consultas adicionadas ao utilizador{" "}
-          {auth.currentUser.reloadUserInfo.email} e edite-as se necessário.
+          <span className="darkgreen">
+            {" "}
+            {auth.currentUser.reloadUserInfo.email}
+          </span>{" "}
+          e edite-as se necessário.
         </p>
       </Row>
 

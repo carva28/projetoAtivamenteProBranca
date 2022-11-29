@@ -1,33 +1,10 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-
-import {
-  Row,
-  Button,
-  Container,
-  Col,
-  Form,
-  FormControl,
-} from "react-bootstrap";
+import { Row, Button, Form } from "react-bootstrap";
 import { initializeApp } from "firebase/app";
-import {
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail,
-  signOut,
-} from "firebase/auth";
-import {
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc,
-} from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 import Navbar from "../Containers/Navbar_platform_admin";
 import { getDatabase, ref, set, onValue, update } from "firebase/database";
 import Navbar_platform_admin from "../Containers/Navbar_platform_admin";
@@ -50,6 +27,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const db_v2 = getDatabase(app);
+
 export default function UserSpeciConsulta() {
   const location = useLocation();
 
@@ -85,7 +63,6 @@ export default function UserSpeciConsulta() {
         contacto_Nome: nomeConsulta,
         time_consulta: time_consulta,
       }).catch((error) => console.log(error));
-      /* console.log("DATA SAVED"); */
 
       setdisplaySate("block");
       var timer = setTimeout(() => {

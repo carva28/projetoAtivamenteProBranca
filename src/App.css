@@ -194,7 +194,7 @@ input[type="submit"].form-control:focus {
 .btn-primary:hover,
 .btn-primary:focus {
   background-color: transparent;
-  border: none;
+  color: inherit;
 }
 
 .btn.btnBorderBlue {
