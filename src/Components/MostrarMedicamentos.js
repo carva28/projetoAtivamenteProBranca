@@ -80,19 +80,19 @@ export default function MostrarMedicamentos() {
 
       setdados(data);
       setdatas(Object.values(snapshot.val()));
-      console.log(data);
+      //console.log(data);
     });
 
     const starCountRef2 = ref(db, `Newdata_${uuid}/variavel_Med`);
     onValue(starCountRef2, (snapshot) => {
       var data = snapshot.val();
       setvariavel(data.variavel_medicame);
-      console.log(data.variavel_medicame);
+      //console.log(data.variavel_medicame);
     });
   }
 
   function toComponentB(medicamen, quandoTomar, variavel) {
-    console.log("var: " + variavel);
+    //console.log("var: " + variavel);
     navigate("/usermedicarespec", {
       state: {
         medicamen: medicamen,

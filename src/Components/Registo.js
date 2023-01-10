@@ -43,7 +43,7 @@ class Registo extends React.Component {
         this.state.password
       );
 
-      console.log(user);
+      //console.log(user);
 
       this.setState({
         showAlert: true,

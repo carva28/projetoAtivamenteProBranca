@@ -71,13 +71,13 @@ export default function MostrarConsultas() {
     });
   }
 
-  function toComponentB(dataConsulta, horaConsulta, nome) {
+  function toComponentB(dataConsulta, horaConsulta, nome, id_consultaPar) {
     navigate("/userconsultaespec", {
       state: {
         dataConsulta: dataConsulta,
         horaConsulta: horaConsulta,
         nome: nome,
-        id_consulta: variavel,
+        id_consulta: id_consultaPar,
       },
     });
   }

@@ -65,14 +65,15 @@ export default function MostrarContactos() {
 
       setdados(data);
       setdatas(Object.values(snapshot.val()));
-      console.log(data);
+      //console.log(data);
     });
 
     const starCountRef2 = ref(db, `Newdata_${uuid}/variaveis_contact`);
     onValue(starCountRef2, (snapshot) => {
       var data = snapshot.val();
+      console.log(data)
       setvariavel(data.var_contact);
-      console.log(data.var_contact);
+      //console.log(data.var_contact);
     });
   }
 
@@ -83,15 +84,16 @@ export default function MostrarContactos() {
 
   // };
 
-  function toComponentB(numeroTel, nome) {
+  function toComponentB(numeroTel, nome, numeroContact) {
     navigate("/userespec", {
-      state: { numeroTel: numeroTel, nome: nome, id_consulta: variavel },
+      // state: { numeroTel: numeroTel, nome: nome, id_user_contact: variavel },
+      state: { numeroTel: numeroTel, nome: nome, id_user_contact: numeroContact },
     });
   }
 
   if (datas.length > 0) {
     // console.log(this.state.datas)
-    listItems = datas.map((data, i) => (
+    listItems = datas.map((data, i) =>   (
       <Col className="medicamento" xs={6} key={i}>
         <h3>{data.contacto_Nome}</h3>
         <p className="white">{data.contacto_telPesso}</p>
