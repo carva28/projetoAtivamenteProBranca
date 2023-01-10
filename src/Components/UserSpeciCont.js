@@ -59,7 +59,7 @@ export default function UserSpeciCont() {
   const [telfUser, settelfUser] = useState(location.state.numeroTel);
   var [estado, setEstado] = useState(true);
   var [displaySate, setdisplaySate] = useState("none");
-  const [variavel, setvariavel] = useState(location.state.id_consulta);
+  const [variavel, setvariavel] = useState(location.state.id_user_contact);
 
   function inputName(event) {
     setnomeUser(event.target.value);
@@ -94,6 +94,7 @@ export default function UserSpeciCont() {
 
   return (
     <div className="frame">
+
       <Row>
         <h1 className="green">Editar contacto</h1>
 

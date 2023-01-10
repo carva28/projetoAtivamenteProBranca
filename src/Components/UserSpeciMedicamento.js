@@ -74,11 +74,12 @@ export default function UserSpeciMedicamento() {
   function updateData_Fire() {
     if (medicamento != "" && alturamedicar != "") {
       const db = getDatabase();
+    
       set(ref(db, `Newdata_${uuid}/medicamentos/medicamento_${variavel}`), {
         medicamento: medicamento,
         momento_tomar: alturamedicar,
       }).catch((error) => console.log(error));
-      console.log("DATA SAVED");
+      //console.log("DATA SAVED");
 
       setdisplaySate("block");
       var timer = setTimeout(() => {
@@ -95,7 +96,7 @@ export default function UserSpeciMedicamento() {
   };
 
   console.log(alturamedicar);
-
+  console.log(variavel)
   return (
     <div className="frame">
       <Row>

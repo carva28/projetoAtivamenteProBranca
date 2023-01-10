@@ -36,7 +36,7 @@ class Login extends React.Component {
         this.state.email,
         this.state.password
       );
-      console.log(user);
+      //console.log(user);
     } catch (error) {
       /* console.log("Register \n" + error); */
       document.getElementById("erroLogin").innerHTML =

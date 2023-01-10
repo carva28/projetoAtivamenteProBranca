@@ -73,19 +73,18 @@ export default function MostrarConsultas() {
     });
   }
 
-  function toComponentB(dataConsulta, horaConsulta, nome, variavel) {
+  function toComponentB(dataConsulta, horaConsulta, nome, id_consultaPar) {
     navigate("/userconsultaespec", {
       state: {
         dataConsulta: dataConsulta,
         horaConsulta: horaConsulta,
         nome: nome,
-        id_consulta: variavel,
+        id_consulta: id_consultaPar,
       },
     });
   }
 
   if (datas.length > 0) {
-    // console.log(this.state.datas)
     listItems = datas.map((data, i) => (
       <Col className="medicamento" xs={6} key={i}>
         <h3> Consulta de {data.contacto_Nome} </h3>

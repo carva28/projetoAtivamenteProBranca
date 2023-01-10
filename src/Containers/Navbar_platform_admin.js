@@ -25,7 +25,6 @@ export default class Navbar_platform_admin extends Component {
   }
 
   render() {
-    //console.log(this.state.active);
 
     return (
       <div id="navBar" className="adminNav">
